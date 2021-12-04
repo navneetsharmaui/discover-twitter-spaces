@@ -1,9 +1,70 @@
 .DS_Store
 node_modules
-/build
+/node_modules
+/.svelte
 /.svelte-kit
-/package
-.env
-.env.*
-.vercel
-.output
+/build
+/functions
+/.vercel_build_output
+/.netlify
+/workers-site
+*.log
+
+# Ignore the build css
+static/*.css
+
+# Ignore the xml
+static/sitemap.xml
+static/feed.xml
+static/rss.xml
+
+# Storybook files #
+###################
+storybook-static
+storybook-static/*
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jest files #
+#############################
+coverage
+coverage/*
+
+
+# KDE/Linux generated files #
+#############################
+.directory
+
+# Runtime data #
+################
+pids
+*.pid
+*.seed
+*.pid.lock
+*.eslintcache
+
+# environment files #
+#####################
+/.env
+/.env.*
+/.env.local
+/.env.*.local
+!.env.example
+
+stats.html
