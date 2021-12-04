@@ -6,7 +6,7 @@ import type { Locals } from '$lib/types';
 export const patch: RequestHandler<Locals, FormData> = async (request) => {
 	return api(request, `todos/${request.locals.userid}/${request.params.uid}`, {
 		text: request.body.get('text'),
-		done: request.body.has('done') ? !!request.body.get('done') : undefined
+		done: request.body.has('done') ? !!request.body.get('done') : undefined,
 	});
 };
 

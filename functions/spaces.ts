@@ -25,7 +25,7 @@ const spacesSearchQueryParameters =
 
 const httpRequestOptions = {
 	headers,
-	method: 'GET'
+	method: 'GET',
 };
 
 export const requestHandler = async (event: {
@@ -39,15 +39,15 @@ export const requestHandler = async (event: {
 	try {
 		const response = await isomorphicFetch(
 			`https://api.twitter.com/2/spaces/search?query=${searchItem}&${spacesSearchQueryParameters}`,
-			httpRequestOptions
+			httpRequestOptions,
 		);
 
 		if (!response.ok) {
 			return {
 				statusCode: response.status,
 				body: JSON.stringify({
-					error: 'Could not fetch spaces.'
-				})
+					error: 'Could not fetch spaces.',
+				}),
 			};
 		}
 
@@ -55,14 +55,14 @@ export const requestHandler = async (event: {
 
 		return {
 			statusCode: 200,
-			body: JSON.stringify(payload)
+			body: JSON.stringify(payload),
 		};
 	} catch (error) {
 		return {
 			statusCode: 500,
 			body: JSON.stringify({
-				error: 'Could not fetch spaces.'
-			})
+				error: 'Could not fetch spaces.',
+			}),
 		};
 	}
 };

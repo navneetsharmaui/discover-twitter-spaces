@@ -23,7 +23,7 @@ export const post: RequestHandler<Locals, FormData> = async (request) => {
 		// request.body is _also_ a (readonly) FormData
 		// object, which allows us to get form data
 		// with the `body.get(key)` method
-		text: request.body.get('text')
+		text: request.body.get('text'),
 	});
 
 	return response;
