@@ -1,6 +1,6 @@
 {
-	"name": "sample-app",
-	"version": "0.0.1",
+	"name": "discover-twitter-spaces",
+	"version": "1.0.0",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.4.1",
+		"@types/isomorphic-fetch": "^0.0.35",
 		"@typescript-eslint/eslint-plugin": "^4.31.1",
 		"@typescript-eslint/parser": "^4.31.1",
 		"autoprefixer": "^10.3.7",
