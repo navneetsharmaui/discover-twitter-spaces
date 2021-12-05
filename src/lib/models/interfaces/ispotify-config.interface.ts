@@ -1,0 +1,9 @@
+export interface ISpotifyConfig {
+	SPOTIFY_CLIENT_BASIC: string;
+	SPOTIFY_CLIENT_ID: string;
+	SPOTIFY_CLIENT_SECRET: string;
+	SPOTIFY_REFRESH_TOKEN: string;
+	SPOTIFY_NOW_PLAYING_ENDPOINT: string;
+	SPOTIFY_TOP_TRACKS_ENDPOINT: string;
+	SPOTIFY_TOKEN_ENDPOINT: string;
+}

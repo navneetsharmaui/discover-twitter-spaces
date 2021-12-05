@@ -12,14 +12,16 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.4.1",
 		"@types/isomorphic-fetch": "^0.0.35",
 		"@typescript-eslint/eslint-plugin": "^4.31.1",
 		"@typescript-eslint/parser": "^4.31.1",
+		"@vercel/node": "^1.12.1",
 		"autoprefixer": "^10.3.7",
 		"cssnano": "^5.0.8",
+		"dotenv": "^10.0.0",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",
@@ -38,7 +40,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.0",
 		"@lukeed/uuid": "^2.0.0",
 		"cookie": "^0.4.1"
 	}
