@@ -20,7 +20,10 @@
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import { humanReadableTime } from '$lib/utils/_date-formatters';
 	import SpaceCard from '$lib/shared/ui/components/space-card/SpaceCard.svelte';
+	import GhostCard from '$lib/shared/ui/components/ghost-card/GhostCard.svelte';
 	import type { ITwitterSpaceCard } from '$lib/models/interfaces/itwitter-space-card.interface';
+	import { api } from '$lib/core/services/https/_api';
+	import { debounce } from '$lib/utils/_debounce';
 
 	// Exports
 	export let spaces!: any;
@@ -81,22 +84,6 @@
 				},
 			],
 		},
-		{
-			title: '🌐Tech News around the World',
-			spaceUrl: 'https://twitter.com/hashtag/tech?src=hash',
-			scheduledStartTime: humanReadableTime(new Date('2021-12-07T20:00:14.000Z')),
-			state: 'scheduled',
-			spaceId: 'INXwerwerSN',
-			description: '',
-			hosts: [
-				{
-					profileUrl: 'https://twitter.com/juarez_venus',
-					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
-					name: 'Kate Horwitz',
-					id: 'juarez_venus',
-				},
-			],
-		},
 	];
 	// End: Local component properties
 
@@ -106,7 +93,16 @@
 		console.log(spaces);
 	});
 
-	const scheduledDate = humanReadableTime(new Date('2021-12-07T20:00:14.000Z'));
+	const fetchSpaces = async (value: string) => {
+		const response = await api(`/api/spaces.json?search=${value}`);
+		console.log(response);
+	};
+
+	const handleSearch = async (input: string): Promise<void> => {
+		if (input.length >= 3) {
+			debounce(fetchSpaces, 600)(input);
+		}
+	};
 
 	// End: Local component methods
 </script>
@@ -127,6 +123,7 @@
 		<div class="relative w-full mb-4">
 			<input
 				bind:value="{searchValue}"
+				on:input="{() => handleSearch(searchValue)}"
 				aria-label="Search articles"
 				type="text"
 				placeholder="Search articles"
@@ -171,6 +168,7 @@
 		{#each twitterSpaces as twitterSpace, index (twitterSpace.spaceId)}
 			<SpaceCard twitterSpace="{twitterSpace}" />
 		{/each}
+		<GhostCard />
 	</div>
 </div>
 <!-- End: Home Page container -->
