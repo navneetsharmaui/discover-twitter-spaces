@@ -13,6 +13,8 @@
 	// Start: Exported Properties
 	export let useTitleAndLogo!: boolean;
 	export let useThemeModeButton!: boolean;
+	export let gitHubLink!: string;
+	export let twitterLink!: string;
 
 	/**
 	 * @type {IHeaderNavLink}
@@ -29,6 +31,8 @@
 
 <!-- Start: Navigation bar -->
 <NavigationBar
+	gitHubLink="{gitHubLink}"
+	twitterLink="{twitterLink}"
 	navLinks="{navLinks}"
 	useThemeModeButton="{useThemeModeButton}"
 	useTitleAndLogo="{useTitleAndLogo}"
