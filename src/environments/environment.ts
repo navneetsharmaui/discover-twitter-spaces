@@ -12,5 +12,9 @@ export const environment: ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_E
 	twitterConfig: {
 		TWITTER_TOKEN: `${import.meta.env.DISCOVER_TWITTER_TOKEN}`,
 		TWITTER_BASE_API_URL: `${import.meta.env.DISCOVER_TWITTER_BASE_API_URL}`,
+		TWITTER_PROFILE_URL: `${import.meta.env.DISCOVER_TWITTER_PROFILE_URL}`,
 	},
+	githubConfig: {
+		GITHUB_REPO_URL: `${import.meta.env.DISCOVER_GITHUB_REPO_URL}`,
+	}
 };
