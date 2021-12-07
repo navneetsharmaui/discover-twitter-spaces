@@ -19,13 +19,9 @@
 
 	// End: External Imports
 
-	// Core services
-
-	// Components
+	import { sveltekitStarterEnvironmentFacade } from '$core/services/environment/_environment.facade';
 	import Header from '$ui/components/header/Header.svelte';
 	import RouteTransition from '$ui/components/route-transition/RouteTransition.svelte';
-
-	// Models
 	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
 	// End: Local Imports
 
@@ -46,6 +42,9 @@
 		},
 	];
 
+	const twitterProfileLink = sveltekitStarterEnvironmentFacade.twitterProfileUrl;
+	const githubRepoLink = sveltekitStarterEnvironmentFacade.githubRepoUrl;
+
 	// End: Local component properties
 
 	// Start: Local component methods
@@ -58,16 +57,21 @@
 	// End: Local component methods
 </script>
 
-<div class=" dark:bg-black bg-yellow-50">
+<div class=" dark:bg-black bg-yellow-50 transition-colors duration-150 ease-in-out">
 	<!-- Start: Header Navigation -->
 	<Header
 		on:toggleTheme="{(e) => toggleThemeMode(e)}"
+		gitHubLink="{githubRepoLink}"
+		twitterLink="{twitterProfileLink}"
 		navLinks="{navLinks}"
 		useThemeModeButton="{true}"
 		useTitleAndLogo="{true}"
 	/>
 	<!-- End: Header Navigation -->
-	<main id="skip" class="flex flex-col justify-center px-8 bg-yellow-50 dark:bg-black pt-4">
+	<main
+		id="skip"
+		class="flex flex-col justify-center px-8 bg-yellow-50 dark:bg-black transition-colors duration-150 ease-in-out pt-4"
+	>
 		<!-- Start: Defaull layout slot -->
 		<RouteTransition referesh="{path}">
 			<slot />

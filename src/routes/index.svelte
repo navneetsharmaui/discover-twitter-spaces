@@ -17,9 +17,10 @@
 	// Start: Imports
 	import { onMount } from 'svelte';
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
-	import Card from '$ui/components/card/Card.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import { humanReadableTime } from '$lib/utils/_date-formatters';
+	import SpaceCard from '$lib/shared/ui/components/space-card/SpaceCard.svelte';
+	import type { ITwitterSpaceCard } from '$lib/models/interfaces/itwitter-space-card.interface';
 
 	// Exports
 	export let spaces!: any;
@@ -40,6 +41,63 @@
 	};
 
 	let searchValue = '';
+
+	const twitterSpaces: ITwitterSpaceCard[] = [
+		{
+			title: '🌐Tech News around the World',
+			spaceUrl: 'https://twitter.com/hashtag/tech?src=hash',
+			scheduledStartTime: humanReadableTime(new Date('2021-12-07T20:00:14.000Z')),
+			state: 'scheduled',
+			spaceId: 'INXwerwerSD',
+			description: '',
+			hosts: [
+				{
+					profileUrl: 'https://twitter.com/juarez_venus',
+					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
+					name: 'Kate Horwitz',
+					id: 'juarez',
+				},
+				{
+					profileUrl: 'https://twitter.com/juarez_venus',
+					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
+					name: 'Kate Horwitz',
+					id: 'juarez_venus',
+				},
+			],
+		},
+		{
+			title: '🌐Tech News around the World',
+			spaceUrl: 'https://twitter.com/hashtag/tech?src=hash',
+			scheduledStartTime: humanReadableTime(new Date('2021-12-07T20:00:14.000Z')),
+			state: 'live',
+			spaceId: 'INXwerwerSS',
+			description: '',
+			hosts: [
+				{
+					profileUrl: 'https://twitter.com/juarez_venus',
+					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
+					name: 'Kate Horwitz',
+					id: 'juarez_venus',
+				},
+			],
+		},
+		{
+			title: '🌐Tech News around the World',
+			spaceUrl: 'https://twitter.com/hashtag/tech?src=hash',
+			scheduledStartTime: humanReadableTime(new Date('2021-12-07T20:00:14.000Z')),
+			state: 'scheduled',
+			spaceId: 'INXwerwerSN',
+			description: '',
+			hosts: [
+				{
+					profileUrl: 'https://twitter.com/juarez_venus',
+					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
+					name: 'Kate Horwitz',
+					id: 'juarez_venus',
+				},
+			],
+		},
+	];
 	// End: Local component properties
 
 	// Start: Local component methods
@@ -62,7 +120,7 @@
 	<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
 		Discover Spaces
 	</h1>
-	<p class="prose text-gray-600 dark:text-gray-400 mb-14">
+	<p class="prose text-gray-600 dark:text-gray-400 mb-10">
 		Search the twitter space for your interests. You can also search for people and topics.
 	</p>
 	<div class="flex flex-col mb-4 w-full">
@@ -104,167 +162,15 @@
 		</div>
 	</div>
 	<div class="border-t border-gray-400 w-full my-2"> </div>
-	<div class="flex flex-col w-full mt-8 gap-4">
-		<Card>
-			<div class="flex flex-col w-full">
-				<div class="flex flex-col justify-start items-start mb-1">
-					<div class="flex flex-row">
-						<h5
-							class="text-gray-900 dark:text-gray-100 text-sm md:text-lg leading-tight font-medium"
-						>
-							🌐Tech News around the World
-						</h5>
-					</div>
-					<div class="flex flex-row items-center mx-1 mt-3">
-						<div class="block w-2 h-2 bg-red-500 rounded-full"></div>
-						<p class="text-xs text-gray-900 dark:text-gray-100 ml-1">Live</p>
-					</div>
-				</div>
-				<div class="flex flex-col my-2 mx-1">
-					<div class="mb-2">
-						<small class="text-xs text-gray-900 dark:text-gray-100 font-semibold"
-							>Hosts</small
-						>
-					</div>
-					<div class="flex flex-row flex-wrap w-full">
-						<div
-							class="flex flex-row w-1/2 md:w-1/4 my-2 md:my-0 justify-start items-center"
-						>
-							<a
-								href="https://twitter.com/juarez_venus"
-								target="_blank"
-								class="flex flex-row justify-start items-center"
-							>
-								<div class="mr-2">
-									<figure>
-										<img
-											src="https://pbs.twimg.com/profile_images/1278259160644227073/MfCyF7CG_normal.jpg"
-											alt="some asdasd"
-											height="24"
-											width="24"
-											class="rounded-full h-6 w-6"
-										/>
-									</figure>
-								</div>
-								<div class="flex flex-col justify-start items-start">
-									<h6
-										class="hover:text-gray-600 text-gray-900 dark:text-gray-100 text-xs leading-tight font-medium"
-									>
-										Some Name
-									</h6>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="flex flex-row w-full justify-start mt-4">
-					<a
-						href="https://twitter.com/hashtag/tech?src=hash"
-						class="bg-gray-300 text-gray-900 active:bg-gray-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-						target="_blank"
-					>
-						Join Space
-					</a>
-				</div>
-
-				<div class="flex flex-row w-full"></div>
-			</div>
-		</Card>
-		<Card>
-			<div class="flex flex-col w-full">
-				<div class="flex flex-col justify-start items-start mb-1">
-					<div class="flex flex-row">
-						<h5
-							class="text-gray-900 dark:text-gray-100 text-sm md:text-lg leading-tight font-medium"
-						>
-							🌐Tech News around the World
-						</h5>
-					</div>
-					<div class="flex flex-row items-center mx-1 mt-3">
-						<div class="block w-2 h-2 bg-gray-600 rounded-full"></div>
-						<p class="text-xs text-gray-900 dark:text-gray-100 ml-1"
-							>Scheduled at {scheduledDate}</p
-						>
-					</div>
-				</div>
-				<div class="flex flex-col my-2 mx-1">
-					<div class="mb-2">
-						<small class="text-xs text-gray-900 dark:text-gray-100 font-semibold"
-							>Hosts</small
-						>
-					</div>
-					<div class="flex flex-row flex-wrap w-full">
-						<div
-							class="flex flex-row w-1/2 md:w-1/4 my-2 md:my-0 justify-start items-center"
-						>
-							<a
-								href="https://twitter.com/juarez_venus"
-								target="_blank"
-								class="flex flex-row justify-start items-center"
-							>
-								<div class="mr-2">
-									<figure>
-										<img
-											src="https://pbs.twimg.com/profile_images/1278259160644227073/MfCyF7CG_normal.jpg"
-											alt="some asdasd"
-											height="24"
-											width="24"
-											class="rounded-full h-6 w-6"
-										/>
-									</figure>
-								</div>
-								<div class="flex flex-col justify-start items-start">
-									<h6
-										class="hover:text-gray-600 text-gray-900 dark:text-gray-100 text-xs leading-tight font-medium"
-									>
-										Some Name
-									</h6>
-								</div>
-							</a>
-						</div>
-						<div
-							class="flex flex-row w-1/2 md:w-1/4 my-2 md:my-0 justify-start items-center"
-						>
-							<a
-								href="https://twitter.com/juarez_venus"
-								target="_blank"
-								class="flex flex-row justify-start items-center"
-							>
-								<div class="mr-2">
-									<figure>
-										<img
-											src="https://pbs.twimg.com/profile_images/1278259160644227073/MfCyF7CG_normal.jpg"
-											alt="some asdasd"
-											height="24"
-											width="24"
-											class="rounded-full h-6 w-6"
-										/>
-									</figure>
-								</div>
-								<div class="flex flex-col justify-start items-start">
-									<h6
-										class="hover:text-gray-600 text-gray-900 dark:text-gray-100 text-xs leading-tight font-medium"
-									>
-										Some Name
-									</h6>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="flex flex-row w-full justify-start mt-4">
-					<a
-						href="https://twitter.com/hashtag/tech?src=hash"
-						class="bg-gray-300 text-gray-900 active:bg-gray-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-						target="_blank"
-					>
-						Join Space
-					</a>
-				</div>
-
-				<div class="flex flex-row w-full"></div>
-			</div>
-		</Card>
+	<div class="w-full">
+		<p class="text-gray-900 dark:text-gray-100 mx-1">
+			<small>About {twitterSpaces.length} results</small>
+		</p>
+	</div>
+	<div class="flex flex-col w-full mt-5 gap-5">
+		{#each twitterSpaces as twitterSpace, index (twitterSpace.spaceId)}
+			<SpaceCard twitterSpace="{twitterSpace}" />
+		{/each}
 	</div>
 </div>
 <!-- End: Home Page container -->
