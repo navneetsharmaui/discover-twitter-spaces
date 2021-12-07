@@ -16,7 +16,7 @@ import type { ISveltekitStarterEnvironmentConfig } from '$models/interfaces/isve
  * @public
  */
 class SveltekitStarterEnvironmentFacade<
-	T extends ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG> = ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG>
+	T extends ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG> = ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG>,
 > {
 	constructor(private readonly coreConfig: ISveltekitStarterCoreConfig<T>) {}
 
@@ -38,6 +38,14 @@ class SveltekitStarterEnvironmentFacade<
 
 	public get twitterAPIUrl(): string {
 		return this.coreConfig.environment.twitterConfig.TWITTER_BASE_API_URL;
+	}
+
+	public get twitterProfileUrl(): string {
+		return this.coreConfig.environment.twitterConfig.TWITTER_PROFILE_URL;
+	}
+
+	public get githubRepoUrl(): string {
+		return this.coreConfig.environment.githubConfig.GITHUB_REPO_URL;
 	}
 }
 
