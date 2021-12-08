@@ -30,9 +30,9 @@
 	<div class="flex flex-col w-full overflow-hidden">
 		<div class="flex flex-col justify-start items-start mb-3">
 			<div class="block w-3/4 h-6"><div class="ghost-loader-background rounded"></div></div>
-			<div class="flex flex-row mt-3">
+			<div class="flex flex-row mt-3 w-full">
 				<div class="block w-2 h-2"><div class="ghost-loader-background rounded-full"></div></div>
-				<div class="block w-12 h-2"><div class="ghost-loader-background rounded ml-1"></div></div>
+				<div class="block w-2/4 h-2"><div class="ghost-loader-background rounded ml-1"></div></div>
 			</div>
 		</div>
 		<div class="flex flex-col my-2">

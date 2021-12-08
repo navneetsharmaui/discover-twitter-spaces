@@ -20,7 +20,7 @@
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import { humanReadableTime } from '$lib/utils/_date-formatters';
 	import SpaceCard from '$lib/shared/ui/components/space-card/SpaceCard.svelte';
-	import GhostCard from '$lib/shared/ui/components/ghost-card/GhostCard.svelte';
+	import GhostSpaceCard from '$lib/shared/ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import type { ITwitterSpaceCard } from '$lib/models/interfaces/itwitter-space-card.interface';
 	import { api } from '$lib/core/services/https/_api';
 	import { debounce } from '$lib/utils/_debounce';
@@ -100,7 +100,7 @@
 
 	const handleSearch = async (input: string): Promise<void> => {
 		if (input.length >= 3) {
-			debounce(fetchSpaces, 600)(input);
+			debounce(fetchSpaces, 200)(input);
 		}
 	};
 
@@ -168,7 +168,7 @@
 		{#each twitterSpaces as twitterSpace, index (twitterSpace.spaceId)}
 			<SpaceCard twitterSpace="{twitterSpace}" />
 		{/each}
-		<GhostCard />
+		<GhostSpaceCard />
 	</div>
 </div>
 <!-- End: Home Page container -->
