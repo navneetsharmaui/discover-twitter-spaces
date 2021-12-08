@@ -7,7 +7,6 @@
 	// Start: Local Imports
 	// Components
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
-	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 
 	// Models
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
