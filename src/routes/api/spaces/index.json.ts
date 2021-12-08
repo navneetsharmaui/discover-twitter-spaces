@@ -6,9 +6,7 @@ export const get: RequestHandler = async (request) => {
 	try {
 		const TWITTER_TOKEN = `${discoverEnvironmentFacade.twitterToken}`.trim().slice();
 
-		const TWITTER_BASE_API_URL = `${discoverEnvironmentFacade.twitterAPIUrl}`
-			.trim()
-			.slice();
+		const TWITTER_BASE_API_URL = `${discoverEnvironmentFacade.twitterAPIUrl}`.trim().slice();
 
 		const search = request.query.get('search');
 

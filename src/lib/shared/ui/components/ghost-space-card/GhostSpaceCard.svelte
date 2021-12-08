@@ -31,13 +31,19 @@
 		<div class="flex flex-col justify-start items-start mb-3">
 			<div class="block w-3/4 h-6"><div class="ghost-loader-background rounded"></div></div>
 			<div class="flex flex-row mt-3 w-full">
-				<div class="block w-2 h-2"><div class="ghost-loader-background rounded-full"></div></div>
-				<div class="block w-1/3 h-2"><div class="ghost-loader-background rounded ml-1"></div></div>
+				<div class="block w-2 h-2"
+					><div class="ghost-loader-background rounded-full"></div></div
+				>
+				<div class="block w-1/3 h-2"
+					><div class="ghost-loader-background rounded ml-1"></div></div
+				>
 			</div>
 		</div>
 		<div class="flex flex-col my-3">
 			<div class="mb-2 overflow-hidden">
-				<small class="block w-16 h-3"><div class="ghost-loader-background rounded"></div></small>
+				<small class="block w-16 h-3"
+					><div class="ghost-loader-background rounded"></div></small
+				>
 			</div>
 			<div class="flex flex-row flex-wrap w-full overflow-hidden gap-4">
 				<div class="block min-w-4xs h-8 my-2">
@@ -48,7 +54,9 @@
 			</div>
 		</div>
 		<div class="flex flex-row mt-3">
-			<button type="button" class="h-8 w-28"><div class="ghost-loader-background rounded"></div></button>
+			<button type="button" class="h-8 w-28"
+				><div class="ghost-loader-background rounded"></div></button
+			>
 		</div>
 	</div>
 </Card>

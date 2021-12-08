@@ -14,7 +14,9 @@
 	export let metaData: Partial<IMetaTagProperties> = {};
 	// End: Exported Properties
 
-	const BASE_URL = environment.launchURL ? environment.launchURL : 'https://discover-twitter-spaces.vercel.app/';
+	const BASE_URL = environment.launchURL
+		? environment.launchURL
+		: 'https://discover-twitter-spaces.vercel.app/';
 
 	metaData = {
 		...metaData,
@@ -43,18 +45,23 @@
 		},
 	};
 
-	const jsonLd = (content) => `<${'script'} type="application/ld+json">${JSON.stringify(content)}</${'script'}>`;
+	const jsonLd = (content) =>
+		`<${'script'} type="application/ld+json">${JSON.stringify(content)}</${'script'}>`;
 
 	$: {
 		if (!!metaData.image && typeof metaData.image === 'string') {
 			metaData.openGraph = {
 				...metaData.openGraph,
-				image: metaData.image.includes(BASE_URL) ? metaData.image : `${BASE_URL}${metaData.image}`,
+				image: metaData.image.includes(BASE_URL)
+					? metaData.image
+					: `${BASE_URL}${metaData.image}`,
 				'image:alt': metaData.title,
 			};
 			metaData.twitter = {
 				...metaData.twitter,
-				image: metaData.image.includes(BASE_URL) ? metaData.image : `${BASE_URL}${metaData.image}`,
+				image: metaData.image.includes(BASE_URL)
+					? metaData.image
+					: `${BASE_URL}${metaData.image}`,
 				'image:alt': metaData.title,
 			};
 		}
@@ -144,7 +151,11 @@
 			'@type': 'NewsArticle',
 			url: `${BASE_URL}/`,
 			headling: metaData.title,
-			image: [metaData.image && typeof metaData.image === 'object' ? metaData.image.url : metaData.image],
+			image: [
+				metaData.image && typeof metaData.image === 'object'
+					? metaData.image.url
+					: metaData.image,
+			],
 			datePublished: metaData.article.published_time,
 			dateModified: metaData.article.modified_time,
 			author: {
@@ -163,7 +174,9 @@
 			mainEntityOfPage: metaData.url,
 			articleSection: 'Blog',
 			keywords:
-				metaData.keywords && metaData.keywords.length > 0 ? metaData.keywords.join(', ') : 'Discover Twitter Spaces',
+				metaData.keywords && metaData.keywords.length > 0
+					? metaData.keywords.join(', ')
+					: 'Discover Twitter Spaces',
 		})}
 	{/if}
 </svelte:head>
