@@ -1,32 +1,15 @@
-<script lang="ts" context="module">
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ fetch }) {
-		return {
-			props: {
-				spaces: await fetch(`/api/spaces.json`).then((res: { json: () => any }) =>
-					res.json(),
-				),
-			},
-		};
-	}
-</script>
-
 <script lang="ts">
 	// Start: Imports
-	import { onMount } from 'svelte';
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
-	import { humanReadableTime } from '$lib/utils/_date-formatters';
 	import SpaceCard from '$lib/shared/ui/components/space-card/SpaceCard.svelte';
 	import GhostSpaceCard from '$lib/shared/ui/components/ghost-space-card/GhostSpaceCard.svelte';
-	import type { ITwitterSpaceCard } from '$lib/models/interfaces/itwitter-space-card.interface';
 	import { api } from '$lib/core/services/https/_api';
-	import { debounce } from '$lib/utils/_debounce';
+	import { mapToTwitterSpaces } from '$lib/utils/_mapper';
+	import { spacesStore } from '$stores/spaces-store';
+	import { SPACE_CATEGORIES } from '$lib/data/spaces-categories';
 
 	// Exports
-	export let spaces!: any;
 	// Start: Local component properties
 	/**
 	 * @type {IMetaTagProperties}
@@ -44,64 +27,39 @@
 	};
 
 	let searchValue = '';
+	let selectedValue = 'category';
 
-	const twitterSpaces: ITwitterSpaceCard[] = [
-		{
-			title: '🌐Tech News around the World',
-			spaceUrl: 'https://twitter.com/hashtag/tech?src=hash',
-			scheduledStartTime: humanReadableTime(new Date('2021-12-07T20:00:14.000Z')),
-			state: 'scheduled',
-			spaceId: 'INXwerwerSD',
-			description: '',
-			hosts: [
-				{
-					profileUrl: 'https://twitter.com/juarez_venus',
-					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
-					name: 'Kate Horwitz',
-					id: 'juarez',
-				},
-				{
-					profileUrl: 'https://twitter.com/juarez_venus',
-					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
-					name: 'Kate Horwitz',
-					id: 'juarez_venus',
-				},
-			],
-		},
-		{
-			title: '🌐Tech News around the World',
-			spaceUrl: 'https://twitter.com/hashtag/tech?src=hash',
-			scheduledStartTime: humanReadableTime(new Date('2021-12-07T20:00:14.000Z')),
-			state: 'live',
-			spaceId: 'INXwerwerSS',
-			description: '',
-			hosts: [
-				{
-					profileUrl: 'https://twitter.com/juarez_venus',
-					imageUrl: 'https://randomuser.me/api/portraits/women/34.jpg',
-					name: 'Kate Horwitz',
-					id: 'juarez_venus',
-				},
-			],
-		},
-	];
 	// End: Local component properties
 
 	// Start: Local component methods
 
-	onMount(() => {
-		console.log(spaces);
-	});
-
-	const fetchSpaces = async (value: string) => {
-		const response = await api(`/api/spaces.json?search=${value}`);
-		console.log(response);
+	const fetchSpaces = async (value?: string) => {
+		return !value
+			? await api(`/api/spaces.json`)
+			: await api(`/api/spaces.json?search=${value}`);
 	};
+
+	let twitterSpaces = fetchSpaces();
 
 	const handleSearch = async (input: string): Promise<void> => {
 		if (input.length >= 3) {
-			debounce(fetchSpaces, 200)(input);
+			selectedValue = 'category';
+			twitterSpaces = fetchSpaces(input);
 		}
+	};
+
+	const handleSelect = async (input: string): Promise<void> => {
+		if (input.length >= 3 && input !== searchValue && input !== 'category') {
+			searchValue = '';
+			twitterSpaces = fetchSpaces(input);
+		}
+	};
+
+	const handleSpaceResponse = (value: unknown) => {
+		const spaces = mapToTwitterSpaces(value);
+		spacesStore.set(spaces);
+
+		return spaces;
 	};
 
 	// End: Local component methods
@@ -112,7 +70,7 @@
 <!-- End: Header Tag -->
 
 <!-- Start: Home Page container -->
-<div class="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16">
+<div class="flex flex-col justify-center items-start min-w-full mx-auto mb-16">
 	<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
 		Discover Spaces
 	</h1>
@@ -150,10 +108,12 @@
 					class="px-4 py-2 border border-gray-300 dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full rounded-md bg-yellow-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
 					name="category"
 					id="category"
+					bind:value="{selectedValue}"
+					on:change="{() => handleSelect(selectedValue)}"
 				>
-					<option>Value 1</option>
-					<option>Value 2</option>
-					<option>Value 3</option>
+					{#each SPACE_CATEGORIES as category, index (category.id)}
+						<option value="{category.id}">{category.label}</option>
+					{/each}
 				</select>
 			</label>
 		</div>
@@ -161,14 +121,21 @@
 	<div class="border-t border-gray-400 w-full my-2"> </div>
 	<div class="w-full">
 		<p class="text-gray-900 dark:text-gray-100 mx-1">
-			<small>About {twitterSpaces.length} results</small>
+			<small>About {$spacesStore.length} results</small>
 		</p>
 	</div>
 	<div class="flex flex-col w-full mt-5 gap-5">
-		{#each twitterSpaces as twitterSpace, index (twitterSpace.spaceId)}
-			<SpaceCard twitterSpace="{twitterSpace}" />
-		{/each}
-		<GhostSpaceCard />
+		{#await twitterSpaces}
+			{#each [0, 1, 2, 3] as num, index (num)}
+				<GhostSpaceCard />
+			{/each}
+		{:then spaces}
+			{#each handleSpaceResponse(spaces.body) as space, index (space.spaceId)}
+				<SpaceCard twitterSpace="{space}" />
+			{/each}
+		{:catch error}
+			<p style="color: red">{error.message}</p>
+		{/await}
 	</div>
 </div>
 <!-- End: Home Page container -->

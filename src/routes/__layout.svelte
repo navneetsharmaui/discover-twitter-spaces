@@ -70,12 +70,14 @@
 	<!-- End: Header Navigation -->
 	<main
 		id="skip"
-		class="flex flex-col justify-center px-8 bg-yellow-50 dark:bg-black transition-colors duration-150 ease-in-out pt-4"
+		class="flex flex-col w-full justify-start items-center px-8 bg-yellow-50 dark:bg-black transition-colors duration-150 ease-in-out pt-4"
 	>
-		<!-- Start: Defaull layout slot -->
-		<RouteTransition referesh="{path}">
-			<slot />
-		</RouteTransition>
-		<!-- End: Defaull layout slot -->
+		<div class="max-w-2xl w-full md:min-w-2xl">
+			<!-- Start: Defaull layout slot -->
+			<RouteTransition referesh="{path}">
+				<slot />
+			</RouteTransition>
+			<!-- End: Defaull layout slot -->
+		</div>
 	</main>
 </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { ITwitterSpaceCard } from '$lib/models/interfaces/itwitter-space-card.interface';
+	import type { ITwitterSpace } from '$lib/models/interfaces/itwitter-space.interface';
 	import Card from '$ui/components/card/Card.svelte';
 	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 
-	export let twitterSpace!: ITwitterSpaceCard;
+	export let twitterSpace!: ITwitterSpace;
 </script>
 
 <Card>
@@ -22,19 +22,19 @@
 				</ExternalLink>
 			</div>
 			<div
-				class="flex flex-row items-center mx-1 mt-3"
-				aria-label="{twitterSpace.state.toLowerCase() === 'live'
+				class="flex flex-row items-center mt-3"
+				aria-label="{twitterSpace.isLive
 					? `${twitterSpace.state.slice(0, 1).toUpperCase()}${twitterSpace.state
 							.toLowerCase()
 							.slice(1, twitterSpace.state.length)}`
 					: `Scheduled at ${twitterSpace.scheduledStartTime}`}"
 			>
 				<div
-					class="block w-2 h-2 rounded-full {twitterSpace.state.toLowerCase() === 'live'
+					class="block w-2 h-2 rounded-full {twitterSpace.isLive
 						? 'bg-red-500'
 						: 'bg-gray-600'}"></div>
 				<p class="text-xs text-gray-900 dark:text-gray-100 ml-1"
-					>{twitterSpace.state.toLowerCase() === 'live'
+					>{twitterSpace.isLive
 						? `${twitterSpace.state.slice(0, 1).toUpperCase()}${twitterSpace.state
 								.toLowerCase()
 								.slice(1, twitterSpace.state.length)}`
@@ -42,37 +42,33 @@
 				>
 			</div>
 		</div>
-		<div class="flex flex-col my-2 mx-1">
+		<div class="flex flex-col my-2">
 			<div class="mb-2">
 				<small class="text-xs text-gray-900 dark:text-gray-100 font-semibold">Hosts</small>
 			</div>
-			<div class="flex flex-row flex-wrap w-full">
+			<div class="flex flex-row flex-wrap w-full gap-4">
 				{#each twitterSpace.hosts as host, index (host.id)}
-					<div
-						class="flex flex-row w-1/2 md:w-1/4 my-2 md:my-0 justify-start items-center"
-					>
+					<div class="flex flex-row my-2 md:my-0 justify-start items-center">
 						<ExternalLink
 							href="{host.profileUrl}"
 							cssClasses="flex flex-row justify-start items-center"
 							ariaLabel="{`Host ${host.name}`}"
 						>
-							<div class="mr-2">
-								<figure
-									class="flex flex-row justify-start items-center bg-gray-100 rounded-full pr-4 hover:shadow"
+							<figure
+								class="min-w-4xs flex flex-row justify-start items-center bg-gray-100 rounded-full pr-4 hover:shadow"
+							>
+								<img
+									src="{host.imageUrl}"
+									alt="{host.name}"
+									height="24"
+									width="24"
+									class="rounded-full h-8 w-8 border-gray-400 border-2"
+								/>
+								<figcaption
+									class="ml-2 hover:text-blue-900 text-gray-900 text-xs leading-tight font-medium"
+									>{host.name}</figcaption
 								>
-									<img
-										src="{host.imageUrl}"
-										alt="{host.name}"
-										height="24"
-										width="24"
-										class="rounded-full h-8 w-8 border-gray-400 border-2"
-									/>
-									<figcaption
-										class="ml-2 hover:text-blue-900 text-gray-900 text-xs leading-tight font-medium"
-										>{host.name}</figcaption
-									>
-								</figure>
-							</div>
+							</figure>
 						</ExternalLink>
 					</div>
 				{/each}
