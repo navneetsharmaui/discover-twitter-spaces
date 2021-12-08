@@ -23,10 +23,6 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
-	"dependencies": {
-		"@lukeed/uuid": "^2.0.0",
-		"cookie": "^0.4.1"
-	},
 	"devDependencies": {
 		"@fortawesome/fontawesome-free": "^5.15.4",
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -36,7 +32,6 @@
 		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/typography": "^0.4.1",
-		"@types/cookie": "^0.4.1",
 		"@types/isomorphic-fetch": "^0.0.35",
 		"@types/node": "^16.11.11",
 		"@types/node-fetch": "^3.0.3",
