@@ -1,5 +1,8 @@
+import type { EndpointOutput } from '@sveltejs/kit';
+import type { DefaultBody } from '@sveltejs/kit/types/endpoint';
+
 export const debounce = (
-	func: (value: string) => Promise<void>,
+	func: (value: string) => Promise<EndpointOutput<DefaultBody>>,
 	wait: number,
 	immediate = false,
 ): ((...args: unknown[]) => void) => {
