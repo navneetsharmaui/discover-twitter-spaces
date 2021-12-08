@@ -32,27 +32,22 @@
 			<div class="block w-3/4 h-6"><div class="ghost-loader-background rounded"></div></div>
 			<div class="flex flex-row mt-3 w-full">
 				<div class="block w-2 h-2"><div class="ghost-loader-background rounded-full"></div></div>
-				<div class="block w-2/4 h-2"><div class="ghost-loader-background rounded ml-1"></div></div>
+				<div class="block w-1/3 h-2"><div class="ghost-loader-background rounded ml-1"></div></div>
 			</div>
 		</div>
-		<div class="flex flex-col my-2">
+		<div class="flex flex-col my-3">
 			<div class="mb-2 overflow-hidden">
 				<small class="block w-16 h-3"><div class="ghost-loader-background rounded"></div></small>
 			</div>
 			<div class="flex flex-row flex-wrap w-full overflow-hidden gap-4">
-				<div class="block w-1/4 h-8 my-2">
-					<div class="ghost-loader-background rounded-full">
-						<div class="block h-8 w-8 rounded-full border-gray-200 border-2"></div>
-					</div>
-				</div>
-				<div class="block w-1/4 h-8 my-2">
+				<div class="block min-w-4xs h-8 my-2">
 					<div class="ghost-loader-background rounded-full">
 						<div class="block h-8 w-8 rounded-full border-gray-200 border-2"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-row mt-1">
+		<div class="flex flex-row mt-3">
 			<button type="button" class="h-8 w-28"><div class="ghost-loader-background rounded"></div></button>
 		</div>
 	</div>
