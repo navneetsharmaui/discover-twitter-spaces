@@ -35,6 +35,13 @@ const config = {
 
 		trailingSlash: 'always',
 
+		ssr: true,
+		prerender: {
+			crawl: true,
+			enabled: true,
+			onError: 'fail',
+			entries: ['*'],
+		},
 		vite: () => ({
 			resolve: {
 				alias: {

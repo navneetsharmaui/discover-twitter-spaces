@@ -1,6 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 import { api } from '$core/services/https/_api';
+import { mapToTwitterSpaces } from '$lib/utils/_mapper';
 
 export const get: RequestHandler = async (request) => {
 	try {
@@ -40,7 +41,7 @@ export const get: RequestHandler = async (request) => {
 					headers: {
 						'Cache-Control': 'public, s-maxage=1200, stale-while-revalidate=600',
 					},
-					body: JSON.stringify(twitterSpacesApiResponse.body),
+					body: JSON.stringify(mapToTwitterSpaces(twitterSpacesApiResponse.body)),
 			  };
 	} catch (error) {
 		return {

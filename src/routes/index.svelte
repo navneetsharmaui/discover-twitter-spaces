@@ -1,11 +1,26 @@
+<script lang="ts" context="module">
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+	export async function load({ fetch }) {
+		return {
+			props: {
+				twitterSpaces: await fetch(`/api/spaces.json`).then((res: { json: () => any }) =>
+					res.json(),
+				),
+			},
+		};
+	}
+</script>
+
 <script lang="ts">
 	// Start: Imports
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
+	import type { ITwitterSpace } from '$lib/models/interfaces/itwitter-space.interface';
 	import SpaceCard from '$lib/shared/ui/components/space-card/SpaceCard.svelte';
 	import GhostSpaceCard from '$lib/shared/ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import { api } from '$lib/core/services/https/_api';
-	import { mapToTwitterSpaces } from '$lib/utils/_mapper';
 	import { spacesStore } from '$stores/spaces-store';
 	import { SPACE_CATEGORIES } from '$lib/data/spaces-categories';
 
@@ -36,6 +51,9 @@
 	// End: Local component properties
 
 	// Start: Local component methods
+	export let twitterSpaces: ITwitterSpace[];
+
+	let isLoading = false;
 
 	const fetchSpaces = async (value?: string) => {
 		return !value
@@ -43,27 +61,26 @@
 			: await api(`/api/spaces.json?search=${value}`);
 	};
 
-	let twitterSpaces = fetchSpaces();
-
+	const setTwitterSpaces = async (input: string): Promise<void> => {
+		const response = await fetchSpaces(input);
+		twitterSpaces = response.body as unknown as ITwitterSpace[];
+		spacesStore.set(twitterSpaces);
+		isLoading = false;
+	};
 	const handleSearch = async (input: string): Promise<void> => {
 		if (input.length >= 3) {
+			isLoading = true;
 			selectedValue = 'category';
-			twitterSpaces = fetchSpaces(input);
+			setTwitterSpaces(input);
 		}
 	};
 
 	const handleSelect = async (input: string): Promise<void> => {
 		if (input.length >= 3 && input !== searchValue && input !== 'category') {
+			isLoading = true;
 			searchValue = '';
-			twitterSpaces = fetchSpaces(input);
+			setTwitterSpaces(input);
 		}
-	};
-
-	const handleSpaceResponse = (value: unknown) => {
-		const spaces = mapToTwitterSpaces(value);
-		spacesStore.set(spaces);
-
-		return spaces;
 	};
 
 	// End: Local component methods
@@ -130,17 +147,15 @@
 		</p>
 	</div>
 	<div class="flex flex-col w-full mt-5 gap-5">
-		{#await twitterSpaces}
-			{#each [0, 1, 2, 3] as num, index (num)}
+		{#if isLoading}
+			{#each [0, 1, 2, 3, 4] as num, index (num)}
 				<GhostSpaceCard />
 			{/each}
-		{:then spaces}
-			{#each handleSpaceResponse(spaces.body) as space, index (space.spaceId)}
+		{:else if !isLoading}
+			{#each twitterSpaces as space, index (space.spaceId)}
 				<SpaceCard twitterSpace="{space}" />
 			{/each}
-		{:catch error}
-			<p style="color: red">{error.message}</p>
-		{/await}
+		{/if}
 	</div>
 </div>
 <!-- End: Home Page container -->
