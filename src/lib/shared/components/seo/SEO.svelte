@@ -73,20 +73,11 @@
 			};
 		}
 	}
-
-	const isProd = environment.production;
 </script>
 
 <svelte:head>
 	<meta name="robots" content="{metaData.robots}" />
 	<meta name="googlebot" content="{metaData.robots}" />
-
-	<link
-		rel="search"
-		type="application/opensearchdescription+xml"
-		href="{`${BASE_URL}/opensearch.xml`}"
-		title="Discover Twitter Spaces"
-	/>
 
 	{#if metaData && metaData.title}
 		<title>{metaData.title}</title>

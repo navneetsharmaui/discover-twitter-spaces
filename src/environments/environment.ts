@@ -8,7 +8,7 @@ export const environment: IDiscoverEnvironmentConfig<DISCOVER_ENPOINT_CONFIG> = 
 	environmentType: EnvironmentType.LOCAL,
 	production: false,
 	isDebugMode: true,
-	launchURL: `${import.meta.env.DISCOVER_BLOG_BASE_URL}`,
+	launchURL: `${import.meta.env.DISCOVER_BASE_URL}`,
 	twitterConfig: {
 		TWITTER_TOKEN: `${import.meta.env.DISCOVER_TWITTER_TOKEN}`,
 		TWITTER_BASE_API_URL: `${import.meta.env.DISCOVER_TWITTER_BASE_API_URL}`,

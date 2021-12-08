@@ -12,7 +12,7 @@ export const get: RequestHandler = async (request) => {
 
 		const search = request.query.get('search');
 
-		const searchQuery = search ? search : 'Tech';
+		const searchQuery = search ? search : 'Web';
 
 		const spacesSearchQueryParameters =
 			'state=all&topic.fields=id,name,description&space.fields=host_ids,created_at,creator_id,id,lang,invited_user_ids,participant_count,speaker_ids,started_at,ended_at,topic_ids,state,title,updated_at,scheduled_start,is_ticketed&expansions=invited_user_ids,speaker_ids,creator_id,host_ids&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld';
