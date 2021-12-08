@@ -17,13 +17,8 @@
 	const metaData: Partial<IMetaTagProperties> = {
 		title: `Twitter Spaces`,
 		description:
-			'Slice of my world for eveyone on web. Here you can see projects I made and blogs I wrote.',
-		keywords: [
-			'Navneet Sharma',
-			"Navneet's Blog",
-			'Navneet Sharma Developer',
-			"Navneet Sharma's Portfolio",
-		],
+			'Discover twitter spaces and join them to get access to the most interesting content. Join the conversation and share your thoughts.',
+		keywords: ['twitter', 'spaces', 'community', 'discussion', 'social', 'media', 'news', 'blog'],
 	};
 
 	let searchValue = '';

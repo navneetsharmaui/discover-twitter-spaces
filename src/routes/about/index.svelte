@@ -18,11 +18,18 @@
 	 * @type {IMetaTagProperties}
 	 */
 	const metaData: Partial<IMetaTagProperties> = {
-		title: 'About | Navneet Sharma',
+		title: 'About | Discover Twitter Spaces',
 		description:
-			"Hi I'm Navneet Sharma. I am a self-taught Fullstack developer with strong focus and inclination for design and user interface. I love the web world.",
+			'Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces in your area. We use data from Twitter to find the best Twitter Spaces in your area.',
 		url: '/about',
-		keywords: ['Navneet Sharma', "Navneet's Blog", 'Navneet Sharma Developer', 'About Navneet Sharma'],
+		keywords: [
+			'Twitter Spaces',
+			'Twitter',
+			'Spaces',
+			'Discover',
+			'Discover Twitter Spaces',
+			'Discover Twitter Spaces in your area',
+		],
 		searchUrl: '/about',
 	};
 	// End: Local component properties
@@ -34,21 +41,14 @@
 
 <!-- Start: About page section -->
 <div class="flex flex-col justify-center items-start max-w-2xl mx-auto mb-16">
-	<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white"> About Me </h1>
+	<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
+		About
+	</h1>
 	<div class="mb-8 prose leading-6 text-gray-600 dark:text-gray-400">
 		<p>
-			Hey, I'm Navneet Sharma. I'm a Software Developer, writer and creator of
-			<ExternalLink href="https://github.com/navneetsharmaui/sveltkit-starter"
-				>Sveltekit Starter Project</ExternalLink
-			> and <ExternalLink href="https://github.com/navneetsharmaui/sveltkit-starter"
-				>Sveltekit Blog Project</ExternalLink
-			>
-		</p>
-		<p>
-			The template has all the route and sample pages setup for you which you can change and customize further.
-			All the pages are by default loaded from the different JS file and is fetched using prefetch when use hover
-			over the links, which reduces the load time when user eventually decides to click on the link and load the
-			route
+			Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces in your
+			area. We use data from Twitter to find the best Twitter Spaces in your area. You can use
+			this tool to find the best Twitter Spaces in your area.
 		</p>
 	</div>
 </div>

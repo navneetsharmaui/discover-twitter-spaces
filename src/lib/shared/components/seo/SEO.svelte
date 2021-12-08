@@ -15,7 +15,6 @@
 	// End: Exported Properties
 
 	const BASE_URL = environment.launchURL ? environment.launchURL : 'https://navneetsharma.xyz';
-	const DEFAULT_BANNER = `${BASE_URL}/images/site/navneet-sharma-banner.jpg`;
 
 	metaData = {
 		...metaData,
@@ -27,14 +26,13 @@
 				? `${BASE_URL}${metaData.url}/`
 				: `${BASE_URL}/`,
 		robots: 'index,follow',
-		image: metaData.image ? metaData.image : DEFAULT_BANNER,
 		openGraph: {
 			...metaData.openGraph,
 			url: metaData.url ? `${BASE_URL}${metaData.url}/` : `${BASE_URL}/`,
 			title: metaData.title,
 			description: metaData.description,
 			locale: 'en_US',
-			site_name: 'Navneet Sharma',
+			site_name: 'Discover Twitter Spaces',
 		},
 		twitter: {
 			...metaData.twitter,
@@ -83,19 +81,11 @@
 	<meta name="robots" content="{metaData.robots}" />
 	<meta name="googlebot" content="{metaData.robots}" />
 
-	{#if isProd}
-		<link rel="alternate" type="application/rss+xml" title="Navneet Sharma - RSS Feed" href="/rss.xml" />
-	{/if}
-
-	{#if isProd}
-		<link rel="sitemap" type="application/xml" title="Navneet Sharma - Sitemap" href="/sitemap.xml" />
-	{/if}
-
 	<link
 		rel="search"
 		type="application/opensearchdescription+xml"
 		href="{`${BASE_URL}/opensearch.xml`}"
-		title="Navneet Sharma"
+		title="Discover Twitter Spaces"
 	/>
 
 	{#if metaData && metaData.title}
@@ -172,7 +162,7 @@
 			},
 			publisher: {
 				'@type': 'Organization',
-				name: 'Navneet Sharma',
+				name: 'Discover Twitter Spaces',
 				logo: {
 					'@type': 'ImageObject',
 					url: `${BASE_URL}/favicon.ico`,
@@ -182,7 +172,7 @@
 			mainEntityOfPage: metaData.url,
 			articleSection: 'Blog',
 			keywords:
-				metaData.keywords && metaData.keywords.length > 0 ? metaData.keywords.join(', ') : 'Navneets Blog',
+				metaData.keywords && metaData.keywords.length > 0 ? metaData.keywords.join(', ') : 'Discover Twitter Spaces',
 		})}
 	{/if}
 </svelte:head>

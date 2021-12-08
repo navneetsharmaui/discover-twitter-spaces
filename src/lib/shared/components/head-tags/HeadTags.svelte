@@ -6,7 +6,8 @@
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	// End: Local Imports
 
-	const description = 'Slice of my world for eveyone on web. Here you can see projects I made and blogs I wrote.';
+	const description =
+		'Discover twitter spaces and get the latest news from the world of twitter. Join the conversation and get the latest news from the world of twitter.';
 
 	// Start: Exported Properties
 	/**
@@ -16,7 +17,7 @@
 	// End: Exported Properties
 
 	metaData = {
-		title: metaData.title ? metaData.title : 'Navneet Sharma',
+		title: metaData.title ? metaData.title : 'Discover Twitter Spaces',
 		description: metaData.description ? metaData.description : description,
 		...metaData,
 	};
