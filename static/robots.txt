@@ -1,2 +1,2 @@
-user-agent: *
-sitemap: https://navneetsharma.xyz/sitemap.xml
+User-agent: *
+Disallow:

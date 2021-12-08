@@ -14,7 +14,7 @@
 	export let metaData: Partial<IMetaTagProperties> = {};
 	// End: Exported Properties
 
-	const BASE_URL = environment.launchURL ? environment.launchURL : 'https://navneetsharma.xyz';
+	const BASE_URL = environment.launchURL ? environment.launchURL : 'https://discover-twitter-spaces.vercel.app/';
 
 	metaData = {
 		...metaData,

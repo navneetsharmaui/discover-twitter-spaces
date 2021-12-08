@@ -70,7 +70,7 @@
 		Discover Spaces
 	</h1>
 	<p class="prose text-gray-600 dark:text-gray-400 mb-10">
-		Search the twitter space for your interests. You can also search for people and topics.
+		Search the twitter space for your interests. You can also search for people and topics. You can also search for spaces by category.
 	</p>
 	<div class="flex flex-col mb-4 w-full">
 		<div class="relative w-full mb-4">
