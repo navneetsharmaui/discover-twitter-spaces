@@ -1,9 +1,9 @@
 import { EnvironmentName } from '$models/enums/environment-name.enum';
 import { EnvironmentType } from '$models/enums/environment-type.enum';
-import type { SVELTEKIT_STARTER_ENPOINT_CONFIG } from '$models/types/sveltekit-endpoits.type';
-import type { ISveltekitStarterEnvironmentConfig } from '$models/interfaces/isveltekit-strater-environment.interface';
+import type { DISCOVER_ENPOINT_CONFIG } from '$lib/models/types/discover-endpoits.type';
+import type { IDiscoverEnvironmentConfig } from '$lib/models/interfaces/idiscover-environment.interface';
 
-export const environment: ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG> = {
+export const environment: IDiscoverEnvironmentConfig<DISCOVER_ENPOINT_CONFIG> = {
 	name: EnvironmentName.DEVELOPMENT,
 	environmentType: EnvironmentType.DEV,
 	production: true,

@@ -1,12 +1,12 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { sveltekitStarterEnvironmentFacade } from '$core/services/environment/_environment.facade';
+import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 import { api } from '$core/services/https/_api';
 
 export const get: RequestHandler = async (request) => {
 	try {
-		const TWITTER_TOKEN = `${sveltekitStarterEnvironmentFacade.twitterToken}`.trim().slice();
+		const TWITTER_TOKEN = `${discoverEnvironmentFacade.twitterToken}`.trim().slice();
 
-		const TWITTER_BASE_API_URL = `${sveltekitStarterEnvironmentFacade.twitterAPIUrl}`
+		const TWITTER_BASE_API_URL = `${discoverEnvironmentFacade.twitterAPIUrl}`
 			.trim()
 			.slice();
 

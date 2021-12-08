@@ -19,7 +19,7 @@
 
 	// End: External Imports
 
-	import { sveltekitStarterEnvironmentFacade } from '$core/services/environment/_environment.facade';
+	import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 	import Header from '$ui/components/header/Header.svelte';
 	import RouteTransition from '$ui/components/route-transition/RouteTransition.svelte';
 	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
@@ -42,8 +42,8 @@
 		},
 	];
 
-	const twitterProfileLink = sveltekitStarterEnvironmentFacade.twitterProfileUrl;
-	const githubRepoLink = sveltekitStarterEnvironmentFacade.githubRepoUrl;
+	const twitterProfileLink = discoverEnvironmentFacade.twitterProfileUrl;
+	const githubRepoLink = discoverEnvironmentFacade.githubRepoUrl;
 
 	// End: Local component properties
 

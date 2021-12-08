@@ -1,4 +1,4 @@
-export interface ISveltekitDBConfig<T> {
+export interface IDiscoverDBConfig<T> {
 	apiKey?: string;
 	defaultAPILang?: string;
 	authName?: string;

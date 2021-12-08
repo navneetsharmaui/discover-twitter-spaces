@@ -1,7 +1,7 @@
 import { environment } from '$environment/environment';
-import type { SVELTEKIT_STARTER_ENPOINT_CONFIG } from '$models/types/sveltekit-endpoits.type';
-import type { ISveltekitStarterCoreConfig } from '$models/interfaces/isveltekit-core-config.interface';
-import type { ISveltekitStarterEnvironmentConfig } from '$models/interfaces/isveltekit-strater-environment.interface';
+import type { DISCOVER_ENPOINT_CONFIG } from '$lib/models/types/discover-endpoits.type';
+import type { IDiscoverStarterCoreConfig } from '$lib/models/interfaces/idiscover-core-config.interface';
+import type { IDiscoverEnvironmentConfig } from '$lib/models/interfaces/idiscover-environment.interface';
 
 /**
  * A facacde class for the Environment properties.
@@ -15,10 +15,10 @@ import type { ISveltekitStarterEnvironmentConfig } from '$models/interfaces/isve
  * @alpha
  * @public
  */
-class SveltekitStarterEnvironmentFacade<
-	T extends ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG> = ISveltekitStarterEnvironmentConfig<SVELTEKIT_STARTER_ENPOINT_CONFIG>,
+class DiscoverEnvironmentFacade<
+	T extends IDiscoverEnvironmentConfig<DISCOVER_ENPOINT_CONFIG> = IDiscoverEnvironmentConfig<DISCOVER_ENPOINT_CONFIG>,
 > {
-	constructor(private readonly coreConfig: ISveltekitStarterCoreConfig<T>) {}
+	constructor(private readonly coreConfig: IDiscoverStarterCoreConfig<T>) {}
 
 	public get environmentName(): string {
 		return this.coreConfig.environment.name;
@@ -49,6 +49,6 @@ class SveltekitStarterEnvironmentFacade<
 	}
 }
 
-export const sveltekitStarterEnvironmentFacade = new SveltekitStarterEnvironmentFacade({
+export const discoverEnvironmentFacade = new DiscoverEnvironmentFacade({
 	environment: environment,
 });

@@ -53,8 +53,8 @@
 	 * @type {IMetaTagProperties}
 	 */
 	const metaData: Partial<IMetaTagProperties> = {
-		title: `${status} | Navneet Sharma`,
-		description: '404 page of Navneet Sharmas Portfolio',
+		title: `${status} | Discover Twitter Spaces`,
+		description: '404 page of Discover Twitter Spaces',
 	};
 </script>
 
