@@ -1,18 +1,3 @@
-<script lang="ts" context="module">
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ fetch }) {
-		return {
-			props: {
-				twitterSpaces: await fetch(`/api/spaces.json`).then((res: { json: () => any }) =>
-					res.json(),
-				),
-			},
-		};
-	}
-</script>
-
 <script lang="ts">
 	// Start: Imports
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
@@ -23,6 +8,8 @@
 	import type { ITwitterSpace } from '$lib/models/interfaces/itwitter-space.interface';
 	import { api } from '$lib/core/services/https/_api';
 	import { spacesStore } from '$stores/spaces-store';
+	import type { EndpointOutput } from '@sveltejs/kit';
+	import type { DefaultBody } from '@sveltejs/kit/types/endpoint';
 
 	// Exports
 	// Start: Local component properties
@@ -50,9 +37,6 @@
 	// End: Local component properties
 
 	// Start: Local component methods
-	export let twitterSpaces: ITwitterSpace[];
-
-	let isLoading = false;
 
 	const fetchSpaces = async (value?: string) => {
 		return !value
@@ -60,13 +44,16 @@
 			: await api(`/api/spaces.json?search=${value}`);
 	};
 
+	const mapToITwitterSpaces = (spaces: EndpointOutput<DefaultBody>): ITwitterSpace[] => {
+		spacesStore.set(spaces.body as unknown as ITwitterSpace[]);
+		return spaces.body as unknown as ITwitterSpace[];
+	};
+
+	let twitterSpaces = fetchSpaces();
+
 	const setTwitterSpaces = async (input: CustomEvent<string>): Promise<void> => {
-		isLoading = true;
-		const response = await fetchSpaces(input.detail);
-		twitterSpaces = response.body as unknown as ITwitterSpace[];
-		spacesStore.set(twitterSpaces);
+		twitterSpaces = fetchSpaces(input.detail);
 		searchedField = input.detail.toUpperCase();
-		isLoading = false;
 	};
 
 	// End: Local component methods
@@ -96,15 +83,17 @@
 		</p>
 	</div>
 	<div class="flex flex-col w-full mt-5 gap-5">
-		{#if isLoading}
+		{#await twitterSpaces}
 			{#each [0, 1, 2, 3, 4] as num, index (num)}
 				<GhostSpaceCard />
 			{/each}
-		{:else if !isLoading}
-			{#each twitterSpaces as space, index (space.spaceId)}
+		{:then spaces}
+			{#each mapToITwitterSpaces(spaces) as space, index (space.spaceId)}
 				<SpaceCard twitterSpace="{space}" />
 			{/each}
-		{/if}
+		{:catch error}
+			<p class="text-red-600">{error.message}</p>
+		{/await}
 	</div>
 </div>
 <!-- End: Home Page container -->
