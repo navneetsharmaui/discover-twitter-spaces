@@ -48,7 +48,6 @@ const config = {
 					$stores: resolve(__dirname, './src/stores'),
 					$components: resolve(__dirname, './src/lib/shared/components'),
 					$ui: resolve(__dirname, './src/lib/shared/ui'),
-					$layouts: resolve(__dirname, './src/lib/layouts'),
 					$shared: resolve(__dirname, './src/lib/shared'),
 					$models: resolve(__dirname, './src/lib/models'),
 					$data: resolve(__dirname, './src/lib/data'),
