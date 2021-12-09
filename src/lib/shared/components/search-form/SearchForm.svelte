@@ -3,7 +3,8 @@
 	import { SPACE_CATEGORIES } from '$lib/data/spaces-categories';
 
 	const dispatch = createEventDispatcher();
-	let searchValue = '';
+
+	export let searchValue = '';
 	let selectedValue = 'category';
 
 	const handleSearch = async (): Promise<void> => {

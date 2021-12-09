@@ -1,3 +1,16 @@
+<script lang="ts" context="module">
+	/**
+	 * @type {import('@sveltejs/kit').Load} Load
+	 */
+	export async function load({ page }) {
+		return {
+			props: {
+				searchTerm: page.query.get('q') || '',
+			},
+		};
+	}
+</script>
+
 <script lang="ts">
 	// Start: Imports
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
@@ -12,6 +25,8 @@
 	import type { DefaultBody } from '@sveltejs/kit/types/endpoint';
 
 	// Exports
+	export let searchTerm: string;
+
 	// Start: Local component properties
 	/**
 	 * @type {IMetaTagProperties}
@@ -49,7 +64,8 @@
 		return spaces.body as unknown as ITwitterSpace[];
 	};
 
-	let twitterSpaces = fetchSpaces();
+	let twitterSpaces =
+		searchTerm && searchTerm.length >= 3 ? fetchSpaces(searchTerm) : fetchSpaces();
 
 	const setTwitterSpaces = async (input: CustomEvent<string>): Promise<void> => {
 		twitterSpaces = fetchSpaces(input.detail);
@@ -72,7 +88,7 @@
 		Search the twitter space for your interests. You can also search for people and topics. You
 		can also search for spaces by category.
 	</p>
-	<SearchForm on:submitSearchField="{(e) => setTwitterSpaces(e)}" />
+	<SearchForm searchValue="{searchTerm}" on:submitSearchField="{(e) => setTwitterSpaces(e)}" />
 	<div class="border-t border-gray-400 w-full my-2"> </div>
 	<div class="w-full">
 		<p class="text-gray-900 dark:text-gray-100 mx-1">
