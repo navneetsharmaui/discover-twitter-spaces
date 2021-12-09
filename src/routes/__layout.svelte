@@ -42,7 +42,7 @@
 		},
 	];
 
-	const twitterProfileLink = discoverEnvironmentFacade.twitterProfileUrl;
+	const twitterProfileLink = discoverEnvironmentFacade.twitterConfig.TWITTER_PROFILE_URL;
 	const githubRepoLink = discoverEnvironmentFacade.githubRepoUrl;
 
 	// End: Local component properties
@@ -64,8 +64,6 @@
 		gitHubLink="{githubRepoLink}"
 		twitterLink="{twitterProfileLink}"
 		navLinks="{navLinks}"
-		useThemeModeButton="{true}"
-		useTitleAndLogo="{true}"
 	/>
 	<!-- End: Header Navigation -->
 	<main

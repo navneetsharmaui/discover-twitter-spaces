@@ -20,10 +20,6 @@ class DiscoverEnvironmentFacade<
 > {
 	constructor(private readonly coreConfig: IDiscoverStarterCoreConfig<T>) {}
 
-	public get environmentName(): string {
-		return this.coreConfig.environment.name;
-	}
-
 	public get launchURL(): string {
 		return this.coreConfig.environment.launchURL;
 	}
@@ -32,20 +28,12 @@ class DiscoverEnvironmentFacade<
 		return this.coreConfig.environment.production;
 	}
 
-	public get twitterToken(): string {
-		return this.coreConfig.environment.twitterConfig.TWITTER_TOKEN;
-	}
-
-	public get twitterAPIUrl(): string {
-		return this.coreConfig.environment.twitterConfig.TWITTER_BASE_API_URL;
-	}
-
-	public get twitterProfileUrl(): string {
-		return this.coreConfig.environment.twitterConfig.TWITTER_PROFILE_URL;
-	}
-
 	public get githubRepoUrl(): string {
 		return this.coreConfig.environment.githubConfig.GITHUB_REPO_URL;
+	}
+
+	public get twitterConfig() {
+		return this.coreConfig.environment.twitterConfig;
 	}
 }
 

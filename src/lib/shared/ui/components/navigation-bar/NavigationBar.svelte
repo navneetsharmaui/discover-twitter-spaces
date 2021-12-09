@@ -17,8 +17,6 @@
 	 * @type {IHeaderNavLink}
 	 */
 	export let navLinks!: IHeaderNavLink[];
-	export let useTitleAndLogo = false;
-	export let useThemeModeButton = true;
 	export let gitHubLink!: string;
 	export let twitterLink!: string;
 
@@ -72,28 +70,26 @@
 				<Icon data="{faGithub}" scale="{1.5}" class="h-5 w-5" />
 			</ExternalLink>
 
-			{#if useThemeModeButton}
-				<button
-					on:click="{() => toggleTheme()}"
-					aria-label="Toggle Dark Mode"
-					type="button"
-					class="{'w-7 h-7 bg-yellow-50 rounded-full dark:bg-gray-800 filter shadow dark:shadow-dark dark:hover:shadow-dark-lg hover:border hover:border-gray-500 dark:hover:border-gray-300'}"
-				>
-					{#if dark}
-						<Icon
-							data="{faSun}"
-							class="{'h-2 w-2 text-xs text-gray-700 dark:text-gray-100'}"
-							scale="{1.5}"
-						/>
-					{:else}
-						<Icon
-							data="{faMoon}"
-							class="{'h-2 w-2 text-xs text-gray-700 dark:text-gray-100'}"
-							scale="{1.5}"
-						/>
-					{/if}
-				</button>
-			{/if}
+			<button
+				on:click="{() => toggleTheme()}"
+				aria-label="Toggle Dark Mode"
+				type="button"
+				class="{'w-7 h-7 bg-yellow-50 rounded-full dark:bg-gray-800 filter shadow dark:shadow-dark dark:hover:shadow-dark-lg hover:border hover:border-gray-500 dark:hover:border-gray-300'}"
+			>
+				{#if dark}
+					<Icon
+						data="{faSun}"
+						class="{'h-2 w-2 text-xs text-gray-700 dark:text-gray-100'}"
+						scale="{1.5}"
+					/>
+				{:else}
+					<Icon
+						data="{faMoon}"
+						class="{'h-2 w-2 text-xs text-gray-700 dark:text-gray-100'}"
+						scale="{1.5}"
+					/>
+				{/if}
+			</button>
 		</div>
 	</nav>
 </header>

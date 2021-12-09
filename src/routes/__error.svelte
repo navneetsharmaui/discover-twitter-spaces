@@ -1,16 +1,3 @@
-<style>
-	h1 {
-		font-size: 2.8em;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
-
 <script lang="ts" context="module">
 	export function load({ error, status }) {
 		return {
@@ -66,16 +53,16 @@
 <div class="md:container md:mx-auto">
 	<div class="flex flex-col justify-center items-center">
 		<!-- Start: Error Status Code -->
-		<h1>
+		<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
 			{status}
 		</h1>
 		<!-- End: Error Status Code -->
-		<p>
+		<p class="text-black dark:text-white mx-1">
 			{error.name}
 		</p>
 		<!-- Start: Error Message container -->
 		{#if dev && error.stack}
-			<pre> {error.message} </pre>
+			<p class="text-black dark:text-white mx-1">{error.message}</p>
 		{/if}
 		<!-- End: Error Message container -->
 	</div>

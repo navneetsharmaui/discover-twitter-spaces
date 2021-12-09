@@ -3,7 +3,6 @@
 
 	// Models
 	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
-	import type { IModernImage } from '$models/interfaces/imodern-image.interface';
 
 	// Components
 	import { NavigationProgressBar } from '$ui/components/navigation-progress-bar';
@@ -11,8 +10,6 @@
 	// End: Local Imports
 
 	// Start: Exported Properties
-	export let useTitleAndLogo!: boolean;
-	export let useThemeModeButton!: boolean;
 	export let gitHubLink!: string;
 	export let twitterLink!: string;
 
@@ -34,8 +31,6 @@
 	gitHubLink="{gitHubLink}"
 	twitterLink="{twitterLink}"
 	navLinks="{navLinks}"
-	useThemeModeButton="{useThemeModeButton}"
-	useTitleAndLogo="{useTitleAndLogo}"
 	on:toggleTheme
 />
 <!-- End: Navigation bar -->

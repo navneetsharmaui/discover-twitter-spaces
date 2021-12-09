@@ -5,7 +5,7 @@
 </script>
 
 {#key referesh}
-	<span in:blur="{{ duration: 300, delay: 300, amount: 5 }}" out:blur="{{ duration: 300 }}">
+	<span in:blur="{{ duration: 200, delay: 200, amount: 5 }}" out:blur="{{ duration: 200 }}">
 		<slot />
 	</span>
 {/key}

@@ -5,9 +5,12 @@ import { mapToTwitterSpaces } from '$lib/utils/_mapper';
 
 export const get: RequestHandler = async (request) => {
 	try {
-		const TWITTER_TOKEN = `${discoverEnvironmentFacade.twitterToken}`.trim().slice();
+		const TWITTER_TOKEN = `${discoverEnvironmentFacade.twitterConfig.TWITTER_TOKEN}`
+			.trim()
+			.slice();
 
-		const TWITTER_BASE_API_URL = `${discoverEnvironmentFacade.twitterAPIUrl}`.trim().slice();
+		const TWITTER_BASE_API_URL =
+			`${discoverEnvironmentFacade.twitterConfig.TWITTER_BASE_API_URL}`.trim().slice();
 
 		const search = request.query.get('search');
 
