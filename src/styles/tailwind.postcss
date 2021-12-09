@@ -124,16 +124,6 @@
 	src: url('/fonts/Raleway-700-normal.woff2') format('woff2');
 }
 
-::-moz-selection {
-	background-color: rgb(128, 185, 211);
-	color: #fefefe;
-}
-
-::selection {
-	background-color: rgb(128, 185, 211);
-	color: #fefefe;
-}
-
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -173,53 +163,9 @@ main {
 	min-height: calc(100vh - 104px);
 }
 
-.anchor {
-	@apply visible no-underline;
-}
-
-.anchor:hover {
-	@apply visible no-underline;
-}
-
-.prose a {
-	@apply text-blue-600 font-semibold underline;
-}
-
-.prose .anchor:after {
-	@apply text-gray-600 dark:text-gray-300;
-}
-
-.prose *:hover > .anchor {
-	@apply visible no-underline;
-}
-
-.prose .anchor {
-	@apply visible no-underline;
-	@apply text-gray-700 dark:text-gray-500;
-}
-
-.prose pre {
-	@apply border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900;
-}
-
-.prose code {
-	@apply text-gray-800 dark:text-gray-200 px-1 py-0.5 border border-gray-100 dark:border-gray-800 rounded-md bg-gray-100 dark:bg-gray-900;
-}
-
-.prose img {
-	/* Don't apply styles to next/image */
-	@apply m-0;
-}
-
 .prose > :first-child {
-	/* Override removing top margin, causing layout shift */
 	margin-top: 1.25em !important;
 	margin-bottom: 1.25em !important;
-}
-
-code[class*='language-'],
-pre[class*='language-'] {
-	@apply text-gray-800 dark:text-gray-50;
 }
 
 pre::-webkit-scrollbar {
@@ -227,21 +173,14 @@ pre::-webkit-scrollbar {
 }
 
 pre {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
-/* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type='text'] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-}
-
-.prose .tweet a {
-	text-decoration: inherit;
-	font-weight: inherit;
 }
 
 .sticky-theme-mode-button {
