@@ -19,7 +19,7 @@
 	const metaData: Partial<IMetaTagProperties> = {
 		title: 'About | Discover Twitter Spaces',
 		description:
-			'Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces in your area. We use data from Twitter to find the best Twitter Spaces in your area.',
+			'Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces. We use data from Twitter to find the best Twitter Spaces.',
 		url: '/about',
 		keywords: [
 			'Twitter Spaces',

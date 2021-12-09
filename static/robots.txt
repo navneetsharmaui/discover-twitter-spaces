@@ -1,2 +1,2 @@
-User-agent: *
-Disallow:
+user-agent: *
+sitemap: https://discover-twitter-spaces.vercel.app/sitemap.xml
