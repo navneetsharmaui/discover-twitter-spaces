@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-	<ShortName>[Discover Spaces]</ShortName>
-	<Description>[Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces.]</Description>
-	<InputEncoding>[UTF-8]</InputEncoding>
-	<Image width="16" height="16" type="image/x-icon">[https://discover-twitter-spaces.vercel.app/favicon.ico]</Image>
-	<Url type="text/html" template="https://discover-twitter-spaces.vercel.app/?q={searchTerms}">
-		<Param name="q" value="{searchTerms}" />
-	</Url>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+	xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>Discover Twitter Spaces</ShortName>
+	<Description>Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces.</Description>
+	<InputEncoding>UTF-8</InputEncoding>
+	<Image width="16" height="16" type="image/x-icon">https://discover-twitter-spaces.vercel.app/favicon.ico</Image>
+	<Url type="text/html" template="https://discover-twitter-spaces.vercel.app/?q={searchTerms}" />
 	<Query role="example" searchTerms="Navneet" />
 	<Url type="application/opensearchdescription+xml" rel="self" template="https://discover-twitter-spaces.vercel.app/opensearch.xml" />
-	<moz:SearchForm>[https://discover-twitter-spaces.vercel.app/]</moz:SearchForm>
+	<moz:SearchForm>https://discover-twitter-spaces.vercel.app/</moz:SearchForm>
 </OpenSearchDescription>
