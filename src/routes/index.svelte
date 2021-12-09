@@ -100,7 +100,7 @@
 		can also search for spaces by category.
 	</p>
 	<div class="flex flex-col mb-4 w-full">
-		<div class="relative w-full mb-4">
+		<div class="relative w-full mb-2">
 			<input
 				bind:value="{searchValue}"
 				on:input="{() => handleSearch(searchValue)}"
@@ -124,6 +124,10 @@
 			</svg>
 		</div>
 
+		<div class="w-full flex flex-row justify-center items-center mb-2">
+			<p> -- OR -- </p>
+		</div>
+
 		<div class="w-full mb-4">
 			<label class="block" for="category">
 				<select
@@ -138,6 +142,15 @@
 					{/each}
 				</select>
 			</label>
+		</div>
+
+		<div class="w-full mb-4">
+			<button
+				type="button"
+				class="w-full bg-gray-300 hover:bg-gray-500 text-gray-900 active:bg-gray-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+			>
+				Submit
+			</button>
 		</div>
 	</div>
 	<div class="border-t border-gray-400 w-full my-2"> </div>
