@@ -45,9 +45,9 @@
 	</h1>
 	<div class="mb-8 prose leading-6 text-gray-600 dark:text-gray-400">
 		<p>
-			Discover Twitter Spaces is a tool that helps you find the best Twitter Spaces in your
-			area. We use data from Twitter to find the best Twitter Spaces in your area. You can use
-			this tool to find the best Twitter Spaces in your area.
+			Discover Twitter Spaces is a tool that helps you find the Twitter Spaces. We use data
+			from Twitter to find the Twitter Spaces. You can use this tool to find the Twitter
+			Spaces.
 		</p>
 	</div>
 </div>
