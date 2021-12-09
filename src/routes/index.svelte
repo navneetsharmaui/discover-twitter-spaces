@@ -17,7 +17,7 @@
 	 * @type {IMetaTagProperties}
 	 */
 	const metaData: Partial<IMetaTagProperties> = {
-		title: `Twitter Spaces`,
+		title: `Discover Twitter Spaces`,
 		description:
 			'Discover twitter spaces and join them to get access to the most interesting content. Join the conversation and share your thoughts.',
 		keywords: [
