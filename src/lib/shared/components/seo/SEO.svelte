@@ -16,7 +16,7 @@
 
 	const BASE_URL = environment.launchURL
 		? environment.launchURL
-		: 'https://discover-twitter-spaces.vercel.app/';
+		: 'https://discover-twitter-spaces.vercel.app';
 
 	metaData = {
 		...metaData,
@@ -93,7 +93,7 @@
 			rel="sitemap"
 			type="application/xml"
 			title="Discover Twitter Spaces - Sitemap"
-			href="/sitemap.xml"
+			href="{`${BASE_URL}/sitemap.xml`}"
 		/>
 	{/if}
 
