@@ -4,7 +4,7 @@
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 
 	// Data
-	import { environment } from '$environment/environment';
+	import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 	// End: Local Imports
 
 	// Start: Exported Properties
@@ -14,8 +14,8 @@
 	export let metaData: Partial<IMetaTagProperties> = {};
 	// End: Exported Properties
 
-	const BASE_URL = environment.launchURL
-		? environment.launchURL
+	const BASE_URL = discoverEnvironmentFacade.launchURL
+		? discoverEnvironmentFacade.launchURL
 		: 'https://discover-twitter-spaces.vercel.app';
 
 	metaData = {
@@ -81,7 +81,7 @@
 		}
 	}
 
-	const isProd = environment.production;
+	const isProd = discoverEnvironmentFacade.isProd;
 </script>
 
 <svelte:head>
