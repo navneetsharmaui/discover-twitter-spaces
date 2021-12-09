@@ -14,11 +14,11 @@
 					href="https://twitter.com/hashtag/tech?src=hash"
 					ariaLabel="{twitterSpace.title}"
 				>
-					<h5
+					<h2
 						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-indigo-900 text-base md:text-lg leading-tight font-medium"
 					>
 						{twitterSpace.title}
-					</h5>
+					</h2>
 				</ExternalLink>
 			</div>
 			<div
