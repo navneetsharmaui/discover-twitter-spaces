@@ -28,9 +28,12 @@ export const mapToSpaces = (value: ISpacesResponse[]): ITwitterSpace[] => {
 		description: '',
 		state: space.state,
 		creatorId: space.creator_id,
-		hostIds: space.host_ids.some((id) => space.creator_id === id)
-			? space.host_ids
-			: [space.creator_id, ...space.host_ids],
+		hostIds:
+			space.host_ids && space.host_ids.length > 0
+				? space.host_ids.some((id) => space.creator_id === id)
+					? space.host_ids
+					: [space.creator_id, ...space.host_ids]
+				: [space.creator_id],
 		scheduledStartTime:
 			space.state.toLowerCase() === 'scheduled'
 				? humanReadableTime(space.scheduled_start)
@@ -59,7 +62,7 @@ export const mapToTwitterSpaces = (value: unknown): ITwitterSpace[] => {
 					title:
 						space.title.length > 0
 							? space.title
-							: hosts[0].name
+							: hosts.length > 0 && hosts[0]
 							? `${hosts[0].name}'s Space`
 							: 'Space',
 				};
