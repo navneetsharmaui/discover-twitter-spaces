@@ -75,9 +75,9 @@
 	</div>
 
 	<div class="w-full mb-4">
-		<label class="block" for="category">
+		<label class="inline-block relative w-full" for="category">
 			<select
-				class="form-input"
+				class="form-input appearance-none"
 				name="category"
 				id="category"
 				bind:value="{selectedValue}"
@@ -87,6 +87,16 @@
 					<option value="{category.id}">{category.label}</option>
 				{/each}
 			</select>
+			<div
+				class="absolute inset-y-0 right-0 top-1.5 flex items-center px-3 py-2 pointer-events-none"
+			>
+				<svg class="w-4 h-4 fill-current text-black dark:text-white" viewBox="0 0 20 20"
+					><path
+						d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+						clip-rule="evenodd"
+						fill-rule="evenodd"></path></svg
+				>
+			</div>
 		</label>
 	</div>
 
