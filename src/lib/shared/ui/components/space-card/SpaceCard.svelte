@@ -10,10 +10,7 @@
 	<div class="flex flex-col w-full">
 		<div class="flex flex-col justify-start items-start mb-1">
 			<div class="flex flex-row">
-				<ExternalLink
-					href="https://twitter.com/hashtag/tech?src=hash"
-					ariaLabel="{twitterSpace.title}"
-				>
+				<ExternalLink href="{twitterSpace.spaceUrl}" ariaLabel="{twitterSpace.title}">
 					<h2
 						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-indigo-900 text-base md:text-lg leading-tight font-medium"
 					>
