@@ -18,14 +18,6 @@ export const SPACE_CATEGORIES: ISpacesCategories[] = [
 		label: 'Web',
 	},
 	{
-		id: 'rust',
-		label: 'Rust',
-	},
-	{
-		id: 'web3',
-		label: 'Web3',
-	},
-	{
 		id: 'crypto',
 		label: 'Crypto',
 	},

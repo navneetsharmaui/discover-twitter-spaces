@@ -52,14 +52,14 @@
 							ariaLabel="{`Host ${host.name}`}"
 						>
 							<figure
-								class="min-w-4xs flex flex-row justify-start items-center bg-gray-50 rounded-full pr-4 hover:shadow"
+								class="min-w-4xs flex flex-row justify-start items-center bg-gray-200 rounded-full pr-4 hover:shadow"
 							>
 								<img
 									src="{host.imageUrl}"
 									alt="{host.name}"
 									height="24"
 									width="24"
-									class="rounded-full h-8 w-8 border-gray-400 border-2"
+									class="rounded-full h-8 w-8 border-gray-500 border-2"
 								/>
 								<figcaption
 									class="ml-2 hover:text-blue-900 text-gray-900 text-xs leading-tight font-medium"
@@ -74,7 +74,7 @@
 		<div class="flex flex-row w-full justify-start mt-4">
 			<ExternalLink
 				href="{twitterSpace.spaceUrl}"
-				cssClasses="bg-gray-300 text-gray-900 active:bg-gray-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+				cssClasses="bg-indigo-500 hover:bg-indigo-800 text-white active:-indigo-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 				ariaLabel="{`Space url ${twitterSpace.spaceUrl}`}"
 			>
 				Join Space

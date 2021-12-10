@@ -7,6 +7,9 @@
 	export let searchValue = '';
 	let selectedValue = 'category';
 
+	$: isSubmitDisabled =
+		selectedValue === 'category' && (searchValue === '' || searchValue.length <= 2);
+
 	const handleSearch = async (): Promise<void> => {
 		if (searchValue.length >= 3) {
 			selectedValue = 'category';
@@ -50,7 +53,7 @@
 			aria-label="Search articles"
 			type="text"
 			placeholder="Search Twitter Spaces"
-			class="px-4 py-2 border border-gray-300 dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+			class="form-input"
 		/>
 		<svg
 			class="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
@@ -74,7 +77,7 @@
 	<div class="w-full mb-4">
 		<label class="block" for="category">
 			<select
-				class="px-4 py-2 border border-gray-300 dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+				class="form-input"
 				name="category"
 				id="category"
 				bind:value="{selectedValue}"
@@ -89,9 +92,12 @@
 
 	<div class="w-full mb-4">
 		<button
+			aria-label="Search Twitter Spaces Submit Button"
+			title="Search Twitter Spaces Submit Button. Type in the search field to search for a space or select a category to search for spaces in that category."
 			on:click="{() => onSubmit()}"
+			disabled="{isSubmitDisabled}"
 			type="button"
-			class="w-full bg-gray-300 hover:bg-gray-400 text-black active:bg-gray-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+			class="w-full bg-indigo-500 hover:bg-indigo-800 disabled:bg-gray-200 disabled:shadow-none disabled:text-black text-white active:-indigo-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 		>
 			Submit
 		</button>
