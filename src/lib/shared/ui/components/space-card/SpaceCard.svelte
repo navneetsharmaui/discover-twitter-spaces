@@ -52,7 +52,7 @@
 							ariaLabel="{`Host ${host.name}`}"
 						>
 							<figure
-								class="min-w-4xs flex flex-row justify-start items-center bg-gray-100 rounded-full pr-4 hover:shadow"
+								class="min-w-4xs flex flex-row justify-start items-center bg-gray-50 rounded-full pr-4 hover:shadow"
 							>
 								<img
 									src="{host.imageUrl}"

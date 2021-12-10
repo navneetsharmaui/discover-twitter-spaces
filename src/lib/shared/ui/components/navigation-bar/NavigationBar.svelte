@@ -35,7 +35,7 @@
 </script>
 
 <header
-	class="relative flex text-gray-900 bg-yellow-50 dark:bg-black bg-opacity-60 dark:text-gray-100 transition-colors duration-150 ease-in-out w-full px-8 py-6"
+	class="relative flex text-gray-900 bg-gray-50 dark:bg-black bg-opacity-60 dark:text-gray-100 transition-colors duration-150 ease-in-out w-full px-8 py-6"
 >
 	<nav class="flex flex-wrap items-center justify-between w-full max-w-2xl mx-auto">
 		<div class="flex flex-row items-center">
@@ -74,7 +74,7 @@
 				on:click="{() => toggleTheme()}"
 				aria-label="Toggle Dark Mode"
 				type="button"
-				class="{'w-7 h-7 bg-yellow-50 rounded-full dark:bg-gray-800 filter shadow dark:shadow-dark dark:hover:shadow-dark-lg hover:border hover:border-gray-500 dark:hover:border-gray-300'}"
+				class="{'w-7 h-7 bg-gray-50 rounded-full dark:bg-gray-800 filter shadow dark:shadow-dark dark:hover:shadow-dark-lg hover:border hover:border-gray-500 dark:hover:border-gray-300'}"
 			>
 				{#if dark}
 					<Icon

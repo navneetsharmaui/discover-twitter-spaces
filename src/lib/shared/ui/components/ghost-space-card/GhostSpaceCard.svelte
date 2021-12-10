@@ -14,8 +14,8 @@
 		animation-iteration-count: infinite;
 		animation-name: placeHolderShimmer;
 		animation-timing-function: linear;
-		background: darkgray;
-		background: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
+		@apply bg-gray-400;
+		background: linear-gradient(to right, #d4d4d4 10%, #b3b2b2 18%, #d4d4d4 33%);
 		background-size: 800px 104px;
 		height: 100%;
 		position: relative;
