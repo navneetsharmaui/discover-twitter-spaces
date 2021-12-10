@@ -54,9 +54,7 @@
 			</div>
 		</div>
 		<div class="flex flex-row mt-3">
-			<button type="button" class="h-8 w-28"
-				><div class="ghost-loader-background rounded"></div></button
-			>
+			<div class="h-8 w-28"><div class="ghost-loader-background rounded"></div></div>
 		</div>
 	</div>
 </Card>
