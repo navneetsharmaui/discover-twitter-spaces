@@ -5,7 +5,7 @@
 	export async function load({ page }) {
 		return {
 			props: {
-				searchTerm: page.query.get('q') || '',
+				searchTerm: page.query.get('q') || 'Web',
 			},
 		};
 	}
@@ -47,7 +47,7 @@
 		],
 	};
 
-	let searchedField = '';
+	let searchedField = 'Web';
 
 	// End: Local component properties
 
@@ -65,7 +65,7 @@
 	};
 
 	let twitterSpaces =
-		searchTerm && searchTerm.length >= 3 ? fetchSpaces(searchTerm) : fetchSpaces();
+		searchTerm && searchTerm.length >= 3 ? fetchSpaces(searchTerm) : fetchSpaces('Web');
 
 	const setTwitterSpaces = async (input: CustomEvent<string>): Promise<void> => {
 		twitterSpaces = fetchSpaces(input.detail);
