@@ -3,11 +3,7 @@
 	import { onMount, createEventDispatcher } from 'svelte';
 
 	export let targetDomReference: HTMLElement;
-	export let zIndex = 10000;
-	export let placement = 'auto';
-	export let action = 'hover';
-	export let isPreventDefault = false;
-	export let isStopPropagation = false;
+	export let zIndex = 1000;
 
 	let contentDomReference: HTMLElement;
 	let arrowDomReference: HTMLElement;
@@ -191,8 +187,7 @@
 			);
 			return pos[compute.indexOf(Math.max(...compute))];
 		};
-		let get =
-			placement === 'auto' ? computePlacement() : pos.find(({ at }) => at === placement);
+		const get = computePlacement();
 		positionStyle = get.style;
 		arrowStyleProps = get.arrow;
 	};
@@ -215,10 +210,4 @@
 	>
 </div>
 
-<Overlay
-	zIndex="{zIndex}"
-	action="{action}"
-	on:setOpen="{setOpen}"
-	isStopPropagation="{isStopPropagation}"
-	isPreventDefault="{isPreventDefault}"
-/>
+<Overlay zIndex="{zIndex}" on:setOpen="{setOpen}" />

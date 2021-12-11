@@ -38,6 +38,15 @@
 	const metaData: Partial<IMetaTagProperties> = {
 		title: `${status} | Discover Twitter Spaces`,
 		description: '404 page of Discover Twitter Spaces',
+		keywords: [
+			'Twitter Spaces',
+			'Twitter',
+			'Spaces',
+			'Discover',
+			'Discover Twitter Spaces',
+			'Discover Twitter Spaces in your area',
+		],
+		searchUrl: '/error',
 	};
 </script>
 

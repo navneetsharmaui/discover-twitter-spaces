@@ -47,7 +47,7 @@
 			<div class="flex flex-row flex-wrap w-full gap-4">
 				{#each twitterSpace.hosts as host, index (host.id)}
 					<div class="flex flex-row my-2 md:my-0 justify-start items-center">
-						<PopOver action="{'hover'}">
+						<PopOver>
 							<ExternalLink
 								slot="target"
 								href="{host.profileUrl}"
