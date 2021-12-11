@@ -3,14 +3,6 @@ function toDate(date: string | Date) {
 	return typeof date === 'string' ? new Date(date) : date;
 }
 
-export function blogTypeDate(date: string | Date): string {
-	return toDate(date).toLocaleDateString(undefined, {
-		year: 'numeric',
-		month: 'long',
-		day: '2-digit',
-	});
-}
-
 export function humanReadableTime(date: string | Date): string {
 	return toDate(date).toLocaleTimeString(undefined, {
 		year: 'numeric',
