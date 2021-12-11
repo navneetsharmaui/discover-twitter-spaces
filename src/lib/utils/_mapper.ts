@@ -18,6 +18,15 @@ export const mapToTwitterUserProfile = (
 		id: item.id,
 		imageUrl: item.profile_image_url,
 		profileUrl: `https://twitter.com/${item.username}`,
+		followersCount:
+			item.public_metrics && item.public_metrics.followers_count
+				? item.public_metrics.followers_count
+				: 0,
+		followingCount:
+			item.public_metrics && item.public_metrics.following_count
+				? item.public_metrics.following_count
+				: 0,
+		description: item.description || '',
 	}));
 };
 

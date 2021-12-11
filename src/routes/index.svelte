@@ -14,9 +14,9 @@
 <script lang="ts">
 	// Start: Imports
 	import HeadTags from '$components/head-tags/HeadTags.svelte';
-	import SpaceCard from '$lib/shared/ui/components/space-card/SpaceCard.svelte';
-	import GhostSpaceCard from '$lib/shared/ui/components/ghost-space-card/GhostSpaceCard.svelte';
-	import SearchForm from '$lib/shared/components/search-form/SearchForm.svelte';
+	import SearchForm from '$components/search-form/SearchForm.svelte';
+	import SpaceCard from '$ui/components/space-card/SpaceCard.svelte';
+	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import type { ITwitterSpace } from '$lib/models/interfaces/itwitter-space.interface';
 	import { api } from '$lib/core/services/https/_api';

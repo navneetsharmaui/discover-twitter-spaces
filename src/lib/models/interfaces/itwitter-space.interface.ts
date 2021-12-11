@@ -3,6 +3,9 @@ export interface ITwitterUserProfile {
 	id: string;
 	imageUrl: string;
 	profileUrl: string;
+	followersCount: number;
+	followingCount: number;
+	description: string;
 }
 export interface ITwitterSpace {
 	spaceId: string;
