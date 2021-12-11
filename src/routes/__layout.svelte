@@ -28,19 +28,6 @@
 	// Start: Local component properties
 
 	export let path = '';
-	/**
-	 * @type {IHeaderNavLink}
-	 */
-	const navLinks: IHeaderNavLink[] = [
-		{
-			path: '/',
-			label: 'Home',
-		},
-		{
-			path: '/about/',
-			label: 'About',
-		},
-	];
 
 	const twitterProfileLink = discoverEnvironmentFacade.twitterConfig.TWITTER_PROFILE_URL;
 	const githubRepoLink = discoverEnvironmentFacade.githubRepoUrl;
@@ -63,7 +50,6 @@
 		on:toggleTheme="{(e) => toggleThemeMode(e)}"
 		gitHubLink="{githubRepoLink}"
 		twitterLink="{twitterProfileLink}"
-		navLinks="{navLinks}"
 	/>
 	<!-- End: Header Navigation -->
 	<main

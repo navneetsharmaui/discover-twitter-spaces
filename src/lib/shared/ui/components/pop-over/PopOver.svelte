@@ -2,10 +2,9 @@
 	import Content from './Content.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	const DEFAULT_ZINDEX = 10000;
+	const DEFAULT_ZINDEX = 1000;
 	export let action = 'hover';
 	export let zIndex = DEFAULT_ZINDEX;
-	export let isArrow = true;
 	export let placement = 'auto';
 	export let preventDefault = false;
 	export let stopPropagation = false;
@@ -61,7 +60,6 @@
 			placement="{placement}"
 			targetDomReference="{targetDomReference}"
 			zIndex="{zIndex}"
-			isArrow="{isArrow}"
 			action="{action}"
 			isPreventDefault="{preventDefault}"
 			isStopPropagation="{stopPropagation}"

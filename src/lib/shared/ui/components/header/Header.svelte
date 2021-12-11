@@ -13,10 +13,6 @@
 	export let gitHubLink!: string;
 	export let twitterLink!: string;
 
-	/**
-	 * @type {IHeaderNavLink}
-	 */
-	export let navLinks!: IHeaderNavLink[];
 	// End: Exported Properties
 
 	// Local properties
@@ -27,10 +23,5 @@
 <!-- End: Navigation Progress bar -->
 
 <!-- Start: Navigation bar -->
-<NavigationBar
-	gitHubLink="{gitHubLink}"
-	twitterLink="{twitterLink}"
-	navLinks="{navLinks}"
-	on:toggleTheme
-/>
+<NavigationBar gitHubLink="{gitHubLink}" twitterLink="{twitterLink}" on:toggleTheme />
 <!-- End: Navigation bar -->

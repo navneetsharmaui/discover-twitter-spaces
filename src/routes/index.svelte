@@ -13,7 +13,7 @@
 
 <script lang="ts">
 	// Start: Imports
-	import HeadTags from '$components/head-tags/HeadTags.svelte';
+	import Seo from '$components/seo/SEO.svelte';
 	import SearchForm from '$components/search-form/SearchForm.svelte';
 	import SpaceCard from '$ui/components/space-card/SpaceCard.svelte';
 	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
@@ -76,7 +76,7 @@
 </script>
 
 <!-- Start: Header Tag -->
-<HeadTags metaData="{metaData}" />
+<Seo metaData="{metaData}" />
 <!-- End: Header Tag -->
 
 <!-- Start: Home Page container -->

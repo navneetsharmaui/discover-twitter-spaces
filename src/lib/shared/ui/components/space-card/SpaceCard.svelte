@@ -129,7 +129,7 @@
 		<div class="flex flex-row w-full justify-start mt-4">
 			<ExternalLink
 				href="{twitterSpace.spaceUrl}"
-				cssClasses="bg-indigo-500 hover:bg-indigo-800 text-white active:-indigo-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+				cssClasses="bg-indigo-700 hover:bg-indigo-800 text-white active:-indigo-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 				ariaLabel="{`Space url ${twitterSpace.spaceUrl}`}"
 			>
 				Join Space

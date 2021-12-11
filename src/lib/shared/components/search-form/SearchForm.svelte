@@ -107,7 +107,7 @@
 			on:click="{() => onSubmit()}"
 			disabled="{isSubmitDisabled}"
 			type="button"
-			class="w-full bg-indigo-500 hover:bg-indigo-800 disabled:bg-gray-200 disabled:shadow-none disabled:text-black text-white active:-indigo-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+			class="w-full bg-indigo-700 hover:bg-indigo-800 disabled:bg-gray-200 disabled:shadow-none disabled:text-black text-white active:-indigo-700 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 		>
 			Submit
 		</button>

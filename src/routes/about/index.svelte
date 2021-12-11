@@ -6,7 +6,7 @@
 <script lang="ts">
 	// Start: Local Imports
 	// Components
-	import HeadTags from '$components/head-tags/HeadTags.svelte';
+	import SEO from '$lib/shared/components/seo/SEO.svelte';
 
 	// Models
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
@@ -35,7 +35,7 @@
 </script>
 
 <!-- Start: Header Tag -->
-<HeadTags metaData="{metaData}" />
+<SEO metaData="{metaData}" />
 <!-- End: Header Tag -->
 
 <!-- Start: About page section -->

@@ -4,7 +4,6 @@
 
 	export let targetDomReference: HTMLElement;
 	export let zIndex = 10000;
-	export let isArrow = true;
 	export let placement = 'auto';
 	export let action = 'hover';
 	export let isPreventDefault = false;
@@ -25,10 +24,7 @@
 	const calculate = () => {
 		const targetBound = targetDomReference.getBoundingClientRect();
 		const contentBound = contentDomReference.getBoundingClientRect();
-		let arrowBound = { width: 0, height: 0 };
-		if (isArrow) {
-			arrowBound = arrowDomReference.getBoundingClientRect();
-		}
+		let arrowBound = arrowDomReference.getBoundingClientRect();
 		const { innerWidth, innerHeight } = window;
 		const calcCoverLeft = contentBound.x - contentBound.width;
 		const coverLeft = calcCoverLeft < 0 ? calcCoverLeft : 0;
@@ -212,13 +208,11 @@
 	style="z-index: {zIndex + 10}; {positionStyle}"
 >
 	<slot />
-	{#if isArrow}
-		<div
-			bind:this="{arrowDomReference}"
-			class="absolute top-0 text-gray-50 dark:text-gray-900"
-			style="{arrowStyleProps}">◥</div
-		>
-	{/if}
+	<div
+		bind:this="{arrowDomReference}"
+		class="absolute top-0 text-gray-50 dark:text-gray-900"
+		style="{arrowStyleProps}">◥</div
+	>
 </div>
 
 <Overlay

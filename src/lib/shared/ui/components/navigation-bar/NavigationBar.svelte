@@ -13,15 +13,25 @@
 	import { page } from '$app/stores';
 
 	// Exports
-	/**
-	 * @type {IHeaderNavLink}
-	 */
-	export let navLinks!: IHeaderNavLink[];
 	export let gitHubLink!: string;
 	export let twitterLink!: string;
 
 	// Local Properties
 	let dark = false;
+
+	/**
+	 * @type {IHeaderNavLink}
+	 */
+	const navLinks: IHeaderNavLink[] = [
+		{
+			path: '/',
+			label: 'Home',
+		},
+		{
+			path: '/about/',
+			label: 'About',
+		},
+	];
 
 	// Local Methods
 	const dispatch = createEventDispatcher();

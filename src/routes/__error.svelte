@@ -11,14 +11,10 @@
 </script>
 
 <script lang="ts">
-	// Start: Sevelte Imports
-	import { dev } from '$app/env';
-	// End: Sevelte Imports
-
 	// Start: Local Imports
 
 	//  Components
-	import HeadTags from '$components/head-tags/HeadTags.svelte';
+	import SEO from '$lib/shared/components/seo/SEO.svelte';
 
 	// Models
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
@@ -46,7 +42,7 @@
 </script>
 
 <!-- Start: Header Tage -->
-<HeadTags metaData="{metaData}" />
+<SEO metaData="{metaData}" />
 <!-- End: Header Tage -->
 
 <!-- Start: Error View Layout -->
@@ -60,11 +56,6 @@
 		<p class="text-black dark:text-white mx-1">
 			{error.name}
 		</p>
-		<!-- Start: Error Message container -->
-		{#if dev && error.stack}
-			<p class="text-black dark:text-white mx-1">{error.message}</p>
-		{/if}
-		<!-- End: Error Message container -->
 	</div>
 </div>
 <!-- End: Error View Layout -->
