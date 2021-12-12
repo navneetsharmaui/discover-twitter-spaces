@@ -84,7 +84,7 @@
 	<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
 		Discover Spaces
 	</h1>
-	<p class="prose text-gray-600 dark:text-gray-400 mb-10">
+	<p class="prose text-gray-600 dark:text-gray-100 mb-10">
 		Search the twitter space for your interests. You can also search for people and topics. You
 		can also search for spaces by category.
 	</p>

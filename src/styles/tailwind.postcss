@@ -145,18 +145,15 @@
 
 html {
 	min-width: 360px;
-	scroll-behavior: smooth;
-	@apply dark:bg-black bg-gray-50 transition-colors duration-150 ease-in-out;
+	@apply scroll-smooth dark:bg-zinc-900 bg-gray-50 transition-colors duration-150 ease-in-out;
 }
 
 body {
-	@apply dark:bg-black bg-gray-50 transition-colors duration-150 ease-in-out;
+	@apply bg-gray-50 dark:bg-zinc-900 transition-colors duration-150 ease-in-out;
 }
 
 #discover {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+	@apply min-h-screen flex flex-col;
 }
 
 main {
@@ -178,25 +175,19 @@ pre {
 }
 
 input[type='text'] {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+	@apply appearance-none;
 }
 
 .form-input {
-	@apply mt-1 block w-full px-3 py-2 bg-white border dark:bg-gray-800 border-gray-300 dark:border-gray-800 rounded-md text-sm dark:text-gray-100 shadow-sm placeholder-gray-400 dark:placeholder-gray-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500;
+	@apply rounded-full shadow dark:shadow mt-1 block w-full px-3 py-2 bg-white border dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 text-sm dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500;
 }
 
 .sticky-theme-mode-button {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+	@apply absolute top-2 right-2;
 }
 
 .nav-active-route {
-	@apply font-bold;
-	-webkit-transition: border 1s ease;
-	transition: border 0.5s ease-in-out;
+	@apply font-bold transition-[border] duration-500 ease-in-out;
 }
 
 .nav-inactive-route {

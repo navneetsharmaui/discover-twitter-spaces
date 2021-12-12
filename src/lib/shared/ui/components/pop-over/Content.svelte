@@ -205,7 +205,7 @@
 	<slot />
 	<div
 		bind:this="{arrowDomReference}"
-		class="absolute top-0 text-gray-50 dark:text-gray-900"
+		class="absolute top-0 text-gray-50 dark:text-zinc-800"
 		style="{arrowStyleProps}">◥</div
 	>
 </div>

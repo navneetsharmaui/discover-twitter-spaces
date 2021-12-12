@@ -44,7 +44,7 @@
 	// End: Local component methods
 </script>
 
-<div class=" dark:bg-black bg-gray-50 transition-colors duration-150 ease-in-out">
+<div class=" dark:bg-zinc-900 bg-gray-50 transition-colors duration-150 ease-in-out">
 	<!-- Start: Header Navigation -->
 	<Header
 		on:toggleTheme="{(e) => toggleThemeMode(e)}"
@@ -54,7 +54,7 @@
 	<!-- End: Header Navigation -->
 	<main
 		id="skip"
-		class="flex flex-col w-full justify-start items-center px-8 bg-gray-50 dark:bg-black transition-colors duration-150 ease-in-out pt-4"
+		class="flex flex-col w-full justify-start items-center px-8 bg-gray-50 dark:bg-zinc-900 transition-colors duration-150 ease-in-out pt-4"
 	>
 		<div class="max-w-2xl w-full md:min-w-2xl">
 			<!-- Start: Defaull layout slot -->

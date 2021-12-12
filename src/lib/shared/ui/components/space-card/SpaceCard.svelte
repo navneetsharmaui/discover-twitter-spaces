@@ -13,7 +13,7 @@
 			<div class="flex flex-row">
 				<ExternalLink href="{twitterSpace.spaceUrl}" ariaLabel="{twitterSpace.title}">
 					<h2
-						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-indigo-900 text-base md:text-lg leading-tight font-medium capitalize"
+						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-zinc-400 text-base md:text-lg leading-tight font-medium capitalize"
 					>
 						{twitterSpace.title}
 					</h2>
@@ -55,24 +55,24 @@
 								ariaLabel="{`Host ${host.name}`}"
 							>
 								<figure
-									class="min-w-4xs flex flex-row justify-start items-center bg-gray-200 rounded-full pr-4 hover:shadow"
+									class="min-w-4xs flex flex-row justify-start items-center bg-gray-200 dark:bg-zinc-700 rounded-full pr-4 hover:shadow"
 								>
 									<img
 										src="{host.imageUrl}"
 										alt="{host.name}"
 										height="24"
 										width="24"
-										class="rounded-full h-8 w-8 border-gray-500 border-2"
+										class="rounded-full h-8 w-8 border-gray-500 dark:border-zinc-300 border-2"
 									/>
 									<figcaption
-										class="ml-2 hover:text-blue-900 text-gray-900 text-xs leading-tight font-medium capitalize"
+										class="ml-2 hover:text-blue-900 text-gray-900 dark:text-white text-xs leading-tight font-medium capitalize"
 										>{host.name}</figcaption
 									>
 								</figure>
 							</ExternalLink>
 							<div
 								slot="content"
-								class="block w-44 md:w-52 shadow-md rounded-md z-50 bg-gray-50 dark:bg-gray-900"
+								class="block w-44 md:w-52 shadow-md rounded-md z-50 bg-gray-50 dark:bg-zinc-800"
 							>
 								<div class="flex flex-col h-full w-full p-3 gap-3">
 									<div class="flex flex-row w-full">
