@@ -13,7 +13,7 @@
 			<div class="flex flex-row">
 				<ExternalLink href="{twitterSpace.spaceUrl}" ariaLabel="{twitterSpace.title}">
 					<h2
-						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-indigo-900 text-base md:text-lg leading-tight font-medium"
+						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-indigo-900 text-base md:text-lg leading-tight font-medium capitalize"
 					>
 						{twitterSpace.title}
 					</h2>
@@ -65,7 +65,7 @@
 										class="rounded-full h-8 w-8 border-gray-500 border-2"
 									/>
 									<figcaption
-										class="ml-2 hover:text-blue-900 text-gray-900 text-xs leading-tight font-medium"
+										class="ml-2 hover:text-blue-900 text-gray-900 text-xs leading-tight font-medium capitalize"
 										>{host.name}</figcaption
 									>
 								</figure>
@@ -93,7 +93,7 @@
 													class="rounded-full h-8 w-8 border-gray-500 border-2"
 												/>
 												<figcaption
-													class="ml-2 hover:text-blue-900 text-black dark:text-white text-xs leading-tight font-medium"
+													class="ml-2 hover:text-blue-900 text-black dark:text-white text-xs leading-tight font-medium capitalize"
 												>
 													<small><strong>{host.name}</strong></small>
 												</figcaption>
