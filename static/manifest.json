@@ -1,7 +1,10 @@
 {
+	"id": "discover-twitter-spaces",
 	"short_name": "discover-twitter-spaces",
 	"name": "Discover Twitter Spaces",
 	"description": "Discover Twitter Spaces. Discover the spaces that are most popular on Twitter.",
+	"lang": "en",
+	"dir": "ltr",
 	"start_url": "/",
 	"icons": [
 		{
