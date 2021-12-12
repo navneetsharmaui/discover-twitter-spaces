@@ -17,7 +17,7 @@
 	export let twitterLink!: string;
 
 	// Local Properties
-	let dark = false;
+	let dark = true;
 
 	/**
 	 * @type {IHeaderNavLink}
