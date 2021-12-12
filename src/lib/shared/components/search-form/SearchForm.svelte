@@ -1,28 +1,53 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { SPACE_CATEGORIES } from '$lib/data/spaces-categories';
+	import { SPACE_CATEGORIES } from '$data/spaces-categories';
+	import SelectOption from '$components/select-option/SelectOption.svelte';
+	import type { ISelectionOption } from '$models/interfaces/iselection-option.interface';
 
 	const dispatch = createEventDispatcher();
 
 	export let searchValue = '';
-	let selectedValue = 'category';
+
+	const DEFAULT_SELECTION: ISelectionOption = {
+		value: 'category',
+		label: 'Select a category',
+		id: 'category',
+	};
+	let selectedValue: ISelectionOption = {
+		...DEFAULT_SELECTION,
+	};
+
+	const selectOptions: ISelectionOption[] = SPACE_CATEGORIES.map((category) => ({
+		id: category.id,
+		label: category.label,
+		value: category.id,
+	}));
 
 	$: isSubmitDisabled =
-		selectedValue === 'category' && (searchValue === '' || searchValue.length <= 2);
+		selectedValue.value === 'category' && (searchValue === '' || searchValue.length <= 2);
 
 	const handleSearch = async (): Promise<void> => {
 		if (searchValue.length >= 3) {
-			selectedValue = 'category';
+			selectedValue = {
+				...DEFAULT_SELECTION,
+			};
 		}
 	};
 
-	const handlerSelection = async (): Promise<void> => {
+	const handleSelection = async (event: CustomEvent<ISelectionOption>): Promise<void> => {
 		if (
-			selectedValue.length >= 3 &&
-			selectedValue !== searchValue &&
-			selectedValue !== 'category'
+			event.detail.value.length >= 3 &&
+			event.detail.value !== searchValue &&
+			event.detail.value !== 'category'
 		) {
 			searchValue = '';
+			selectedValue = {
+				...event.detail,
+			};
+		} else if (event.detail.value === 'category') {
+			selectedValue = {
+				...DEFAULT_SELECTION,
+			};
 		}
 	};
 
@@ -32,14 +57,16 @@
 
 	const onSubmit = async (): Promise<void> => {
 		if (
-			selectedValue.length >= 3 &&
-			selectedValue !== searchValue &&
-			selectedValue !== 'category'
+			selectedValue.value.length >= 3 &&
+			selectedValue.value !== searchValue &&
+			selectedValue.value !== 'category'
 		) {
 			searchValue = '';
-			onDispatchSearchField(selectedValue);
+			onDispatchSearchField(selectedValue.value);
 		} else if (searchValue.length >= 3) {
-			selectedValue = 'category';
+			selectedValue = {
+				...DEFAULT_SELECTION,
+			};
 			onDispatchSearchField(searchValue);
 		}
 	};
@@ -56,7 +83,7 @@
 			class="form-input"
 		/>
 		<svg
-			class="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
+			class="absolute right-3 top-3 h-5 w-5 text-black dark:text-white"
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
@@ -75,29 +102,11 @@
 	</div>
 
 	<div class="w-full mb-4">
-		<label class="inline-block relative w-full" for="category">
-			<select
-				class="form-input appearance-none"
-				name="category"
-				id="category"
-				bind:value="{selectedValue}"
-				on:change="{() => handlerSelection()}"
-			>
-				{#each SPACE_CATEGORIES as category, index (category.id)}
-					<option value="{category.id}">{category.label}</option>
-				{/each}
-			</select>
-			<div
-				class="absolute inset-y-0 right-0 top-1.5 flex items-center px-3 py-2 pointer-events-none"
-			>
-				<svg class="w-4 h-4 fill-current text-black dark:text-white" viewBox="0 0 20 20"
-					><path
-						d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-						clip-rule="evenodd"
-						fill-rule="evenodd"></path></svg
-				>
-			</div>
-		</label>
+		<SelectOption
+			selectOptions="{selectOptions}"
+			selectedValue="{selectedValue}"
+			on:selection="{(e) => handleSelection(e)}"
+		/>
 	</div>
 
 	<div class="w-full mb-4">
