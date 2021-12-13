@@ -1,19 +1,28 @@
 <script lang="ts">
-	import type { ITwitterSpace } from '$lib/models/interfaces/itwitter-space.interface';
+	import { copy } from '$utils/_copy';
+	import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
 	import Card from '$ui/components/card/Card.svelte';
 	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 	import PopOver from '$ui/components/pop-over/PopOver.svelte';
 
+	import Icon from 'svelte-awesome';
+	import { faCopy } from '@fortawesome/free-regular-svg-icons';
+
 	export let twitterSpace!: ITwitterSpace;
+
+	const getStateText = (isLive: boolean, state: string, time = '') =>
+		isLive
+			? `${state.slice(0, 1).toUpperCase()}${state.toLowerCase().slice(1, state.length)}`
+			: `Scheduled at ${time}`;
 </script>
 
 <Card>
-	<div class="flex flex-col w-full">
+	<div class="flex flex-col w-full relative">
 		<div class="flex flex-col justify-start items-start mb-1">
 			<div class="flex flex-row">
 				<ExternalLink href="{twitterSpace.spaceUrl}" ariaLabel="{twitterSpace.title}">
 					<h2
-						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-zinc-400 text-base md:text-lg leading-tight font-medium capitalize"
+						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-zinc-400 text-base md:text-lg leading-tight font-medium capitalize pr-4"
 					>
 						{twitterSpace.title}
 					</h2>
@@ -31,12 +40,18 @@
 					class="block w-2 h-2 rounded-full {twitterSpace.isLive
 						? 'bg-red-500'
 						: 'bg-gray-600'}"></div>
-				<p class="text-xs text-gray-900 dark:text-gray-100 ml-1"
-					>{twitterSpace.isLive
-						? `${twitterSpace.state.slice(0, 1).toUpperCase()}${twitterSpace.state
-								.toLowerCase()
-								.slice(1, twitterSpace.state.length)}`
-						: `Scheduled at ${twitterSpace.scheduledStartTime}`}</p
+				<p
+					class="text-[0.7rem] md:text-xs text-gray-900 dark:text-gray-100 ml-1"
+					title="{getStateText(
+						twitterSpace.isLive,
+						twitterSpace.state,
+						twitterSpace.scheduledStartTime,
+					)}"
+					>{getStateText(
+						twitterSpace.isLive,
+						twitterSpace.state,
+						twitterSpace.scheduledStartTime,
+					)}</p
 				>
 			</div>
 		</div>
@@ -135,6 +150,20 @@
 			>
 				Join Space
 			</ExternalLink>
+		</div>
+		<div class="absolute top-0 right-0">
+			<button
+				type="button"
+				use:copy="{twitterSpace.spaceUrl}"
+				title="{`Copy Space url ${twitterSpace.spaceUrl}`}"
+				aria-label="{`Copy Space url ${twitterSpace.spaceUrl}`}"
+			>
+				<Icon
+					data="{faCopy}"
+					class="{'h-4 w-4 text-xs text-zinc-800 dark:text-zinc-400'}"
+					scale="{1.5}"
+				/>
+			</button>
 		</div>
 	</div>
 </Card>
