@@ -43,6 +43,10 @@ This project is inspired by the similar project [find twitter spaces](https://gi
 7. The twitter API code is in the `src/routes/api/spaces/index.json.ts` file.
 8. The Sveltekit project is built using `sveltekit vercel adapter` as the application us deployed on the Vercel.
 
+## Contribution
+
+The details about how to contribute to this project are available [here](https://github.com/navneetsharmaui/discover-twitter-spaces/blob/master/CONTRIBUTION.md).
+
 ## 💫 License
 
 - Code and Contributions have **MIT License**
