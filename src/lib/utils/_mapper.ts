@@ -2,13 +2,13 @@ import type {
 	ISpacesMetaResponse,
 	ISpacesResponse,
 	ISpacesTwitterUserResponse,
-} from '$lib/models/interfaces/ispaces-meta-response.interface';
+} from '$models/interfaces/ispaces-meta-response.interface';
 import type {
 	ITwitterSpace,
 	ITwitterUserProfile,
-} from '$lib/models/interfaces/itwitter-space.interface';
+} from '$models/interfaces/itwitter-space.interface';
 
-import { humanReadableTime } from '$lib/utils/_date-formatters';
+import { humanReadableTime } from '$utils/_date-formatters';
 
 export const mapToTwitterUserProfile = (
 	value: ISpacesTwitterUserResponse[],

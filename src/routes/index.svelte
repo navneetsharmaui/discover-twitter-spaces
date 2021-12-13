@@ -1,14 +1,11 @@
 <script lang="ts" context="module">
-	/**
-	 * @type {import('@sveltejs/kit').Load} Load
-	 */
-	export async function load({ page }) {
+	export const load: Load = async ({ page }) => {
 		return {
 			props: {
 				searchTerm: page.query.get('q') || 'Web',
 			},
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
@@ -18,10 +15,10 @@
 	import SpaceCard from '$ui/components/space-card/SpaceCard.svelte';
 	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
-	import type { ITwitterSpace } from '$lib/models/interfaces/itwitter-space.interface';
-	import { api } from '$lib/core/services/https/_api';
+	import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
+	import { api } from '$core/services/https/_api';
 	import { spacesStore } from '$stores/spaces-store';
-	import type { EndpointOutput } from '@sveltejs/kit';
+	import type { EndpointOutput, Load } from '@sveltejs/kit';
 	import type { DefaultBody } from '@sveltejs/kit/types/endpoint';
 
 	// Exports

@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-	export function load({ error, status }) {
+	export const load: ErrorLoad = async ({ error, status }) => {
 		return {
 			props: {
 				status,
 				error,
 			},
 		};
-	}
+	};
 </script>
 
 <script lang="ts">
@@ -17,6 +17,7 @@
 
 	// Models
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
+	import type { ErrorLoad } from '@sveltejs/kit';
 	// End: Local Imports
 
 	// Start: Exported Properties

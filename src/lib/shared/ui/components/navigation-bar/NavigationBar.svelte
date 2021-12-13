@@ -1,23 +1,21 @@
 <script lang="ts">
 	// Svelte Imports
-	import { createEventDispatcher } from 'svelte';
-
 	import Icon from 'svelte-awesome';
 	import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 	import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 
-	// Models
+	import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
 	import { page } from '$app/stores';
 
 	// Exports
-	export let gitHubLink!: string;
-	export let twitterLink!: string;
+	const twitterProfileLink = discoverEnvironmentFacade.twitterConfig.TWITTER_PROFILE_URL;
+	const githubRepoLink = discoverEnvironmentFacade.githubRepoUrl;
 
 	// Local Properties
-	let dark = true;
+	let dark = false;
 
 	/**
 	 * @type {IHeaderNavLink}
@@ -34,13 +32,11 @@
 	];
 
 	// Local Methods
-	const dispatch = createEventDispatcher();
 
 	const toggleTheme = (): void => {
+		const htmlTag = document.getElementsByTagName('html').item(0);
+		htmlTag.className = dark ? 'dark' : 'light';
 		dark = !dark;
-		dispatch('toggleTheme', {
-			dark: dark,
-		});
 	};
 </script>
 
@@ -68,7 +64,7 @@
 		</div>
 		<div class="flex flex-row gap-5 items-center">
 			<ExternalLink
-				href="{twitterLink}"
+				href="{twitterProfileLink}"
 				cssClasses="inline-flex text-black dark:text-white hover:text-zinc-500 dark:hover:text-zinc-500"
 				ariaLabel="{`Checkout my Twitter`}"
 			>
@@ -76,7 +72,7 @@
 			</ExternalLink>
 
 			<ExternalLink
-				href="{gitHubLink}"
+				href="{githubRepoLink}"
 				cssClasses="inline-flex text-black dark:text-white hover:text-zinc-500 dark:hover:text-zinc-500"
 				ariaLabel="{`Checkout on GitHub`}"
 			>
@@ -90,7 +86,7 @@
 				type="button"
 				class="{'w-7 h-7 bg-gray-50 rounded-full dark:bg-zinc-800 filter shadow dark:shadow-dark dark:hover:shadow-dark hover:border hover:border-gray-500 dark:hover:border-gray-300'}"
 			>
-				{#if dark}
+				{#if !dark}
 					<Icon
 						data="{faSun}"
 						class="{'h-2 w-2 text-xs text-black dark:text-white'}"
