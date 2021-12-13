@@ -17,6 +17,7 @@ This project is inspired by the similar project [find twitter spaces](https://gi
 - :bulb: [Tech Stack](#bulb-tech-stack)
 - :hammer: [Project Setup](#hammer-project-setup)
 - :bug: [Known Bugs](https://github.com/navneetsharmaui/discover-twitter-spaces/issues)
+- You can discuss this project [here](https://github.com/navneetsharmaui/discover-twitter-spaces/discussions).
 
 ## :100: :fire: Project LightHouse Report
 
