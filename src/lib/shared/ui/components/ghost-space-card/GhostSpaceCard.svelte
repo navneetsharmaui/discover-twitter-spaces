@@ -14,11 +14,9 @@
 		animation-iteration-count: infinite;
 		animation-name: placeHolderShimmer;
 		animation-timing-function: linear;
-		@apply bg-gray-400;
+		@apply bg-gray-400 relative h-full;
 		background: linear-gradient(to right, #d4d4d4 10%, #b3b2b2 18%, #d4d4d4 33%);
 		background-size: 800px 104px;
-		height: 100%;
-		position: relative;
 	}
 </style>
 
@@ -27,7 +25,7 @@
 </script>
 
 <Card>
-	<div class="flex flex-col w-full overflow-hidden">
+	<div class="flex flex-col w-full overflow-hidden relative">
 		<div class="flex flex-col justify-start items-start mb-3">
 			<div class="block w-3/4 h-6"><div class="ghost-loader-background rounded"></div></div>
 			<div class="flex flex-row mt-3 w-full">
@@ -55,6 +53,9 @@
 		</div>
 		<div class="flex flex-row mt-3">
 			<div class="h-8 w-28"><div class="ghost-loader-background rounded"></div></div>
+		</div>
+		<div class="absolute top-0 right-0">
+			<div class="h-4 w-4"><div class="ghost-loader-background rounded"></div></div>
 		</div>
 	</div>
 </Card>
