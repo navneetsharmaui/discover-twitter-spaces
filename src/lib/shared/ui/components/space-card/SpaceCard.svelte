@@ -101,7 +101,8 @@
 										</ExternalLink>
 									</div>
 									<div class="w-full">
-										<p class="text-xs text-black dark:text-white"
+										<p
+											class="text-xs text-black whitespace-pre-wrap break-words dark:text-white"
 											><small>{host.description}</small></p
 										>
 									</div>
