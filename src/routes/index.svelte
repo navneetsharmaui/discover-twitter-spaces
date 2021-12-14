@@ -15,10 +15,8 @@
 	import SpaceCard from '$ui/components/space-card/SpaceCard.svelte';
 	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
-	import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
-	import type { IResponseEndpointOutput } from '$models/interfaces/iresponse-endpoint.interface';
-	import { api } from '$core/services/https/_api';
 	import type { Load } from '@sveltejs/kit';
+	import { spacesSWR } from '$utils/_spaces-swr';
 
 	// Exports
 	export let searchTerm: string;
@@ -44,24 +42,15 @@
 	};
 
 	let searchedField = 'Web';
-	let numOfResults = 0;
 
 	// End: Local component properties
 
 	// Start: Local component methods
 
-	const fetchSpaces = async (value?: string) => {
+	const fetchSpaces = (value?: string) => {
 		return !value
-			? await api<ITwitterSpace[]>(`/api/spaces.json`)
-			: await api<ITwitterSpace[]>(`/api/spaces.json?search=${value}`);
-	};
-
-	const mapToITwitterSpaces = (
-		spaces: IResponseEndpointOutput<ITwitterSpace[]>,
-	): ITwitterSpace[] => {
-		const twitterSpaces = spaces.body;
-		numOfResults = twitterSpaces.length;
-		return twitterSpaces;
+			? spacesSWR(`/api/spaces.json`)
+			: spacesSWR(`/api/spaces.json?search=${value}`);
 	};
 
 	let twitterSpaces =
@@ -93,23 +82,23 @@
 	<div class="w-full">
 		<p class="text-gray-900 dark:text-gray-100 mx-1">
 			<small
-				>About {numOfResults}
+				>About {$twitterSpaces.data.length}
 				{searchedField ? `results for ${searchedField}.` : 'results.'}</small
 			>
 		</p>
 	</div>
 	<div class="flex flex-col w-full mt-5 gap-5">
-		{#await twitterSpaces}
+		{#if $twitterSpaces.state === 'PENDING'}
 			{#each [0, 1, 2, 3, 4] as num, index (num)}
 				<GhostSpaceCard />
 			{/each}
-		{:then spaces}
-			{#each mapToITwitterSpaces(spaces) as space, index (space.spaceId)}
+		{:else if $twitterSpaces.state === 'SUCCESS'}
+			{#each $twitterSpaces.data as space, index (space.spaceId)}
 				<SpaceCard twitterSpace="{space}" />
 			{/each}
-		{:catch error}
-			<p class="text-red-600">{error.message}</p>
-		{/await}
+		{:else if $twitterSpaces.state === 'ERROR'}
+			<p class="text-red-600">{$twitterSpaces.error.message}</p>
+		{/if}
 	</div>
 </div>
 <!-- End: Home Page container -->
