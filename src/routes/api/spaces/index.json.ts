@@ -2,6 +2,7 @@ import type { RequestHandler } from '@sveltejs/kit';
 import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 import { api } from '$core/services/https/_api';
 import { mapToTwitterSpaces } from '$utils/_mapper';
+import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
 
 export const get: RequestHandler = async (request) => {
 	try {
@@ -30,7 +31,7 @@ export const get: RequestHandler = async (request) => {
 			headers,
 		};
 
-		const twitterSpacesApiResponse = await api(url, httpRequestOptions);
+		const twitterSpacesApiResponse = await api<ISpacesMetaResponse>(url, httpRequestOptions);
 
 		return twitterSpacesApiResponse.status >= 400 && twitterSpacesApiResponse.status < 600
 			? {

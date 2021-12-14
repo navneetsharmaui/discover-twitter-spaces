@@ -1,8 +1,10 @@
-import type { EndpointOutput } from '@sveltejs/kit';
-
+import type { IResponseEndpointOutput } from '$models/interfaces/iresponse-endpoint.interface';
 import isomorphicFetch from 'isomorphic-fetch';
 
-export async function api(url: string, request?: RequestInit): Promise<EndpointOutput> {
+export async function api<T>(
+	url: string,
+	request?: RequestInit,
+): Promise<IResponseEndpointOutput<T>> {
 	const response = request ? await isomorphicFetch(url, request) : await isomorphicFetch(url);
 
 	return {

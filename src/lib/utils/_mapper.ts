@@ -53,8 +53,8 @@ export const mapToSpaces = (value: ISpacesResponse[]): ITwitterSpace[] => {
 	}));
 };
 
-export const mapToTwitterSpaces = (value: unknown): ITwitterSpace[] => {
-	const twitterSpaces = value as ISpacesMetaResponse;
+export const mapToTwitterSpaces = (value: ISpacesMetaResponse): ITwitterSpace[] => {
+	const twitterSpaces = value;
 	return twitterSpaces.meta.result_count !== 0
 		? mapToSpaces(twitterSpaces.data).map((space) => {
 				const mappedUsers = mapToTwitterUserProfile(twitterSpaces.includes.users);

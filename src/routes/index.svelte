@@ -16,9 +16,9 @@
 	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
+	import type { IResponseEndpointOutput } from '$models/interfaces/iresponse-endpoint.interface';
 	import { api } from '$core/services/https/_api';
-	import type { EndpointOutput, Load } from '@sveltejs/kit';
-	import type { DefaultBody } from '@sveltejs/kit/types/endpoint';
+	import type { Load } from '@sveltejs/kit';
 
 	// Exports
 	export let searchTerm: string;
@@ -52,12 +52,14 @@
 
 	const fetchSpaces = async (value?: string) => {
 		return !value
-			? await api(`/api/spaces.json`)
-			: await api(`/api/spaces.json?search=${value}`);
+			? await api<ITwitterSpace[]>(`/api/spaces.json`)
+			: await api<ITwitterSpace[]>(`/api/spaces.json?search=${value}`);
 	};
 
-	const mapToITwitterSpaces = (spaces: EndpointOutput<DefaultBody>): ITwitterSpace[] => {
-		const twitterSpaces = spaces.body as unknown as ITwitterSpace[];
+	const mapToITwitterSpaces = (
+		spaces: IResponseEndpointOutput<ITwitterSpace[]>,
+	): ITwitterSpace[] => {
+		const twitterSpaces = spaces.body;
 		numOfResults = twitterSpaces.length;
 		return twitterSpaces;
 	};
