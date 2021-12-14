@@ -197,19 +197,3 @@ input[type='text'] {
 .nav-link-divider {
 	@apply px-2 h-4 w-4 flex justify-center items-center;
 }
-
-#nprogress {
-	@apply pointer-events-none;
-}
-
-#nprogress .bar {
-	@apply bg-gray-800 dark:bg-gray-300 fixed z-[2000] top-0 left-0 w-full h-1;
-}
-
-.nprogress-custom-parent {
-	@apply relative overflow-hidden;
-}
-
-.nprogress-custom-parent #nprogress .bar {
-	@apply absolute;
-}
