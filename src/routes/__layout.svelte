@@ -1,13 +1,3 @@
-<script lang="ts" context="module">
-	export const load: Load = async ({ page }) => {
-		return {
-			props: {
-				path: page.path,
-			},
-		};
-	};
-</script>
-
 <script lang="ts">
 	// Start: Local Imports
 
@@ -16,13 +6,9 @@
 	// End: External Imports
 
 	import Header from '$ui/components/header/Header.svelte';
-	import RouteTransition from '$ui/components/route-transition/RouteTransition.svelte';
-	import type { Load } from '@sveltejs/kit';
 	// End: Local Imports
 
 	// Start: Local component properties
-
-	export let path = '';
 
 	// End: Local component properties
 
@@ -40,9 +26,7 @@
 	>
 		<div class="max-w-2xl w-full md:min-w-2xl">
 			<!-- Start: Defaull layout slot -->
-			<RouteTransition referesh="{path}">
-				<slot />
-			</RouteTransition>
+			<slot />
 			<!-- End: Defaull layout slot -->
 		</div>
 	</main>

@@ -17,7 +17,6 @@
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
 	import { api } from '$core/services/https/_api';
-	import { spacesStore } from '$stores/spaces-store';
 	import type { EndpointOutput, Load } from '@sveltejs/kit';
 	import type { DefaultBody } from '@sveltejs/kit/types/endpoint';
 
@@ -45,6 +44,7 @@
 	};
 
 	let searchedField = 'Web';
+	let numOfResults = 0;
 
 	// End: Local component properties
 
@@ -57,8 +57,9 @@
 	};
 
 	const mapToITwitterSpaces = (spaces: EndpointOutput<DefaultBody>): ITwitterSpace[] => {
-		spacesStore.set(spaces.body as unknown as ITwitterSpace[]);
-		return spaces.body as unknown as ITwitterSpace[];
+		const twitterSpaces = spaces.body as unknown as ITwitterSpace[];
+		numOfResults = twitterSpaces.length;
+		return twitterSpaces;
 	};
 
 	let twitterSpaces =
@@ -90,7 +91,7 @@
 	<div class="w-full">
 		<p class="text-gray-900 dark:text-gray-100 mx-1">
 			<small
-				>About {$spacesStore.length}
+				>About {numOfResults}
 				{searchedField ? `results for ${searchedField}.` : 'results.'}</small
 			>
 		</p>
