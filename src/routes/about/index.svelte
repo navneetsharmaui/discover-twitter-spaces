@@ -6,7 +6,7 @@
 <script lang="ts">
 	// Start: Local Imports
 	// Components
-	import SEO from '$lib/shared/components/seo/SEO.svelte';
+	import SEO from '$components/seo/SEO.svelte';
 
 	// Models
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';

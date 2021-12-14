@@ -1,7 +1,7 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
 import { api } from '$core/services/https/_api';
-import { mapToTwitterSpaces } from '$lib/utils/_mapper';
+import { mapToTwitterSpaces } from '$utils/_mapper';
 
 export const get: RequestHandler = async (request) => {
 	try {

@@ -1,7 +1,7 @@
 import { environment } from '$environment/environment';
-import type { DISCOVER_ENPOINT_CONFIG } from '$lib/models/types/discover-endpoits.type';
-import type { IDiscoverStarterCoreConfig } from '$lib/models/interfaces/idiscover-core-config.interface';
-import type { IDiscoverEnvironmentConfig } from '$lib/models/interfaces/idiscover-environment.interface';
+import type { DISCOVER_ENPOINT_CONFIG } from '$models/types/discover-endpoits.type';
+import type { IDiscoverStarterCoreConfig } from '$models/interfaces/idiscover-core-config.interface';
+import type { IDiscoverEnvironmentConfig } from '$models/interfaces/idiscover-environment.interface';
 
 /**
  * A facacde class for the Environment properties.

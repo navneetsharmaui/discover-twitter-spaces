@@ -1,4 +1,4 @@
-import type { ISpacesCategories } from '$lib/models/interfaces/ispaces-categories.interface';
+import type { ISpacesCategories } from '$models/interfaces/ispaces-categories.interface';
 
 export const SPACE_CATEGORIES: ISpacesCategories[] = [
 	{
