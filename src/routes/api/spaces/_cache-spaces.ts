@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import redis, { getSearchedSpacesKey } from '$core/config/_redis';
+import redis from '$core/config/_redis';
 import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 import { api } from '$core/services/_api';
 
@@ -7,6 +7,10 @@ import { mapToTwitterSpaces } from '$utils/_mapper';
 
 import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
 import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
+
+export function getSearchedSpacesKey(searchTerm: string): string {
+	return `spaces-${searchTerm.toLowerCase()}`;
+}
 
 export const cacheSpacesResponse = async (
 	searchedTerm: string,
