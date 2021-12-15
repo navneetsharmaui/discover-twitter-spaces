@@ -4,7 +4,7 @@
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 
 	// Data
-	import { discoverEnvironmentFacade } from '$core/services/environment/_environment.facade';
+	import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 	// End: Local Imports
 
 	// Start: Exported Properties

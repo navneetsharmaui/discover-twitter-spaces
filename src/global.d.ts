@@ -69,7 +69,6 @@ interface Locals {
 
 interface ImportMetaEnv {
 	DISCOVER_BASE_URL: string;
-	DISCOVER_TWITTER_TOKEN: string;
 	DISCOVER_TWITTER_BASE_API_URL: string;
 	DISCOVER_TWITTER_PROFILE_URL: string;
 	DISCOVER_GITHUB_REPO_URL: string;
