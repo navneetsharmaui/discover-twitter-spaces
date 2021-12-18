@@ -2,7 +2,7 @@
 	// Start: Local Imports
 
 	// Start: External Imports
-	import '../styles/tailwind.postcss';
+	import '../styles/tailwind.css';
 	// End: External Imports
 
 	import Header from '$ui/components/header/Header.svelte';
