@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* jshint esversion: 9 */
+/* jshint esversion: 11 */
 
 import vercel from '@sveltejs/adapter-vercel';
 
