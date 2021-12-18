@@ -1,7 +1,7 @@
 /* jshint esversion: 9 */
 
 module.exports = {
-	'*.{js,ts,json,svelte}': ['npm run format', 'git add'],
-	'./src/**/*.{svelte,ts}': ['npm run format', 'npm run lint:fix', 'git add'],
-	'./.{ts,cjs,js}': ['npm run lint:fix', 'git add'],
+	'*.{js,ts,json,svelte}': ['yarn run format', 'git add'],
+	'./src/**/*.{svelte,ts}': ['yarn run format', 'yarn run lint:fix', 'git add'],
+	'./.{ts,cjs,js}': ['yarn run lint:fix', 'git add'],
 };
