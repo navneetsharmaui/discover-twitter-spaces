@@ -1,94 +1,110 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@layer utilities {
-	@utilities {
-		.max-w-4xs {
-			max-width: 8rem;
-		}
-		.max-w-3xs {
-			max-width: 12rem;
-		}
-		.max-w-2xs {
-			max-width: 16rem;
-		}
+@layer components {
+	.max-w-4xs {
+		max-width: 8rem;
+	}
+	.max-w-3xs {
+		max-width: 12rem;
+	}
+	.max-w-2xs {
+		max-width: 16rem;
+	}
 
-		.min-w-0 {
-			min-width: 0rem;
-		}
-		.min-w-none {
-			min-width: none;
-		}
-		.min-w-4xs {
-			min-width: 8rem;
-		}
-		.min-w-3xs {
-			min-width: 12rem;
-		}
-		.min-w-2xs {
-			min-width: 16rem;
-		}
-		.min-w-xs {
-			min-width: 20rem;
-		}
-		.min-w-sm {
-			min-width: 24rem;
-		}
-		.min-w-md {
-			min-width: 28rem;
-		}
-		.min-w-lg {
-			min-width: 32rem;
-		}
-		.min-w-xl {
-			min-width: 36rem;
-		}
-		.min-w-2xl {
-			min-width: 42rem;
-		}
-		.min-w-3xl {
-			min-width: 48rem;
-		}
-		.min-w-4xl {
-			min-width: 56rem;
-		}
-		.min-w-5xl {
-			min-width: 64rem;
-		}
-		.min-w-6xl {
-			min-width: 72rem;
-		}
-		.min-w-7xl {
-			min-width: 80rem;
-		}
-		.min-w-full {
-			min-width: 100%;
-		}
-		.min-w-min {
-			min-width: min-content;
-		}
-		.min-w-min {
-			min-width: min-content;
-		}
-		.min-w-prose {
-			min-width: 65ch;
-		}
-		.min-w-screen-sm {
-			min-width: 640px;
-		}
-		.min-w-screen-md {
-			min-width: 768px;
-		}
-		.min-w-screen-lg {
-			min-width: 1024px;
-		}
-		.min-w-screen-xl {
-			min-width: 1280px;
-		}
-		.min-w-screen-2xl {
-			min-width: 1536px;
-		}
+	.min-w-0 {
+		min-width: 0rem;
+	}
+	.min-w-none {
+		min-width: none;
+	}
+	.min-w-4xs {
+		min-width: 8rem;
+	}
+	.min-w-3xs {
+		min-width: 12rem;
+	}
+	.min-w-2xs {
+		min-width: 16rem;
+	}
+	.min-w-xs {
+		min-width: 20rem;
+	}
+	.min-w-sm {
+		min-width: 24rem;
+	}
+	.min-w-md {
+		min-width: 28rem;
+	}
+	.min-w-lg {
+		min-width: 32rem;
+	}
+	.min-w-xl {
+		min-width: 36rem;
+	}
+	.min-w-2xl {
+		min-width: 42rem;
+	}
+	.min-w-3xl {
+		min-width: 48rem;
+	}
+	.min-w-4xl {
+		min-width: 56rem;
+	}
+	.min-w-5xl {
+		min-width: 64rem;
+	}
+	.min-w-6xl {
+		min-width: 72rem;
+	}
+	.min-w-7xl {
+		min-width: 80rem;
+	}
+	.min-w-full {
+		min-width: 100%;
+	}
+	.min-w-min {
+		min-width: min-content;
+	}
+	.min-w-min {
+		min-width: min-content;
+	}
+	.min-w-prose {
+		min-width: 65ch;
+	}
+	.min-w-screen-sm {
+		min-width: 640px;
+	}
+	.min-w-screen-md {
+		min-width: 768px;
+	}
+	.min-w-screen-lg {
+		min-width: 1024px;
+	}
+	.min-w-screen-xl {
+		min-width: 1280px;
+	}
+	.min-w-screen-2xl {
+		min-width: 1536px;
+	}
+	.min-w-screen-3xl {
+		min-width: 1792px;
+	}
+	.min-w-screen-4xl {
+		min-width: 2048px;
+	}
+	.min-w-screen-5xl {
+		min-width: 2304px;
+	}
+	.min-w-screen-6xl {
+		min-width: 2560px;
+	}
+	.min-w-screen-7xl {
+		min-width: 2816px;
+	}
+	.min-w-screen-full {
+		min-width: 100vw;
 	}
 }
 
