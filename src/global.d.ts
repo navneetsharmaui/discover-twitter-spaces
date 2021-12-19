@@ -63,13 +63,13 @@ declare module '*.wbep' {
 
 // Start: Interfaces
 
-interface Locals {
-	userid: string;
+interface ImportMetaEnv {
+	readonly DISCOVER_BASE_URL: string;
+	readonly DISCOVER_TWITTER_BASE_API_URL: string;
+	readonly DISCOVER_TWITTER_PROFILE_URL: string;
+	readonly DISCOVER_GITHUB_REPO_URL: string;
 }
 
-interface ImportMetaEnv {
-	DISCOVER_BASE_URL: string;
-	DISCOVER_TWITTER_BASE_API_URL: string;
-	DISCOVER_TWITTER_PROFILE_URL: string;
-	DISCOVER_GITHUB_REPO_URL: string;
+interface ImportMeta {
+	readonly env: ImportMetaEnv;
 }
