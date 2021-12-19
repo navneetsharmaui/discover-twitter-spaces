@@ -48,20 +48,9 @@
 		"eslint": "eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .",
 		"eslint:fix": "eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore . --fix",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.16.5",
-		"@storybook/addon-actions": "^6.4.9",
-		"@storybook/addon-cssresources": "^6.2.9",
-		"@storybook/addon-essentials": "^6.4.9",
-		"@storybook/addon-info": "^5.3.21",
-		"@storybook/addon-links": "^6.4.9",
-		"@storybook/addon-postcss": "^2.0.0",
-		"@storybook/addon-svelte-csf": "^1.1.0",
-		"@storybook/svelte": "^6.4.9",
 		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
 		"@tailwindcss/typography": "^0.5.0",
