@@ -2,9 +2,14 @@
 	"name": "discover-twitter-spaces",
 	"version": "1.0.0",
 	"license": "MIT",
+	"description": "Discover Twitter Spaces. Discover the spaces that are live or scheduled on Twitter.",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/navneetsharmaui/discover-twitter-spaces.git"
+	},
+	"author": {
+		"name": "Navneet Sharma",
+		"url": "https://navneetsharma.xyz"
 	},
 	"keywords": [
 		"twitter",
@@ -15,7 +20,16 @@
 		"discover-twitter-spaces-ts",
 		"discover-twitter-spaces-node",
 		"twitter spaces",
-		"spaces"
+		"spaces",
+		"live-twitter-spaces",
+		"scheduled-twitter-spaces",
+		"twitter-spaces-discovery",
+		"typescript",
+		"javascript",
+		"sveltekit",
+		"svelte",
+		"sveltejs",
+		"serverless"
 	],
 	"scripts": {
 		"prepare": "husky install",
@@ -90,5 +104,6 @@
 	"type": "module",
 	"engines": {
 		"node": ">= 14.16.1"
-	}
+	},
+	"engineStrict": true
 }
