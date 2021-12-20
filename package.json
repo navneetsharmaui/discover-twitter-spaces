@@ -5,12 +5,13 @@
 	"description": "Discover Twitter Spaces. Discover the spaces that are live or scheduled on Twitter.",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/navneetsharmaui/discover-twitter-spaces.git"
+		"url": "https://github.com/navneetsharmaui/discover-twitter-spaces.git"
 	},
 	"author": {
 		"name": "Navneet Sharma",
 		"url": "https://navneetsharma.xyz"
 	},
+	"homepage": "https://discover-twitter-spaces.vercel.app/",
 	"keywords": [
 		"twitter",
 		"twitter-spaces",
