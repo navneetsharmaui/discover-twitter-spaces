@@ -1,7 +1,7 @@
 import { Logger, LoggerUtils } from '$lib/utils/_logger';
 import type { RequestHandler } from '@sveltejs/kit';
 import { performance } from 'perf_hooks';
-import { TwitterSpacesAPIService } from './_twitter-spaces-api.service';
+import { twitterSpacesAPIService } from './_twitter-spaces-api.service';
 
 export const get: RequestHandler = async (request) => {
 	try {
@@ -12,7 +12,6 @@ export const get: RequestHandler = async (request) => {
 
 		const searchQuery = search ? search : 'Web';
 
-		const twitterSpacesAPIService = new TwitterSpacesAPIService();
 		const twitterSpacesApiResponse = await twitterSpacesAPIService.getSpacesFromCache(
 			searchQuery,
 		);

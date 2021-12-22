@@ -9,7 +9,11 @@ import type { RedisClient } from '$models/classes/redis-client.class';
 import { mapToTwitterSpaces } from '$utils/_mapper';
 import { Logger, LoggerUtils } from '$utils/_logger';
 
-export class TwitterSpacesAPIService {
+/**
+ * A facade class for the Twitter Spaces API. This class will provide the access to the Twitter Spaces API. This class
+ * will also provide the caching mechanism for the Twitter Spaces API and will return the cached data if the data is available.
+ */
+class TwitterSpacesAPIService {
 	private redisClient!: RedisClient;
 
 	private readonly DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
@@ -27,14 +31,33 @@ export class TwitterSpacesAPIService {
 		this.redisClient = redis;
 	}
 
+	/**
+	 * This method will return the key for the searched spaces. This key will be used to cache the spaces.
+	 * @param searchedTerm The searched term.
+	 * @returns The key for the searched spaces.
+	 * @private
+	 * @returns {string}
+	 */
 	private getSearchedSpacesKey(searchTerm: string): string {
 		return `spaces-${searchTerm.toLowerCase()}`;
 	}
 
+	/**
+	 * This method will close the redis connection. This method will be called when the service is no longer in use or
+	 * when the service is destroyed to avoid memory leaks.
+	 * @private
+	 */
 	private closeConnection(): void {
 		this.redisClient.quit();
 	}
 
+	/**
+	 * This method will cache the spaces response in the redis cache using the key provided.
+	 * @param {string} searchedTerm The searched term.
+	 * @param {ISpacesMetaResponse} spaces The spaces to cache.
+	 * @private
+	 * @returns {Promise<void>}
+	 */
 	private async cacheSpacesResponse(
 		searchedTerm: string,
 		spaces: ISpacesMetaResponse,
@@ -51,6 +74,13 @@ export class TwitterSpacesAPIService {
 		}
 	}
 
+	/**
+	 * This method will return the cached spaces for the provided search term. If the spaces are not cached, this method
+	 * will return empty object.
+	 * @param {string} searchTerm The searched term.
+	 * @returns {Promise<ITwitterSpace[]>}
+	 * @public
+	 */
 	public async getSpacesFromCache(
 		searchTerm: string,
 	): Promise<ITwitterSpace[] | Record<string, never>> {
@@ -67,6 +97,14 @@ export class TwitterSpacesAPIService {
 		return {};
 	}
 
+	/**
+	 * This method will return the spaces for the provided search term. If the spaces are not cached, this method will
+	 * make a request to the Twitter API and cache the spaces.
+	 * @param {string} searchTerm The searched term.
+	 * @param {string} spacesSearchQueryParameters The spaces search query parameters.
+	 * @returns {Promise<ITwitterSpace[]>}
+	 * @public
+	 */
 	public async getSpacesFromAPI(
 		searchTerm: string,
 		spacesSearchQueryParameters = this.SPACES_SEARCH_PARAMETERS,
@@ -103,3 +141,9 @@ export class TwitterSpacesAPIService {
 		};
 	}
 }
+
+/**
+ * This will return the TwitterSpacesAPIService instance.
+ * @returns {TwitterSpacesAPIService}
+ */
+export const twitterSpacesAPIService = new TwitterSpacesAPIService();
