@@ -1,6 +1,6 @@
 import redis from '$core/config/_redis.config';
 import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
-import { api } from '$core/services/_api';
+import { api } from '$lib/core/services/_api.service';
 
 import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
 import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';

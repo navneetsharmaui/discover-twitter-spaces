@@ -16,7 +16,7 @@
 	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import type { Load } from '@sveltejs/kit';
-	import { spacesSWR } from '$core/services/_spaces-swr';
+	import { spacesSWR } from '$core/services/_spaces-swr.service';
 
 	// Exports
 	export let searchTerm: string;

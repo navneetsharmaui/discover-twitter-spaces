@@ -1,7 +1,7 @@
 import { Logger, LoggerUtils } from '$lib/utils/_logger';
 import type { RequestHandler } from '@sveltejs/kit';
 import { performance } from 'perf_hooks';
-import { twitterSpacesAPIService } from './_twitter-spaces-api.service';
+import { twitterSpacesAPIService } from '$core/services/_twitter-spaces-api.service';
 
 export const get: RequestHandler = async (request) => {
 	try {
