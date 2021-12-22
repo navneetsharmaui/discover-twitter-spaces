@@ -24,7 +24,7 @@
 		"baseUrl": ".",
 		"allowJs": true,
 		"checkJs": true,
-		"types": ["node", "isomorphic-fetch", "ioredis"],
+		"types": ["node", "isomorphic-fetch", "ioredis", "lz-string"],
 		"paths": {
 			"$lib/*": ["src/lib/*"],
 			"$stores": ["src/stores/index.ts"],
