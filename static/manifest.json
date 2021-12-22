@@ -102,10 +102,10 @@
 			"purpose": "maskable"
 		}
 	],
-	"background_color": "#9a9ae1",
+	"background_color": "#27272a",
 	"display": "standalone",
 	"orientation": "portrait",
-	"theme_color": "#9a9ae1",
+	"theme_color": "#27272a",
 	"scope": "/",
 	"shortcuts": [
 		{
