@@ -19,7 +19,10 @@ export const get: RequestHandler = async (request) => {
 		logger.debug('Time Elapsed till cache: ', (performance.now() - start) / 1000);
 
 		if (twitterSpacesApiResponse && twitterSpacesApiResponse.length > 0) {
-			logger.debug('Total elapsed time: ', (performance.now() - start) / 1000);
+			logger.debug(
+				'Cached response - Total elapsed time: ',
+				(performance.now() - start) / 1000,
+			);
 			return {
 				status: 200,
 				headers: {
@@ -29,7 +32,10 @@ export const get: RequestHandler = async (request) => {
 			};
 		} else {
 			const response = await twitterSpacesAPIService.getSpacesFromAPI(searchQuery);
-			logger.debug('Total elapsed time: ', (performance.now() - start) / 1000);
+			logger.debug(
+				'Uncached response - Total elapsed time: ',
+				(performance.now() - start) / 1000,
+			);
 			return response;
 		}
 	} catch (error) {
