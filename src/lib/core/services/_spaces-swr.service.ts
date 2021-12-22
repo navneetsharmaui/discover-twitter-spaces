@@ -1,11 +1,11 @@
 import { api } from './_api.service';
-import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
 import { APP_STORE, errorState, loadingState, upateSpaces } from '$stores/app-store';
+import type { TwitterSpace } from '$models/classes/twitter-space.class';
 
 export const spacesSWR = (url: string) => {
 	loadingState();
 
-	api<ITwitterSpace[]>(url)
+	api<TwitterSpace[]>(url)
 		.then((response) => {
 			if (response.status >= 200 && response.status < 300) {
 				upateSpaces(response.body);

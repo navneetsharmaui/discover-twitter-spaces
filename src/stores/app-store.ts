@@ -1,17 +1,17 @@
-import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
+import { TwitterSpace } from '$lib/models/classes/twitter-space.class';
 import type { IAppState } from '$models/interfaces/iapp-state.interface';
 import { writable } from 'svelte/store';
 
-export const APP_STORE = writable<IAppState<ITwitterSpace[]>>({
+export const APP_STORE = writable<IAppState<TwitterSpace[]>>({
 	state: 'EMPTY',
 	data: [],
 	error: null,
 });
 
-export const upateSpaces = (spaces: ITwitterSpace[]) => {
+export const upateSpaces = (spaces: TwitterSpace[]) => {
 	APP_STORE.set({
 		state: 'SUCCESS',
-		data: spaces,
+		data: spaces.map((space) => new TwitterSpace().deserialize(space)),
 		error: null,
 	});
 };

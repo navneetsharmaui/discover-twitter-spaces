@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { copy } from '$utils/_copy';
-	import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
 	import Card from '$ui/components/card/Card.svelte';
 	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 	import PopOver from '$ui/components/pop-over/PopOver.svelte';
+	import type { TwitterSpace } from '$models/classes/twitter-space.class';
 
-	export let twitterSpace!: ITwitterSpace;
+	export let twitterSpace!: TwitterSpace;
 
 	const getStateText = (isLive: boolean, state: string, time = '') =>
 		isLive

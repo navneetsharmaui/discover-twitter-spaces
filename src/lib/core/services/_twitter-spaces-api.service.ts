@@ -3,9 +3,9 @@ import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 import { api } from '$lib/core/services/_api.service';
 
 import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
-import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
 import type { IRedisClient } from '$models/interfaces/iredis-client-config.interface';
 import type { ITwitterSpacesAPIService } from '$models/interfaces/itwitter-spaces-api-service.interface';
+import type { TwitterSpace } from '$models/classes/twitter-space.class';
 
 import { mapToTwitterSpaces } from '$utils/_mapper';
 import { Logger, LoggerUtils } from '$utils/_logger';
@@ -40,7 +40,7 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	 * @param searchedTerm The searched term.
 	 * @returns The key for the searched spaces.
 	 * @private
-	 * @returns {string}
+	 * @returns key for the searched spaces.
 	 */
 	private getSearchedSpacesKey(searchTerm: string): string {
 		return `spaces-${searchTerm.toLowerCase()}`;
@@ -57,10 +57,10 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 
 	/**
 	 * This method will cache the spaces response in the redis cache using the key provided.
-	 * @param {string} searchedTerm The searched term.
-	 * @param {ISpacesMetaResponse} spaces The spaces to cache.
+	 * @param searchedTerm The searched term.
+	 * @param spaces The spaces to cache.
 	 * @private
-	 * @returns {Promise<void>}
+	 * @returns promise of type void.
 	 */
 	private async cacheSpacesResponse(
 		searchedTerm: string,
@@ -81,13 +81,12 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	/**
 	 * This method will return the cached spaces for the provided search term. If the spaces are not cached, this method
 	 * will return empty object.
-	 * @param {string} searchTerm The searched term.
-	 * @returns {Promise<ITwitterSpace[]>}
+	 * @param searchTerm The searched term.
 	 * @public
 	 */
 	public async getSpacesFromCache(
 		searchTerm: string,
-	): Promise<ITwitterSpace[] | Record<string, never>> {
+	): Promise<TwitterSpace[] | Record<string, never>> {
 		try {
 			const cached = await this.redisClient.get<ISpacesMetaResponse>(
 				this.getSearchedSpacesKey(searchTerm),
@@ -104,9 +103,8 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	/**
 	 * This method will return the spaces for the provided search term. If the spaces are not cached, this method will
 	 * make a request to the Twitter API and cache the spaces.
-	 * @param {string} searchTerm The searched term.
-	 * @param {string} spacesSearchQueryParameters The spaces search query parameters.
-	 * @returns {Promise<ITwitterSpace[]>}
+	 * @param searchTerm The searched term.
+	 * @param spacesSearchQueryParameters The spaces search query parameters.
 	 * @public
 	 */
 	public async getSpacesFromAPI(
@@ -148,6 +146,6 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 
 /**
  * This will return the TwitterSpacesAPIService instance.
- * @returns {TwitterSpacesAPIService}
+ * @returns The TwitterSpacesAPIService instance.
  */
 export const twitterSpacesAPIService = new TwitterSpacesAPIService();

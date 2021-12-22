@@ -3,10 +3,9 @@ import type {
 	ISpacesResponse,
 	ISpacesTwitterUserResponse,
 } from '$models/interfaces/ispaces-meta-response.interface';
-import type {
-	ITwitterSpace,
-	ITwitterUserProfile,
-} from '$models/interfaces/itwitter-space.interface';
+import type { ITwitterUserProfile } from '$models/interfaces/itwitter-user-profile.interface';
+import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
+import { TwitterSpace } from '$models/classes/twitter-space.class';
 
 import { humanReadableTime } from '$utils/_date-formatters';
 
@@ -17,7 +16,7 @@ export const mapToTwitterUserProfile = (
 		name: item.name,
 		id: item.id,
 		imageUrl: item.profile_image_url,
-		profileUrl: `https://twitter.com/${item.username}`,
+		username: item.username,
 		followersCount:
 			item.public_metrics && item.public_metrics.followers_count
 				? item.public_metrics.followers_count
@@ -48,12 +47,11 @@ export const mapToSpaces = (value: ISpacesResponse[]): ITwitterSpace[] => {
 				? humanReadableTime(space.scheduled_start)
 				: '',
 		isLive: space.state.toLowerCase() === 'live',
-		spaceUrl: `https://twitter.com/i/spaces/${space.id}`,
 		hosts: [],
 	}));
 };
 
-export const mapToTwitterSpaces = (value: ISpacesMetaResponse): ITwitterSpace[] => {
+export const mapToTwitterSpaces = (value: ISpacesMetaResponse): TwitterSpace[] => {
 	const twitterSpaces = value;
 	return twitterSpaces.meta.result_count !== 0
 		? mapToSpaces(twitterSpaces.data).map((space) => {
@@ -65,7 +63,7 @@ export const mapToTwitterSpaces = (value: ISpacesMetaResponse): ITwitterSpace[] 
 								.filter((id) => mappedUsers.some((user) => user.id === id))
 								.map((hostId) => mappedUsers.find((user) => user.id === hostId))
 						: [];
-				return {
+				return new TwitterSpace().deserialize({
 					...space,
 					hosts: hosts ? [...hosts] : [],
 					title:
@@ -74,7 +72,7 @@ export const mapToTwitterSpaces = (value: ISpacesMetaResponse): ITwitterSpace[] 
 							: hosts.length > 0 && hosts[0]
 							? `${hosts[0].name}'s Space`
 							: 'Space',
-				};
+				});
 		  })
 		: [];
 };

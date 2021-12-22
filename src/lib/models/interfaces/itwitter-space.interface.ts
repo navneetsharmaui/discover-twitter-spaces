@@ -1,12 +1,5 @@
-export interface ITwitterUserProfile {
-	name: string;
-	id: string;
-	imageUrl: string;
-	profileUrl: string;
-	followersCount: number;
-	followingCount: number;
-	description: string;
-}
+import type { ITwitterUserProfile } from './itwitter-user-profile.interface';
+
 export interface ITwitterSpace {
 	spaceId: string;
 	title: string;
@@ -16,6 +9,5 @@ export interface ITwitterSpace {
 	description: string;
 	state: string;
 	scheduledStartTime: string;
-	spaceUrl: string;
 	isLive: boolean;
 }
