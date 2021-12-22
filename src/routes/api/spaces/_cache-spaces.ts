@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import redis from '$core/config/_redis';
 import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 import { api } from '$core/services/_api';
@@ -7,24 +6,27 @@ import { mapToTwitterSpaces } from '$utils/_mapper';
 
 import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
 import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
+import { Logger, LoggerUtils } from '$utils/_logger';
 
-export function getSearchedSpacesKey(searchTerm: string): string {
-	return `spaces-${searchTerm.toLowerCase()}`;
-}
+const DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
 
-export const cacheSpacesResponse = async (
+const logger: Logger = LoggerUtils.getInstance('CacheSpaces');
+
+const getSearchedSpacesKey = (searchTerm: string): string => `spaces-${searchTerm.toLowerCase()}`;
+
+const cacheSpacesResponse = async (
 	searchedTerm: string,
 	spaces: ISpacesMetaResponse,
 ): Promise<void> => {
 	try {
-		await redis.set(
+		await redis.set<ISpacesMetaResponse>(
 			getSearchedSpacesKey(searchedTerm),
-			JSON.stringify(spaces),
-			'EX',
-			0.5 * 60 * 60,
+			spaces,
+			DEFAULT_REDIS_CACHE_TTL,
 		);
+		redis.quit();
 	} catch (error) {
-		console.log('Unable to cache', searchedTerm, error);
+		logger.error('Unable to cache', searchedTerm, error);
 	}
 };
 
@@ -32,10 +34,14 @@ export const getSpacesFromCache = async (
 	searchTerm: string,
 ): Promise<ITwitterSpace[] | Record<string, never>> => {
 	try {
-		const cached = await redis.get(getSearchedSpacesKey(searchTerm));
-		return cached ? mapToTwitterSpaces(JSON.parse(cached)) : {};
+		const cached = await redis.get<ISpacesMetaResponse>(
+			getSearchedSpacesKey(searchTerm),
+			JSON.parse,
+		);
+		redis.quit();
+		return cached ? mapToTwitterSpaces(cached) : {};
 	} catch (error) {
-		console.log('Unable to retrive from cache', searchTerm, error);
+		logger.error('Unable to retrive from cache', searchTerm, error);
 	}
 	return {};
 };
