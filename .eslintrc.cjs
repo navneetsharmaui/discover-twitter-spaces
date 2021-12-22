@@ -1,4 +1,5 @@
-/* jshint esversion: 9 */
+/* jshint esversion: 11 */
+
 const typescript = require('typescript');
 
 module.exports = {

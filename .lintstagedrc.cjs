@@ -1,4 +1,4 @@
-/* jshint esversion: 9 */
+/* jshint esversion: 11 */
 
 module.exports = {
 	'*.{js,ts,json,svelte}': ['yarn run format', 'git add'],

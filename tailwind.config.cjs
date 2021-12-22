@@ -1,7 +1,8 @@
-/* jshint esversion: 9 */
+/* jshint esversion: 11 */
 
 const { spacing, fontFamily } = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
+const typography = require('@tailwindcss/typography');
 
 const backfaceVisibility = plugin(({ addUtilities }) => {
 	addUtilities({
@@ -112,7 +113,7 @@ const config = {
 			boxShadow: ['dark'],
 		},
 	},
-	plugins: [require('@tailwindcss/typography'), backfaceVisibility],
+	plugins: [typography, backfaceVisibility],
 };
 
 module.exports = config;

@@ -47,6 +47,7 @@
 		}
 	},
 	"include": [
+		"*.d.ts",
 		"src/**/*.d.ts",
 		"src/**/*.js",
 		"src/**/*.ts",

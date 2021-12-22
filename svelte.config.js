@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* jshint esversion: 11 */
 
 import vercel from '@sveltejs/adapter-vercel';
@@ -30,7 +29,7 @@ const config = {
 	kit: {
 		adapter: vercel(),
 
-		// hydrate the <div id="svelte"> element in src/app.html
+		// hydrate the <div id="discover"> element in src/app.html
 		target: '#discover',
 
 		trailingSlash: 'always',

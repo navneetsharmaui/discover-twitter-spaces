@@ -32,6 +32,8 @@ This project is inspired by the similar project [find twitter spaces](https://gi
 - Tailwindcss.
 - Postcss.
 - Twitter API.
+- Redis.
+- Serverless Functions.
 
 ## :hammer: Project Setup
 
