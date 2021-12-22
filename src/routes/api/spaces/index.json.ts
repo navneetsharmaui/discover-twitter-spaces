@@ -1,5 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
-import { getSpacesFromAPI, getSpacesFromCache } from './_cache-spaces';
+import { TwitterSpacesAPIService } from './_twitter-spaces-api.service';
 
 export const get: RequestHandler = async (request) => {
 	try {
@@ -7,7 +7,10 @@ export const get: RequestHandler = async (request) => {
 
 		const searchQuery = search ? search : 'Web';
 
-		const twitterSpacesApiResponse = await getSpacesFromCache(searchQuery);
+		const twitterSpacesAPIService = new TwitterSpacesAPIService();
+		const twitterSpacesApiResponse = await twitterSpacesAPIService.getSpacesFromCache(
+			searchQuery,
+		);
 
 		return twitterSpacesApiResponse && twitterSpacesApiResponse.length > 0
 			? {
@@ -17,7 +20,7 @@ export const get: RequestHandler = async (request) => {
 					},
 					body: JSON.stringify(twitterSpacesApiResponse),
 			  }
-			: await getSpacesFromAPI(searchQuery);
+			: await twitterSpacesAPIService.getSpacesFromAPI(searchQuery);
 	} catch (error) {
 		return {
 			status: 500,
