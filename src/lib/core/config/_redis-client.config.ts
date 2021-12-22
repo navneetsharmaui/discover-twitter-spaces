@@ -4,6 +4,7 @@ import { compressToUTF16, decompressFromUTF16 } from 'lz-string';
 
 import { Logger, LoggerUtils } from '$utils/_logger';
 import { REDIS_CONNECTION_STATUS } from '$models/enums/redis-connection-status.enum';
+import type { IRedisClient } from '$models/interfaces/iredis-client-config.interface';
 
 /**
  * @class RedisClient
@@ -11,7 +12,7 @@ import { REDIS_CONNECTION_STATUS } from '$models/enums/redis-connection-status.e
  *
  * @author Navneet Sharma
  */
-export class RedisClient {
+export class RedisClient implements IRedisClient {
 	private redis: Redis;
 
 	private readonly logger: Logger = LoggerUtils.getInstance('RedisClient');

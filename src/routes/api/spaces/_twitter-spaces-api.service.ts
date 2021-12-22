@@ -1,10 +1,11 @@
-import redis from '$core/config/_redis';
+import redis from '$core/config/_redis.config';
 import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 import { api } from '$core/services/_api';
 
 import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
 import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
-import type { RedisClient } from '$models/classes/redis-client.class';
+import type { IRedisClient } from '$models/interfaces/iredis-client-config.interface';
+import type { ITwitterSpacesAPIService } from '$models/interfaces/itwitter-spaces-api-service.interface';
 
 import { mapToTwitterSpaces } from '$utils/_mapper';
 import { Logger, LoggerUtils } from '$utils/_logger';
@@ -16,8 +17,8 @@ import { Logger, LoggerUtils } from '$utils/_logger';
  *
  * @author Navneet Sharma
  */
-class TwitterSpacesAPIService {
-	private redisClient!: RedisClient;
+class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
+	private redisClient!: IRedisClient;
 
 	private readonly DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
 

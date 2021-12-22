@@ -1,6 +1,6 @@
 import Redis from 'ioredis';
 
-import { RedisClient } from '$models/classes/redis-client.class';
+import { RedisClient } from '$core/config/_redis-client.config';
 
 const REDIS_CONNECTION_STRING = process.env['DISCOVER_REDIS_CONNECTION'];
 
