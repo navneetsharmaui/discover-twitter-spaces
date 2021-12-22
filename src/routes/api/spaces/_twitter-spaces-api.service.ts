@@ -10,8 +10,11 @@ import { mapToTwitterSpaces } from '$utils/_mapper';
 import { Logger, LoggerUtils } from '$utils/_logger';
 
 /**
- * A facade class for the Twitter Spaces API. This class will provide the access to the Twitter Spaces API. This class
+ * @class TwitterSpacesAPI
+ * @description A facade class for the Twitter Spaces API. This class will provide the access to the Twitter Spaces API. This class
  * will also provide the caching mechanism for the Twitter Spaces API and will return the cached data if the data is available.
+ *
+ * @author Navneet Sharma
  */
 class TwitterSpacesAPIService {
 	private redisClient!: RedisClient;
