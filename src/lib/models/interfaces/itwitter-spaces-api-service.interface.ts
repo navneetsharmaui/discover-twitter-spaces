@@ -5,7 +5,7 @@ export interface ITwitterSpacesAPIService {
 
 	getSpacesFromAPI(
 		searchTerm: string,
-		spacesSearchQueryParameters: string,
+		spacesSearchQueryParameters?: string,
 	): Promise<{
 		body: string;
 		status: number;

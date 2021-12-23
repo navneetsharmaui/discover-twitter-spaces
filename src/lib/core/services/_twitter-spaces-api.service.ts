@@ -1,11 +1,13 @@
-import redis from '$core/config/_redis.config';
-import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
-import { api } from '$lib/core/services/_api.service';
+import { inject, singleton } from 'tsyringe';
 
 import type { ISpacesMetaResponse } from '$models/interfaces/ispaces-meta-response.interface';
 import type { IRedisClient } from '$models/interfaces/iredis-client-config.interface';
 import type { ITwitterSpacesAPIService } from '$models/interfaces/itwitter-spaces-api-service.interface';
 import type { TwitterSpace } from '$models/classes/twitter-space.class';
+
+import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
+import { RedisClientConfigToken } from '$core/tokens/redis-client-config.token';
+import { api } from '$core/services/_api.service';
 
 import { mapToTwitterSpaces } from '$utils/_mapper';
 import { Logger, LoggerUtils } from '$utils/_logger';
@@ -17,9 +19,8 @@ import { Logger, LoggerUtils } from '$utils/_logger';
  *
  * @author Navneet Sharma
  */
-class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
-	private redisClient!: IRedisClient;
-
+@singleton()
+export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	private readonly DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
 
 	private readonly TWITTER_TOKEN = `${process.env['DISCOVER_TWITTER_TOKEN']}`.trim().slice();
@@ -31,9 +32,7 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 
 	private readonly logger: Logger = LoggerUtils.getInstance('TwitterSpacesAPIService');
 
-	constructor() {
-		this.redisClient = redis;
-	}
+	constructor(@inject(RedisClientConfigToken) private readonly redisClient: IRedisClient) {}
 
 	/**
 	 * This method will return the key for the searched spaces. This key will be used to cache the spaces.
@@ -143,9 +142,3 @@ class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 		};
 	}
 }
-
-/**
- * This will return the TwitterSpacesAPIService instance.
- * @returns The TwitterSpacesAPIService instance.
- */
-export const twitterSpacesAPIService = new TwitterSpacesAPIService();
