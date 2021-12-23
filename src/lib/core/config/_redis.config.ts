@@ -1,10 +1,8 @@
-import Redis from 'ioredis';
-
-import { RedisClient } from '$core/config/_redis-client.config';
+import IORedis from 'ioredis';
 
 const REDIS_CONNECTION_STRING = process.env['DISCOVER_REDIS_CONNECTION'];
 
-const REDIS_OPTIONS: Redis.RedisOptions = {
+const REDIS_OPTIONS: IORedis.RedisOptions = {
 	retryStrategy: (times: number) => {
 		if (times > 0) {
 			return null;
@@ -16,5 +14,5 @@ const REDIS_OPTIONS: Redis.RedisOptions = {
 };
 
 export default REDIS_CONNECTION_STRING && REDIS_CONNECTION_STRING !== undefined
-	? new RedisClient(new Redis(REDIS_CONNECTION_STRING, REDIS_OPTIONS))
-	: new RedisClient(new Redis(REDIS_OPTIONS));
+	? new IORedis(REDIS_CONNECTION_STRING, REDIS_OPTIONS)
+	: new IORedis(REDIS_OPTIONS);
