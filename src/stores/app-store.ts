@@ -1,4 +1,4 @@
-import { TwitterSpace } from '$lib/models/classes/twitter-space.class';
+import { TwitterSpace } from '$models/classes/twitter-space.class';
 import type { IAppState } from '$models/interfaces/iapp-state.interface';
 import { writable } from 'svelte/store';
 
