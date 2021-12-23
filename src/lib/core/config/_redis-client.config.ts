@@ -1,27 +1,26 @@
-/* eslint-disable no-console */
+import { inject, singleton } from 'tsyringe';
 import type { Redis } from 'ioredis';
-import { compressToUTF16, decompressFromUTF16 } from 'lz-string';
+import LZString from '$utils/lz-string.js';
 
 import { Logger, LoggerUtils } from '$utils/_logger';
 import { REDIS_CONNECTION_STATUS } from '$models/enums/redis-connection-status.enum';
 import type { IRedisClient } from '$models/interfaces/iredis-client-config.interface';
+import { RedisConfigToken } from '$core/tokens/redis-config.token';
 
+const { compressToUTF16: compress, decompressFromUTF16: decompress } = LZString;
 /**
  * @class RedisClient
  * @description Redis client class to handle redis connection and operations with it (e.g. set, get, etc.)
  *
  * @author Navneet Sharma
  */
+@singleton()
 export class RedisClient implements IRedisClient {
-	private redis: Redis;
-
 	private readonly logger: Logger = LoggerUtils.getInstance('RedisClient');
 
 	private readonly DEFAULT_EXPIRE_TIME = 60 * 60 * 24;
 
-	constructor(redis: Redis) {
-		this.redis = redis;
-	}
+	constructor(@inject(RedisConfigToken) private readonly redis: Redis) {}
 
 	public get status(): string {
 		return this.redis.status;
@@ -54,7 +53,7 @@ export class RedisClient implements IRedisClient {
 		if (this.closed) return;
 		try {
 			const cached = await this.redis.get(key);
-			return cached ? parse(decompressFromUTF16(cached)) : null;
+			return cached ? parse(decompress(cached)) : null;
 		} catch (error) {
 			this.logger.error('Unable to retrive from cache', key, error);
 		}
@@ -77,14 +76,9 @@ export class RedisClient implements IRedisClient {
 	): Promise<'OK'> {
 		if (this.closed) return;
 		try {
-			return await this.redis.set(
-				key,
-				compressToUTF16(JSON.stringify(value)),
-				'EX',
-				expireTime,
-			);
+			return await this.redis.set(key, compress(JSON.stringify(value)), 'EX', expireTime);
 		} catch (error) {
-			console.log('Unable to cache', key, value, error);
+			this.logger.error('Unable to cache', key, value, error);
 		}
 	}
 
