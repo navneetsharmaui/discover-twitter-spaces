@@ -1,11 +1,12 @@
-import { Logger, LoggerUtils } from '$lib/utils/_logger';
 import type { RequestHandler } from '@sveltejs/kit';
 import { performance } from 'perf_hooks';
-import { twitterSpacesAPIService } from '$core/services/_twitter-spaces-api.service';
+
+import { Logger, LoggerUtils } from '$utils/_logger';
+import { twitterSpacesAPIService } from '$core/core';
 
 export const get: RequestHandler = async (request) => {
 	try {
-		const logger: Logger = LoggerUtils.getInstance('spaced-api');
+		const logger: Logger = LoggerUtils.getInstance('SpaceAPIRequestHandler');
 
 		const start = performance.now();
 		const search = request.query.get('search');
