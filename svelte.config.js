@@ -63,6 +63,10 @@ const config = {
 					module: true,
 				},
 			},
+			optimizeDeps: {
+				include: ['reflect-metadata', 'tsyringe', 'ioredis', 'isomorphic-fetch'],
+				entries: ['reflect-metadata', 'tsyringe', 'ioredis', 'isomorphic-fetch'],
+			},
 		}),
 	},
 };
