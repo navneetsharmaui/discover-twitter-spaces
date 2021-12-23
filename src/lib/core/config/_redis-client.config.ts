@@ -1,6 +1,6 @@
 import { inject, singleton } from 'tsyringe';
 import type { Redis } from 'ioredis';
-import LZString from '$utils/lz-string.js';
+import LZString from 'lz-string';
 
 import { Logger, LoggerUtils } from '$utils/_logger';
 import { REDIS_CONNECTION_STATUS } from '$models/enums/redis-connection-status.enum';
