@@ -9,10 +9,16 @@
 	"svelteStrictMode": true,
 	"svelteSortOrder": "options-styles-scripts-markup",
 	"svelteAllowShorthand": false,
-	"svelteBracketNewLine": true,
 	"svelteIndentScriptAndStyle": true,
 	"htmlWhitespaceSensitivity": "strict",
 	"semi": true,
-	"jsxBracketSameLine": false,
-	"jsxSingleQuote": true
+	"jsxSingleQuote": true,
+	"overrides": [
+		{
+			"files": "*.ts",
+			"options": {
+				"parser": "typescript"
+			}
+		}
+	]
 }
