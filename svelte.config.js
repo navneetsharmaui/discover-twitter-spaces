@@ -64,8 +64,20 @@ const config = {
 				},
 			},
 			optimizeDeps: {
-				include: ['reflect-metadata', 'tsyringe', 'ioredis', 'isomorphic-fetch'],
-				entries: ['reflect-metadata', 'tsyringe', 'ioredis', 'isomorphic-fetch'],
+				include: [
+					'reflect-metadata',
+					'tsyringe',
+					'ioredis',
+					'isomorphic-fetch',
+					'lz-string',
+				],
+				entries: [
+					'reflect-metadata',
+					'tsyringe',
+					'ioredis',
+					'isomorphic-fetch',
+					'lz-string',
+				],
 			},
 		}),
 	},
