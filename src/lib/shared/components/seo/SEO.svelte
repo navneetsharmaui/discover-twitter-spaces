@@ -1,16 +1,9 @@
 <script lang="ts">
-	// Start: Local Imports
-	// Models
+	import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
+
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 
-	// Data
-	import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
-	// End: Local Imports
-
 	// Start: Exported Properties
-	/**
-	 * @type {IMetaTagProperties}
-	 */
 	export let metaData!: Partial<IMetaTagProperties>;
 	// End: Exported Properties
 
@@ -21,12 +14,6 @@
 	metaData = {
 		...metaData,
 		url: metaData.url && metaData.url !== '/' ? `${BASE_URL}${metaData.url}/` : `${BASE_URL}/`,
-		searchUrl:
-			metaData.searchUrl && metaData.searchUrl !== '/'
-				? `${BASE_URL}${metaData.searchUrl}/`
-				: metaData.url && metaData.url !== '/'
-				? `${BASE_URL}${metaData.url}/`
-				: `${BASE_URL}/`,
 		robots: 'index,follow',
 		openGraph: {
 			...metaData.openGraph,
@@ -44,7 +31,14 @@
 			site: '@asnavneetsharma',
 		},
 	};
-	const isProd = discoverEnvironmentFacade.isProd;
+	if (metaData.searchUrl && metaData.searchUrl !== '/') {
+		metaData.searchUrl = `${BASE_URL}${metaData.searchUrl}/`;
+	} else if (metaData.url && metaData.url !== '/') {
+		metaData.searchUrl = `${BASE_URL}${metaData.url}/`;
+	} else {
+		metaData.searchUrl = `${BASE_URL}/`;
+	}
+	const { isProd } = discoverEnvironmentFacade;
 </script>
 
 <svelte:head>

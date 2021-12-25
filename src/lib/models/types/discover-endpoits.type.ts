@@ -1,42 +1,42 @@
 import type {
-	DISCOVER_DATA_ENPOINTS_DEV,
-	DISCOVER_SEARCH_ENPOINTS_DEV,
-} from '../enums/discover-endpoint.dev.enum';
+	DiscoverDataEndpointsDev,
+	DiscoverSearchEndpointsDev,
+} from '$models/enums/discover-endpoint.dev.enum';
 import type {
-	DISCOVER_DATA_ENPOINTS,
-	DISCOVER_SEARCH_ENPOINTS,
-} from '../enums/discover-endpoint.enum';
+	DiscoverDataEndpoints,
+	DiscoverSearchEndpoints,
+} from '$models/enums/discover-endpoint.enum';
 import type {
-	DISCOVER_DATA_ENPOINTS_PROD,
-	DISCOVER_SEARCH_ENPOINTS_PROD,
-} from '../enums/discover-endpoint.prod.enum';
+	DiscoverDataEndpointsProd,
+	DiscoverSearchEndpointsProd,
+} from '$models/enums/discover-endpoint.prod.enum';
 import type {
-	DISCOVER_DATA_ENPOINTS_QA,
-	DISCOVER_SEARCH_ENPOINTS_QA,
-} from '../enums/discover-endpoint.qa.enum';
+	DiscoverDataEndpointsQa,
+	DiscoverSearchEndpointsQa,
+} from '$models/enums/discover-endpoint.qa.enum';
 
-export type DISCOVER_DATA_ENPOINT_TYPE = 'SERVICE';
+export type DiscoverDataEnpointType = 'SERVICE';
 
-export type DISCOVER_SEARCH_ENPOINT_TYPE = 'SEARCH';
+export type DiscoverSearchEndpointType = 'SEARCH';
 
-export type DISCOVER_ENPOINT_TYPE = DISCOVER_DATA_ENPOINT_TYPE | DISCOVER_SEARCH_ENPOINT_TYPE;
+export type DiscoverEndpointType = DiscoverDataEnpointType | DiscoverSearchEndpointType;
 
-export type DISCOVER_ENPOINTS = DISCOVER_DATA_ENPOINTS | DISCOVER_SEARCH_ENPOINTS;
+export type DiscoverEndpoints = DiscoverDataEndpoints | DiscoverSearchEndpoints;
 
-export type DISCOVER_DATA_ENPOINT_CONFIG = {
-	[key in DISCOVER_DATA_ENPOINT_TYPE]:
-		| DISCOVER_DATA_ENPOINTS
-		| DISCOVER_DATA_ENPOINTS_PROD
-		| DISCOVER_DATA_ENPOINTS_DEV
-		| DISCOVER_DATA_ENPOINTS_QA;
+export type DiscoverDataEndpointConfig = {
+	[key in DiscoverDataEnpointType]:
+		| DiscoverDataEndpoints
+		| DiscoverDataEndpointsProd
+		| DiscoverDataEndpointsDev
+		| DiscoverDataEndpointsQa;
 };
 
-export type DISCOVER_SEARCH_ENPOINT_CONFIG = {
-	[key in DISCOVER_SEARCH_ENPOINT_TYPE]:
-		| DISCOVER_SEARCH_ENPOINTS
-		| DISCOVER_SEARCH_ENPOINTS_PROD
-		| DISCOVER_SEARCH_ENPOINTS_DEV
-		| DISCOVER_SEARCH_ENPOINTS_QA;
+export type DiscoverSearchEndpointConfig = {
+	[key in DiscoverSearchEndpointType]:
+		| DiscoverSearchEndpoints
+		| DiscoverSearchEndpointsProd
+		| DiscoverSearchEndpointsDev
+		| DiscoverSearchEndpointsQa;
 };
 
-export type DISCOVER_ENPOINT_CONFIG = DISCOVER_DATA_ENPOINT_CONFIG & DISCOVER_SEARCH_ENPOINT_CONFIG;
+export type DiscoverEndpointConfig = DiscoverDataEndpointConfig & DiscoverSearchEndpointConfig;

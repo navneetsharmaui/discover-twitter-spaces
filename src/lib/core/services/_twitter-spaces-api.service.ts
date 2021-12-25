@@ -13,17 +13,18 @@ import { mapToTwitterSpaces } from '$utils/_mapper';
 import { Logger, LoggerUtils } from '$utils/_logger';
 
 /**
- * @class TwitterSpacesAPI
- * @description A facade class for the Twitter Spaces API. This class will provide the access to the Twitter Spaces API. This class
+ * TwitterSpacesAPI. A facade class for the Twitter Spaces API. This class will provide the access to the Twitter Spaces API. This class
  * will also provide the caching mechanism for the Twitter Spaces API and will return the cached data if the data is available.
  *
- * @author Navneet Sharma
+ * @privateRemarks
+ * Author - Navneet Sharma
  */
 @singleton()
 export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	private readonly DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
 
-	private readonly TWITTER_TOKEN = `${process.env['DISCOVER_TWITTER_TOKEN']}`.trim().slice();
+	private readonly TWITTER_TOKEN = `${process.env.DISCOVER_TWITTER_TOKEN}`.trim().slice();
+
 	private readonly TWITTER_BASE_API_URL =
 		`${discoverEnvironmentFacade.twitterConfig.TWITTER_BASE_API_URL}`.trim().slice();
 
@@ -36,29 +37,18 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 
 	/**
 	 * This method will return the key for the searched spaces. This key will be used to cache the spaces.
-	 * @param searchedTerm The searched term.
+	 * @param searchedTerm - The searched term.
 	 * @returns The key for the searched spaces.
-	 * @private
 	 * @returns key for the searched spaces.
 	 */
-	private getSearchedSpacesKey(searchTerm: string): string {
+	private static getSearchedSpacesKey(searchTerm: string): string {
 		return `spaces-${searchTerm.toLowerCase()}`;
 	}
 
 	/**
-	 * This method will close the redis connection. This method will be called when the service is no longer in use or
-	 * when the service is destroyed to avoid memory leaks.
-	 * @private
-	 */
-	private closeConnection(): void {
-		this.redisClient.quit();
-	}
-
-	/**
 	 * This method will cache the spaces response in the redis cache using the key provided.
-	 * @param searchedTerm The searched term.
-	 * @param spaces The spaces to cache.
-	 * @private
+	 * @param searchedTerm - The searched term.
+	 * @param spaces - The spaces to cache.
 	 * @returns promise of type void.
 	 */
 	private async cacheSpacesResponse(
@@ -67,11 +57,10 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	): Promise<void> {
 		try {
 			await this.redisClient.set<ISpacesMetaResponse>(
-				this.getSearchedSpacesKey(searchedTerm),
+				TwitterSpacesAPIService.getSearchedSpacesKey(searchedTerm),
 				spaces,
 				this.DEFAULT_REDIS_CACHE_TTL,
 			);
-			this.closeConnection();
 		} catch (error) {
 			this.logger.error('Unable to cache', searchedTerm, error);
 		}
@@ -80,7 +69,7 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	/**
 	 * This method will return the cached spaces for the provided search term. If the spaces are not cached, this method
 	 * will return empty object.
-	 * @param searchTerm The searched term.
+	 * @param searchTerm - The searched term.
 	 * @public
 	 */
 	public async getSpacesFromCache(
@@ -88,10 +77,10 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	): Promise<TwitterSpace[] | Record<string, never>> {
 		try {
 			const cached = await this.redisClient.get<ISpacesMetaResponse>(
-				this.getSearchedSpacesKey(searchTerm),
+				TwitterSpacesAPIService.getSearchedSpacesKey(searchTerm),
 				JSON.parse,
 			);
-			this.closeConnection();
+			this.logger.debug('Spaces retrieved from cache', cached);
 			return cached ? mapToTwitterSpaces(cached) : {};
 		} catch (error) {
 			this.logger.error('Unable to retrive from cache', searchTerm, error);
@@ -102,8 +91,8 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	/**
 	 * This method will return the spaces for the provided search term. If the spaces are not cached, this method will
 	 * make a request to the Twitter API and cache the spaces.
-	 * @param searchTerm The searched term.
-	 * @param spacesSearchQueryParameters The spaces search query parameters.
+	 * @param searchTerm - The searched term.
+	 * @param spacesSearchQueryParameters - The spaces search query parameters.
 	 * @public
 	 */
 	public async getSpacesFromAPI(
@@ -140,5 +129,13 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 				error: 'Could not fetch spaces. Error 500',
 			}),
 		};
+	}
+
+	/**
+	 * This method will close the redis connection. This method will be called when the service is no longer in use or
+	 * when the service is destroyed to avoid memory leaks.
+	 */
+	public async closeConnection(): Promise<void | 'OK'> {
+		await this.redisClient.quit();
 	}
 }

@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 
 import dotenv from 'dotenv';
-dotenv.config();
-
 import type { Handle } from '@sveltejs/kit';
+
+dotenv.config();
 
 export const handle: Handle = async ({ request, resolve }) => {
 	if (request.query.has('_method')) {

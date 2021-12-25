@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Content from './Content.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	let zIndex = 1000;
+	import Content from './Content.svelte';
+
+	const zIndex = 1000;
 
 	let isOpen = false;
 
@@ -23,7 +24,10 @@
 			setOpen();
 		}
 	};
-	const setOpenTrue = () => (isOpen = true);
+	const setOpenTrue = () => {
+		isOpen = true;
+		return isOpen;
+	};
 	const onMouseOver = setOpenTrue;
 	const onMouseOut = eventMouseOut;
 </script>

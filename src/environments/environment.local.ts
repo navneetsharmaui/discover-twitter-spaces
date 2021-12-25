@@ -1,9 +1,9 @@
 import { EnvironmentName } from '$models/enums/environment-name.enum';
 import { EnvironmentType } from '$models/enums/environment-type.enum';
-import type { DISCOVER_ENPOINT_CONFIG } from '$models/types/discover-endpoits.type';
+import type { DiscoverEndpointConfig } from '$models/types/discover-endpoits.type';
 import type { IDiscoverEnvironmentConfig } from '$models/interfaces/idiscover-environment.interface';
 
-export const environment: IDiscoverEnvironmentConfig<DISCOVER_ENPOINT_CONFIG> = {
+export const environment: IDiscoverEnvironmentConfig<DiscoverEndpointConfig> = {
 	name: EnvironmentName.LOCAL,
 	environmentType: EnvironmentType.LOCAL,
 	production: false,

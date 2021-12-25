@@ -11,7 +11,7 @@ export const get: RequestHandler = async (request) => {
 		const start = performance.now();
 		const search = request.query.get('search');
 
-		const searchQuery = search ? search : 'Web';
+		const searchQuery = search || 'Web';
 
 		const twitterSpacesApiResponse = await twitterSpacesAPIService.getSpacesFromCache(
 			searchQuery,
@@ -30,14 +30,14 @@ export const get: RequestHandler = async (request) => {
 				},
 				body: JSON.stringify(twitterSpacesApiResponse),
 			};
-		} else {
-			const response = await twitterSpacesAPIService.getSpacesFromAPI(searchQuery);
-			logger.debug(
-				'Uncached response - Total elapsed time: ',
-				(performance.now() - start) / 1000,
-			);
-			return response;
 		}
+		const response = await twitterSpacesAPIService.getSpacesFromAPI(searchQuery);
+		logger.debug(
+			'Uncached response - Total elapsed time: ',
+			(performance.now() - start) / 1000,
+		);
+		await twitterSpacesAPIService.closeConnection();
+		return response;
 	} catch (error) {
 		return {
 			status: 500,

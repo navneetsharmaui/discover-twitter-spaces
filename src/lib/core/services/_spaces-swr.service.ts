@@ -13,7 +13,7 @@ export const spacesSWR = (url: string) => {
 				errorState(new Error(`${url} returned status ${response.status}`));
 			}
 		})
-		.catch((error) => {
+		.catch((error: Error) => {
 			errorState(error);
 		});
 

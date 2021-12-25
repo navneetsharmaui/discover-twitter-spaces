@@ -1,5 +1,6 @@
-import type { IResponseEndpointOutput } from '$models/interfaces/iresponse-endpoint.interface';
 import isomorphicFetch from 'isomorphic-fetch';
+
+import type { IResponseEndpointOutput } from '$models/interfaces/iresponse-endpoint.interface';
 
 export async function api<T>(
 	url: string,
@@ -9,6 +10,6 @@ export async function api<T>(
 
 	return {
 		status: response.status,
-		body: await response.json(),
+		body: (await response.json()) as unknown as T,
 	};
 }

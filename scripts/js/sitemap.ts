@@ -1,3 +1,9 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-console */
 import fs from 'fs';
 
@@ -21,15 +27,13 @@ const workspace = JSON.parse(
 	}),
 );
 
-const root = workspace['projects'][project]['root'];
-const routes = workspace['projects'][project]['routes'];
-const assets = workspace['projects'][project]['assets'];
+const { root, routes, assets } = workspace.projects[project];
 
 const URL = process.env.SVELTEKIT_BLOG_BASE_URL;
-const BASE_URL = URL ? URL : 'https://discover-twitter-spaces.vercel.app';
+const BASE_URL = URL || 'https://discover-twitter-spaces.vercel.app';
 const pages = [''];
 
-fs.readdirSync(`${root}/${routes}`).forEach((file) => {
+fs.readdirSync(`${root as string}/${routes as string}`).forEach((file) => {
 	file = file.split('.')[0];
 
 	if (
@@ -43,9 +47,9 @@ fs.readdirSync(`${root}/${routes}`).forEach((file) => {
 	}
 });
 
-const render = (pages: string[]) => `<?xml version="1.0" encoding="UTF-8" ?>
+const render = (localPages: string[]) => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  ${pages
+  ${localPages
 		.map(
 			(page: string) => `
     <url><loc>${BASE_URL}/${page ? `${page}/` : ''}</loc><priority>0.85</priority></url>
@@ -57,4 +61,4 @@ const render = (pages: string[]) => `<?xml version="1.0" encoding="UTF-8" ?>
 
 const sitemap = render(pages);
 
-writeToFile(`${root}/${assets}/sitemap.xml`, sitemap);
+writeToFile(`${root as string}/${assets as string}/sitemap.xml`, sitemap);

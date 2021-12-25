@@ -1,30 +1,30 @@
 <script lang="ts" context="module">
-	export const load: Load = async ({ page }) => {
-		return {
-			props: {
-				searchTerm: page.query.get('q') || 'Web',
-			},
-		};
-	};
+	import type { Load } from '@sveltejs/kit';
+
+	export const load: Load = ({ page }) => ({
+		props: {
+			searchTerm: page.query.get('q') || 'Web',
+		},
+	});
 </script>
 
 <script lang="ts">
 	// Start: Imports
+	import type { Writable } from 'svelte/store';
+
 	import Seo from '$components/seo/SEO.svelte';
 	import SearchForm from '$components/search-form/SearchForm.svelte';
 	import SpaceCard from '$ui/components/space-card/SpaceCard.svelte';
 	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
-	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
-	import type { Load } from '@sveltejs/kit';
 	import { spacesSWR } from '$core/services/_spaces-swr.service';
+	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
+	import type { IAppState } from '$models/interfaces/iapp-state.interface';
+	import type { TwitterSpace } from '$models/classes/twitter-space.class';
 
 	// Exports
 	export let searchTerm: string;
 
 	// Start: Local component properties
-	/**
-	 * @type {IMetaTagProperties}
-	 */
 	const metaData: Partial<IMetaTagProperties> = {
 		title: `Discover Twitter Spaces`,
 		description:
@@ -47,16 +47,13 @@
 
 	// Start: Local component methods
 
-	const fetchSpaces = (value?: string) => {
-		return !value
-			? spacesSWR(`/api/spaces.json`)
-			: spacesSWR(`/api/spaces.json?search=${value}`);
-	};
+	const fetchSpaces = (value?: string) =>
+		!value ? spacesSWR(`/api/spaces.json`) : spacesSWR(`/api/spaces.json?search=${value}`);
 
-	let twitterSpaces =
+	let twitterSpaces: Writable<IAppState<TwitterSpace[]>> =
 		searchTerm && searchTerm.length >= 3 ? fetchSpaces(searchTerm) : fetchSpaces('Web');
 
-	const setTwitterSpaces = async (input: CustomEvent<string>): Promise<void> => {
+	const setTwitterSpaces = (input: CustomEvent<string>) => {
 		twitterSpaces = fetchSpaces(input.detail);
 		searchedField = input.detail.toUpperCase();
 	};

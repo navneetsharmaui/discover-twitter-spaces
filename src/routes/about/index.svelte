@@ -13,9 +13,6 @@
 	// End: Local Imports
 
 	// Start: Local component properties
-	/**
-	 * @type {IMetaTagProperties}
-	 */
 	const metaData: Partial<IMetaTagProperties> = {
 		title: 'About | Discover Twitter Spaces',
 		description:

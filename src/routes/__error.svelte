@@ -1,12 +1,12 @@
 <script lang="ts" context="module">
-	export const load: ErrorLoad = async ({ error, status }) => {
-		return {
-			props: {
-				status,
-				error,
-			},
-		};
-	};
+	import type { ErrorLoad } from '@sveltejs/kit';
+
+	export const load: ErrorLoad = ({ error, status }) => ({
+		props: {
+			status,
+			error,
+		},
+	});
 </script>
 
 <script lang="ts">
@@ -17,24 +17,13 @@
 
 	// Models
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
-	import type { ErrorLoad } from '@sveltejs/kit';
 	// End: Local Imports
 
 	// Start: Exported Properties
-	/**
-	 * @type {string}
-	 */
 	export let status: string;
-
-	/**
-	 * @type {string}
-	 */
 	export let error: Error;
 	// End: Exported Properties
 
-	/**
-	 * @type {IMetaTagProperties}
-	 */
 	const metaData: Partial<IMetaTagProperties> = {
 		title: `${status} | Discover Twitter Spaces`,
 		description: '404 page of Discover Twitter Spaces',

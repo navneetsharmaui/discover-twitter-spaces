@@ -10,4 +10,6 @@ export interface ITwitterSpacesAPIService {
 		body: string;
 		status: number;
 	}>;
+
+	closeConnection(): Promise<void | 'OK'>;
 }

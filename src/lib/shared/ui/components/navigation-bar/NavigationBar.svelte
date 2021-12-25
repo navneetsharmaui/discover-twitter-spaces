@@ -1,21 +1,19 @@
 <script lang="ts">
 	// Svelte Imports
+	import { page } from '$app/stores';
 	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 
 	import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
-	import { page } from '$app/stores';
 
 	// Exports
 	const twitterProfileLink = discoverEnvironmentFacade.twitterConfig.TWITTER_PROFILE_URL;
 	const githubRepoLink = discoverEnvironmentFacade.githubRepoUrl;
 
 	// Local Properties
+
 	let dark = false;
 
-	/**
-	 * @type {IHeaderNavLink}
-	 */
 	const navLinks: IHeaderNavLink[] = [
 		{
 			path: '/',
@@ -50,9 +48,9 @@
 					title="{navLink.label}"
 					class="p-1.5 text-sm text-black sm:p-2.5 dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-800 hover:shadow rounded-full transition-colors duration-150 ease-in-out"
 					class:nav-active-route="{$page.path === navLink.path ||
-						$page.path === `${navLink.path}/`}"
+						$page.path === navLink.path}"
 					class:nav-inactive-route="{$page.path !== navLink.path &&
-						$page.path !== `${navLink.path}/`}"
+						$page.path !== navLink.path}"
 				>
 					{navLink.label}
 				</a>

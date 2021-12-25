@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { SPACE_CATEGORIES } from '$data/spaces-categories';
+
 	import SelectOption from '$components/select-option/SelectOption.svelte';
+	import { SPACE_CATEGORIES } from '$data/spaces-categories';
 	import type { ISelectionOption } from '$models/interfaces/iselection-option.interface';
 
 	const dispatch = createEventDispatcher();
@@ -13,6 +14,7 @@
 		label: 'Select a category',
 		id: 'category',
 	};
+
 	let selectedValue: ISelectionOption = {
 		...DEFAULT_SELECTION,
 	};
@@ -23,10 +25,12 @@
 		value: category.id,
 	}));
 
+	let isSubmitDisabled = true;
+
 	$: isSubmitDisabled =
 		selectedValue.value === 'category' && (searchValue === '' || searchValue.length <= 2);
 
-	const handleSearch = async (): Promise<void> => {
+	const handleSearch = () => {
 		if (searchValue.length >= 3) {
 			selectedValue = {
 				...DEFAULT_SELECTION,
@@ -34,7 +38,7 @@
 		}
 	};
 
-	const handleSelection = async (event: CustomEvent<ISelectionOption>): Promise<void> => {
+	const handleSelection = (event: CustomEvent<ISelectionOption>) => {
 		if (
 			event.detail.value.length >= 3 &&
 			event.detail.value !== searchValue &&
@@ -55,7 +59,7 @@
 		dispatch('submitSearchField', input);
 	};
 
-	const onSubmit = async (): Promise<void> => {
+	const onSubmit = () => {
 		if (
 			selectedValue.value.length >= 3 &&
 			selectedValue.value !== searchValue &&

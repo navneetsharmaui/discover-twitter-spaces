@@ -1,14 +1,13 @@
 import IORedis from 'ioredis';
 
-const REDIS_CONNECTION_STRING = process.env['DISCOVER_REDIS_CONNECTION'];
+const REDIS_CONNECTION_STRING = process.env.DISCOVER_REDIS_CONNECTION;
 
 const REDIS_OPTIONS: IORedis.RedisOptions = {
 	retryStrategy: (times: number) => {
 		if (times > 0) {
 			return null;
-		} else {
-			return 50;
 		}
+		return 50;
 	},
 	connectTimeout: 500,
 };

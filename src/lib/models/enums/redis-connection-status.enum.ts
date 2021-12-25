@@ -1,4 +1,4 @@
-export enum REDIS_CONNECTION_STATUS {
+export enum RedisConnectionStatus {
 	READY = 'ready',
 	RECONNECTING = 'reconnecting',
 	END = 'end',

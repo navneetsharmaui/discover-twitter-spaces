@@ -22,21 +22,27 @@ const clipboardUtil = (node: HTMLElement, text: string) => {
 			fallbackCopyTextToClipboard(text);
 			return;
 		}
-		navigator.clipboard.writeText(text);
-	} catch (error) {
-		node.dispatchEvent(new CustomEvent('copy:error', { detail: error }));
+		navigator.clipboard.writeText(text).catch(() => {
+			fallbackCopyTextToClipboard(text);
+		});
+	} catch (error: unknown) {
+		node.dispatchEvent(new CustomEvent<unknown>('copy:error', { detail: error }));
 	}
 };
 
 export const copy = (node: HTMLElement, text: string) => {
-	const copyListener = async () => {
-		text ? clipboardUtil(node, text) : clipboardUtil(node, node.textContent);
+	const copyListener = () => {
+		if (text) {
+			clipboardUtil(node, text);
+		} else {
+			clipboardUtil(node, node.textContent);
+		}
 	};
 
 	node.addEventListener('click', copyListener, true);
 
 	return {
-		update: (data: string) => (text = data),
+		update: (data: string) => data,
 		destroy: () => node.removeEventListener('click', copyListener, true),
 	};
 };

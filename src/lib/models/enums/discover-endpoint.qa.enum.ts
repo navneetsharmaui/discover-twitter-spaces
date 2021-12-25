@@ -1,8 +1,8 @@
 // LOCAL
-export enum DISCOVER_DATA_ENPOINTS_QA {
+export enum DiscoverDataEndpointsQa {
 	SERVICE = '/service',
 }
 
-export enum DISCOVER_SEARCH_ENPOINTS_QA {
+export enum DiscoverSearchEndpointsQa {
 	SEARCH = '/search',
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Overlay from './Overlay.svelte';
 	import { onMount, createEventDispatcher } from 'svelte';
+	import Overlay from './Overlay.svelte';
 
 	export let targetDomReference: HTMLElement;
 	export let zIndex = 1000;
@@ -20,7 +20,7 @@
 	const calculate = () => {
 		const targetBound = targetDomReference.getBoundingClientRect();
 		const contentBound = contentDomReference.getBoundingClientRect();
-		let arrowBound = arrowDomReference.getBoundingClientRect();
+		const arrowBound = arrowDomReference.getBoundingClientRect();
 		const { innerWidth, innerHeight } = window;
 		const calcCoverLeft = contentBound.x - contentBound.width;
 		const coverLeft = calcCoverLeft < 0 ? calcCoverLeft : 0;

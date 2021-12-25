@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { ISelectionOption } from '$models/interfaces/iselection-option.interface';
-
 	import { createEventDispatcher } from 'svelte';
+
+	import type { ISelectionOption } from '$models/interfaces/iselection-option.interface';
 
 	export let selectOptions!: ISelectionOption[];
 	export let selectedValue!: ISelectionOption;

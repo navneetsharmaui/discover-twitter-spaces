@@ -64,7 +64,7 @@
 								slot="target"
 								href="{host.profileUrl}"
 								cssClasses="flex flex-row justify-start items-center"
-								ariaLabel="{`Host ${host.name}`}"
+								ariaLabel="{`Host ${host.name || 'Profile'}`}"
 							>
 								<figure
 									class="min-w-4xs flex flex-row justify-start items-center bg-gray-200 dark:bg-zinc-700 rounded-full pr-4 hover:shadow"
@@ -92,7 +92,7 @@
 											slot="target"
 											href="{host.profileUrl}"
 											cssClasses="w-full"
-											ariaLabel="{`Host ${host.name}`}"
+											ariaLabel="{`Host ${host.name || 'Profile'}`}"
 										>
 											<figure
 												class="flex flex-row justify-start items-center rounded-full pr-4"
