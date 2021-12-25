@@ -1,8 +1,10 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable import/no-unresolved */
 /// <reference lib="webworker" />
 
 import { build, files, timestamp } from '$service-worker';
 
-const cacheName = `DISCOVER-MARVEL-COMICS-${timestamp}`;
+const cacheName = `DISCOVER-TWITTER-SPACES-${timestamp}`;
 const worker = window.self as unknown as ServiceWorkerGlobalScope;
 
 const filesToCache = build.concat(files);
@@ -21,16 +23,12 @@ const clear = async () => {
 
 worker.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(cache());
-	worker.skipWaiting().catch(() => {
-		// Catch errors
-	});
+	worker.skipWaiting().catch(() => {});
 });
 
 worker.addEventListener('activate', (event: ExtendableEvent) => {
 	event.waitUntil(clear());
-	worker.clients.claim().catch(() => {
-		// Catch errors
-	});
+	worker.clients.claim().catch(() => {});
 });
 
 /**

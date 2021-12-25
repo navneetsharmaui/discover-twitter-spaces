@@ -1,16 +1,24 @@
-import type { IDeserializable } from '../interfaces/ideserializable.interface';
-import type { ITwitterSpace } from '../interfaces/itwitter-space.interface';
+import type { IDeserializable } from '$models/interfaces/ideserializable.interface';
+import type { ITwitterSpace } from '$models/interfaces/itwitter-space.interface';
 import { TwitterUserProfile } from './twitter-user-profile.class';
 
 export class TwitterSpace implements IDeserializable<ITwitterSpace>, ITwitterSpace {
 	public spaceId: string;
+
 	public title: string;
+
 	public creatorId: string;
+
 	public hostIds: string[];
+
 	public hosts: TwitterUserProfile[];
+
 	public description: string;
+
 	public state: string;
+
 	public scheduledStartTime: string;
+
 	public isLive: boolean;
 
 	deserialize(input: ITwitterSpace): this {

@@ -1,3 +1,4 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable no-console */
 export enum LogLevel {
 	off = 0,
