@@ -55,7 +55,7 @@ export class RedisClient implements IRedisClient {
 		try {
 			this.logger.debug('Getting', key);
 			const cached = await this.redis.get(key);
-			this.logger.debug('Got', key, cached);
+			this.logger.debug('Got', key, cached ? cached.length : null);
 			return cached ? parse(decompress(cached)) : null;
 		} catch (error) {
 			this.logger.error('Unable to retrive from cache', key, error);

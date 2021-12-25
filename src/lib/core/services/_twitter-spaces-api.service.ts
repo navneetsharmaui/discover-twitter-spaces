@@ -80,7 +80,6 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 				TwitterSpacesAPIService.getSearchedSpacesKey(searchTerm),
 				JSON.parse,
 			);
-			this.logger.debug('Spaces retrieved from cache', cached);
 			return cached ? mapToTwitterSpaces(cached) : {};
 		} catch (error) {
 			this.logger.error('Unable to retrive from cache', searchTerm, error);
