@@ -1,6 +1,7 @@
+import { writable } from 'svelte/store';
+
 import { TwitterSpace } from '$models/classes/twitter-space.class';
 import type { IAppState } from '$models/interfaces/iapp-state.interface';
-import { writable } from 'svelte/store';
 
 export const APP_STORE = writable<IAppState<TwitterSpace[]>>({
 	state: 'EMPTY',
