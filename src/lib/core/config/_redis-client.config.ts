@@ -1,5 +1,6 @@
 import { inject, singleton } from 'tsyringe';
 import type { Redis } from 'ioredis';
+import { auth, get, setex } from '@upstash/redis';
 import LZString from 'lz-string';
 
 import { Logger, LoggerUtils } from '$utils/_logger';
@@ -21,7 +22,18 @@ export class RedisClient implements IRedisClient {
 
 	private readonly DEFAULT_EXPIRE_TIME = 60 * 60 * 24;
 
+	private readonly upstashRedisUrl = process.env.DISCOVER_UPSTASH_REDIS_REST_URL;
+
+	private readonly upstashRedisToken = process.env.DISCOVER_UPSTASH_REDIS_REST_TOKEN;
+
 	constructor(@inject(RedisConfigToken) private readonly redis: Redis) {}
+
+	private upstashAuth(): void {
+		auth({
+			url: this.upstashRedisUrl,
+			token: this.upstashRedisToken,
+		});
+	}
 
 	public get status(): string {
 		return this.redis.status;
@@ -82,6 +94,34 @@ export class RedisClient implements IRedisClient {
 			return await this.redis.set(key, compress(JSON.stringify(value)), 'EX', expireTime);
 		} catch (error) {
 			this.logger.error('Unable to cache', key, value, error);
+		}
+		return null;
+	}
+
+	public async upstashRestGet<T>(
+		key: string,
+		parse: (value: string) => T = JSON.parse,
+	): Promise<T> {
+		try {
+			this.upstashAuth();
+			const response = await get(key);
+			if (response.error) throw new Error(response.error);
+			const data = response.data as string;
+			return parse(decompress(data));
+		} catch (error) {
+			this.logger.error(error);
+		}
+		return null;
+	}
+
+	public async upstashRestSet<T>(key: string, value: T, expireTime: number): Promise<string> {
+		try {
+			this.upstashAuth();
+			const response = await setex(key, expireTime, compress(JSON.stringify(value)));
+			if (response.error) throw new Error(response.error);
+			return response.data as string;
+		} catch (error) {
+			this.logger.error(error);
 		}
 		return null;
 	}

@@ -7,5 +7,9 @@ export interface IRedisClient {
 
 	set<T>(key: string, value: T, expireTime: number): Promise<'OK'>;
 
+	upstashRestGet<T>(key: string, parse: (value: string) => T): Promise<T>;
+
+	upstashRestSet<T>(key: string, value: T, expireTime: number): Promise<string>;
+
 	quit(): Promise<void | 'OK'>;
 }

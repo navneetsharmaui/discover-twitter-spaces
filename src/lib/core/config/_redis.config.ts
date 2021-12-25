@@ -9,7 +9,7 @@ const REDIS_OPTIONS: IORedis.RedisOptions = {
 		}
 		return 50;
 	},
-	connectTimeout: 500,
+	connectTimeout: 20000,
 };
 
 export default REDIS_CONNECTION_STRING && REDIS_CONNECTION_STRING !== undefined
