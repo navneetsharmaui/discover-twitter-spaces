@@ -38,11 +38,11 @@ This project is inspired by the similar project [find twitter spaces](https://gi
 ## :hammer: Project Setup
 
 1. `git clone https://github.com/navneetsharmaui/discover-twitter-spaces.git`.
-2. `yarn install`.
+2. `pnpm install`.
 3. `Setup the environment variables in the *.env* file and take reference of *.env.example* file for the fields to be used`.
-4. `yarn run dev`.
-5. `yarn run build:vercel`.
-6. `yarn run preview`.
+4. `pnpm run dev`.
+5. `pnpm run build:vercel`.
+6. `pnpm run preview`.
 7. The twitter API code is in the `src/routes/api/spaces/index.json.ts` file.
 8. The Sveltekit project is built using `sveltekit vercel adapter` as the application us deployed on the Vercel.
 
