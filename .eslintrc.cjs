@@ -14,7 +14,7 @@ module.exports = {
 	},
 	rules: {
 		semi: ['error', 'always'],
-		'no-console': ['warn'],
+		'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
 		'tsdoc/syntax': 'warn',
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 		'import/prefer-default-export': 'off',

@@ -1,4 +1,4 @@
-import type { STATE } from '../types/state.type';
+import type { STATE } from '$models/types/state.type';
 import type { ITwitterSpace } from './itwitter-space.interface';
 
 export interface IAppState<T = ITwitterSpace[]> {

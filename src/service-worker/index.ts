@@ -63,8 +63,8 @@ worker.addEventListener('fetch', (event) => {
 	if (isHttp && !isDevServerRequest && !isStaticAsset && !skipBecauseUncached) {
 		event.respondWith(
 			(async () => {
-				const cachedAsset = isStaticAsset && (await caches.match(event.request));
-				return cachedAsset || (await fetchAndCache(event));
+				const cachedAsset = await caches.match(event.request);
+				return cachedAsset || fetchAndCache(event);
 			})(),
 		);
 	}

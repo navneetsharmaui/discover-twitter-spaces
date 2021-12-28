@@ -1,5 +1,3 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable no-console */
 export enum LogLevel {
 	off = 0,
 	Debug,
@@ -18,7 +16,7 @@ export class Logger {
 	}
 
 	public debug(...data: unknown[]): void {
-		this.log(console.log, LogLevel.Debug, data);
+		this.log(console.info, LogLevel.Debug, data);
 	}
 
 	public info(...data: unknown[]): void {

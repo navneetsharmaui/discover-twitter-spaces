@@ -1,5 +1,5 @@
-import type { EnvironmentName } from '../enums/environment-name.enum';
-import type { EnvironmentType } from '../enums/environment-type.enum';
+import type { EnvironmentName } from '$models/enums/environment-name.enum';
+import type { EnvironmentType } from '$models/enums/environment-type.enum';
 
 export interface IConfig {
 	launchURL: string;
