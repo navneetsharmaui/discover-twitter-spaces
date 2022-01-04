@@ -1,10 +1,10 @@
 <script lang="ts">
 	// Svelte Imports
-	import { page } from '$app/stores';
+	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
 	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 
 	import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
-	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
+	import { page } from '$app/stores';
 
 	// Exports
 	const twitterProfileLink = discoverEnvironmentFacade.twitterConfig.TWITTER_PROFILE_URL;

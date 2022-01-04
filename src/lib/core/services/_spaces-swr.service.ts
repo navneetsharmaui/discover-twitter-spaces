@@ -1,6 +1,6 @@
-import { api } from './_api.service';
-import { APP_STORE, errorState, loadingState, upateSpaces } from '$stores/app-store';
 import type { TwitterSpace } from '$models/classes/twitter-space.class';
+import { APP_STORE, errorState, loadingState, upateSpaces } from '$stores/app-store';
+import { api } from './_api.service';
 
 export const spacesSWR = (url: string) => {
 	loadingState();
