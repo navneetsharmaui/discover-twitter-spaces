@@ -76,7 +76,7 @@
 	};
 </script>
 
-<div class="flex flex-col mb-4 w-full">
+<form class="flex flex-col mb-4 w-full" on:submit|preventDefault="{() => onSubmit()}">
 	<div class="relative w-full mb-2">
 		<input
 			bind:value="{searchValue}"
@@ -125,4 +125,4 @@
 			Submit
 		</button>
 	</div>
-</div>
+</form>
