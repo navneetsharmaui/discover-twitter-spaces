@@ -23,7 +23,7 @@
 <div class="relative">
 	<button
 		type="button"
-		class="relative cursor-pointer rounded-full shadow dark:shadow pl-3 pr-10 py-2 mt-1 block w-full bg-white border dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 text-sm dark:text-gray-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none"
+		class="relative cursor-pointer rounded-full shadow dark:shadow pl-3 pr-10 py-2 mt-1 block w-full bg-white border dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 text-sm dark:text-gray-100 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:bg-gray-50 disabled:text-gray-500 disabled:border-gray-200 disabled:shadow-none transition-colors duration-500 ease-in-out"
 		aria-label="Select a option"
 		on:click="{() => openOptionsList()}"
 	>
@@ -48,13 +48,13 @@
 
 	{#if isOptionsListOpen}
 		<ul
-			class="absolute z-[100] mt-1 w-full bg-white dark:bg-zinc-800 shadow-lg rounded-xl py-1 text-base ring-1 ring-black  ring-opacity-5 focus:outline-none sm:text-sm overflow-hidden"
+			class="absolute z-[100] mt-1 w-full bg-white dark:bg-zinc-800 shadow-lg rounded-xl py-1 text-base ring-1 ring-black  ring-opacity-5 focus:outline-none sm:text-sm overflow-hidden transition-colors duration-500 ease-in-out"
 			tabindex="-1"
 			aria-label="option"
 		>
 			{#each selectOptions as option, index (option.id)}
 				<li
-					class="text-black dark:text-white bg-white dark:bg-zinc-800 cursor-pointer select-none relative py-1.5 pl-3 pr-9"
+					class="text-black dark:text-white bg-white dark:bg-zinc-800 cursor-pointer select-none relative py-1.5 pl-3 pr-9 transition-colors duration-500 ease-in-out"
 					role="option"
 					on:click="{() => handleSelection(option)}"
 				>
