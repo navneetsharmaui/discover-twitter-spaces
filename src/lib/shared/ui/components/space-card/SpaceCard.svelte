@@ -14,7 +14,11 @@
 </script>
 
 <Card>
-	<div class="flex flex-col w-full relative">
+	<div
+		class="flex flex-col w-full relative"
+		aria-label="{twitterSpace.title}"
+		title="{twitterSpace.title}"
+	>
 		<div class="flex flex-col justify-start items-start mb-1">
 			<div class="flex flex-row">
 				<ExternalLink href="{twitterSpace.spaceUrl}" ariaLabel="{twitterSpace.title}">

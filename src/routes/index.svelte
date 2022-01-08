@@ -66,7 +66,10 @@
 <!-- End: Header Tag -->
 
 <!-- Start: Home Page container -->
-<div class="flex flex-col justify-center items-start min-w-full mx-auto mb-16">
+<div
+	class="flex flex-col justify-center items-start min-w-full mx-auto mb-16"
+	title="{metaData.description}"
+>
 	<h1 class="font-bold text-3xl md:text-5xl tracking-tight mb-4 text-black dark:text-white">
 		Discover Spaces
 	</h1>
@@ -77,7 +80,12 @@
 	<SearchForm searchValue="{searchTerm}" on:submitSearchField="{(e) => setTwitterSpaces(e)}" />
 	<div class="border-t border-gray-400 w-full my-2"> </div>
 	<div class="w-full">
-		<p class="text-gray-900 dark:text-gray-100 mx-1">
+		<p
+			class="text-gray-900 dark:text-gray-100 mx-1"
+			title="About {$twitterSpaces.data.length} {searchedField
+				? `results for ${searchedField}.`
+				: 'results.'}"
+		>
 			<small
 				>About {$twitterSpaces.data.length}
 				{searchedField ? `results for ${searchedField}.` : 'results.'}</small
