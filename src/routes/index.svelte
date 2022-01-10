@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = ({ page }) => ({
+	export const load: Load = ({ url }) => ({
 		props: {
-			searchTerm: page.query.get('q') || 'Web',
+			searchTerm: url.searchParams.get('q') || 'Web',
 		},
 	});
 </script>

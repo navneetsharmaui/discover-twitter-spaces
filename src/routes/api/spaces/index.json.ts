@@ -9,7 +9,7 @@ export const get: RequestHandler = async (request) => {
 		const logger: Logger = LoggerUtils.getInstance('SpaceAPIRequestHandler');
 
 		const start = performance.now();
-		const search = request.query.get('search');
+		const search = request.url.searchParams.get('search');
 
 		const searchQuery = search || 'Web';
 

@@ -47,10 +47,10 @@
 					data-link="{navLink.path}"
 					title="{navLink.label}"
 					class="p-1.5 text-sm text-black sm:p-2.5 dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-800 hover:shadow rounded-full transition-colors duration-300 ease-in-out"
-					class:nav-active-route="{$page.path === navLink.path ||
-						$page.path === navLink.path}"
-					class:nav-inactive-route="{$page.path !== navLink.path &&
-						$page.path !== navLink.path}"
+					class:nav-active-route="{$page.url.pathname === navLink.path ||
+						$page.url.pathname === navLink.path}"
+					class:nav-inactive-route="{$page.url.pathname !== navLink.path &&
+						$page.url.pathname !== navLink.path}"
 				>
 					{navLink.label}
 				</a>
