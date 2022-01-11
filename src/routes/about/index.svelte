@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
 	export const prerender = true;
-	export const ssr = true;
 </script>
 
 <script lang="ts">
