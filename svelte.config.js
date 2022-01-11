@@ -34,7 +34,6 @@ const config = {
 
 		trailingSlash: 'always',
 
-		ssr: true,
 		prerender: {
 			crawl: true,
 			enabled: true,
