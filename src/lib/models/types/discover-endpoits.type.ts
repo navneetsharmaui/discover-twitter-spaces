@@ -23,20 +23,20 @@ export type DiscoverEndpointType = DiscoverDataEnpointType | DiscoverSearchEndpo
 
 export type DiscoverEndpoints = DiscoverDataEndpoints | DiscoverSearchEndpoints;
 
-export type DiscoverDataEndpointConfig = {
-	[key in DiscoverDataEnpointType]:
-		| DiscoverDataEndpoints
-		| DiscoverDataEndpointsProd
-		| DiscoverDataEndpointsDev
-		| DiscoverDataEndpointsQa;
-};
+export type DiscoverDataEndpointConfig = Record<
+	DiscoverDataEnpointType,
+	| DiscoverDataEndpoints
+	| DiscoverDataEndpointsProd
+	| DiscoverDataEndpointsDev
+	| DiscoverDataEndpointsQa
+>;
 
-export type DiscoverSearchEndpointConfig = {
-	[key in DiscoverSearchEndpointType]:
-		| DiscoverSearchEndpoints
-		| DiscoverSearchEndpointsProd
-		| DiscoverSearchEndpointsDev
-		| DiscoverSearchEndpointsQa;
-};
+export type DiscoverSearchEndpointConfig = Record<
+	DiscoverSearchEndpointType,
+	| DiscoverSearchEndpoints
+	| DiscoverSearchEndpointsProd
+	| DiscoverSearchEndpointsDev
+	| DiscoverSearchEndpointsQa
+>;
 
 export type DiscoverEndpointConfig = DiscoverDataEndpointConfig & DiscoverSearchEndpointConfig;

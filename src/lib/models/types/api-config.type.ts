@@ -1,3 +1,1 @@
-export type APIConfig = {
-	[key in string]: string;
-};
+export type APIConfig = Record<string, string>;
