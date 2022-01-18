@@ -69,7 +69,7 @@ module.exports = {
 		'plugin:import/typescript',
 		'prettier',
 	],
-	ignorePatterns: ['*.cjs', 'static/*.js', 'svelte.config.js'],
+	ignorePatterns: ['*.cjs', 'static/*.js', 'svelte.config.js', 'scripts/js/*.ts'],
 	env: {
 		browser: true,
 		node: true,
