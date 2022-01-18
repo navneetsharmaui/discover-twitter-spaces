@@ -21,6 +21,8 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"importHelpers": true,
 		"baseUrl": ".",
 		"allowJs": true,
 		"checkJs": true,
@@ -65,6 +67,7 @@
 		"coverage/*",
 		".vercel_build_output/*",
 		"functions/*",
-		"static/*"
+		"static/*",
+		"scripts/*"
 	]
 }
