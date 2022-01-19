@@ -24,7 +24,7 @@ try {
 	// const configuration = getArguments(processArguments, '--configurations');
 	const fileToRead = mode || 'local';
 
-	const writeToFile = (filePath: string, data): void => fs.writeFileSync(filePath, data);
+	const writeToFile = (filePath: string, data: any): void => fs.writeFileSync(filePath, data);
 
 	const workspace = JSON.parse(
 		fs.readFileSync(pathToWorkspaceJSON, {
@@ -35,7 +35,7 @@ try {
 	const { fileReplacements } =
 		workspace.projects[project].architect[architectType].configurations[fileToRead];
 
-	fileReplacements.forEach((value) => {
+	fileReplacements.forEach((value: any) => {
 		const content = fs.readFileSync(`${root as string}${value.with as string}`);
 		writeToFile(`${root as string}${value.replace as string}`, content);
 	});
