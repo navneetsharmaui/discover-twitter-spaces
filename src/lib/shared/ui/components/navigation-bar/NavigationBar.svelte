@@ -29,7 +29,9 @@
 
 	const toggleTheme = (): void => {
 		const htmlTag = document.getElementsByTagName('html').item(0);
-		htmlTag.className = dark ? 'dark' : 'light';
+		if (htmlTag) {
+			htmlTag.className = dark ? 'dark' : 'light';
+		}
 		dark = !dark;
 	};
 </script>
@@ -58,7 +60,7 @@
 		</div>
 		<div class="flex flex-row gap-5 items-center">
 			<ExternalLink
-				href="{twitterProfileLink}"
+				href="{twitterProfileLink || '#'}"
 				cssClasses="inline-flex text-black dark:text-white hover:text-zinc-500 dark:hover:text-zinc-500"
 				ariaLabel="{`Checkout my Twitter`}"
 			>

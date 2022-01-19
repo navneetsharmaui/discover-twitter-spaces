@@ -4,19 +4,19 @@ import type { ITwitterUserProfile } from '$models/interfaces/itwitter-user-profi
 export class TwitterUserProfile
 	implements IDeserializable<ITwitterUserProfile>, ITwitterUserProfile
 {
-	public name: string;
+	public name!: string;
 
-	public id: string;
+	public id!: string;
 
-	public imageUrl: string;
+	public imageUrl!: string;
 
-	public username: string;
+	public username!: string;
 
-	public followersCount: number;
+	public followersCount!: number;
 
-	public followingCount: number;
+	public followingCount!: number;
 
-	public description: string;
+	public description!: string;
 
 	deserialize(input: ITwitterUserProfile): this {
 		Object.assign(this, input);

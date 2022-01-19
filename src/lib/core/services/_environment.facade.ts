@@ -38,7 +38,7 @@ export class DiscoverEnvironmentFacade<
 	 * @public
 	 */
 	public get githubRepoUrl(): string {
-		return this.coreConfig.environment.githubConfig.GITHUB_REPO_URL;
+		return this.coreConfig.environment.githubConfig.GITHUB_REPO_URL || '';
 	}
 
 	/**

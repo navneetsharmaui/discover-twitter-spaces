@@ -85,14 +85,18 @@
 	{#if metaData && metaData.twitter}
 		<meta name="twitter:card" content="summary_large_image" />
 
-		{#each Object.keys(metaData.twitter) as tag}
-			<meta name="twitter:{tag}" content="{metaData.twitter[tag]}" />
+		{#each Object.entries(metaData.twitter) as tag}
+			{#if tag[0] && tag[1]}
+				<meta name="twitter:{tag[0]}" content="{tag[1]}" />
+			{/if}
 		{/each}
 	{/if}
 
 	{#if metaData && metaData.openGraph}
-		{#each Object.keys(metaData.openGraph) as tag}
-			<meta name="og:{tag}" content="{metaData.openGraph[tag]}" />
+		{#each Object.entries(metaData.openGraph) as tag}
+			{#if tag[0] && tag[1]}
+				<meta name="og:{tag[0]}" content="{tag[1]}" />
+			{/if}
 		{/each}
 	{/if}
 </svelte:head>

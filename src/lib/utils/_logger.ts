@@ -34,7 +34,7 @@ export class Logger {
 	private log = (fun: () => void, level: LogLevel, objects: unknown[]): void => {
 		if (level >= Logger.level) {
 			const log = this.source ? [`[${this.source}]`].concat(objects as string[]) : objects;
-			fun.apply(console, log);
+			fun.apply<Console, unknown[], void>(console, log);
 		}
 	};
 }

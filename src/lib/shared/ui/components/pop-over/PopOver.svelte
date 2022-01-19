@@ -19,7 +19,7 @@
 			dispatch('close');
 		}
 	};
-	const eventMouseOut = ({ relatedTarget }) => {
+	const eventMouseOut = ({ relatedTarget }: { relatedTarget: any }) => {
 		if (relatedTarget.id === 'overlay' && !isOpen) {
 			setOpen();
 		}

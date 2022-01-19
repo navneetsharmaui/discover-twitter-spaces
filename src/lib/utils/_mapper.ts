@@ -39,7 +39,7 @@ export const mapToSpaces = (value: ISpacesResponse[]): ITwitterSpace[] =>
 			hostIds: [],
 			scheduledStartTime:
 				space.state.toLowerCase() === 'scheduled'
-					? humanReadableTime(space.scheduled_start)
+					? humanReadableTime(space?.scheduled_start || '')
 					: '',
 			isLive: space.state.toLowerCase() === 'live',
 			hosts: [],
@@ -62,11 +62,16 @@ export const mapToTwitterSpaces = (twitterSpaces: ISpacesMetaResponse): TwitterS
 		? mapToSpaces(twitterSpaces.data).map((space) => {
 				const mappedUsers = mapToTwitterUserProfile(twitterSpaces.includes.users);
 
-				const hosts =
+				const hosts: ITwitterUserProfile[] =
 					space.hostIds.length > 0
 						? space.hostIds
 								.filter((id) => mappedUsers.some((user) => user.id === id))
-								.map((hostId) => mappedUsers.find((user) => user.id === hostId))
+								.map((hostId) => {
+									const userIndex = mappedUsers.findIndex(
+										(user) => user.id === hostId,
+									);
+									return mappedUsers[userIndex];
+								})
 						: [];
 
 				const twitterSpace: ITwitterSpace = {

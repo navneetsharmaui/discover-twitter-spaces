@@ -7,9 +7,14 @@ export const spacesSWR = (url: string) => {
 
 	api<TwitterSpace[]>(url)
 		.then((response) => {
-			if (response.status >= 200 && response.status < 300) {
+			if (
+				response.status &&
+				response.status >= 200 &&
+				response.status < 300 &&
+				response.body
+			) {
 				upateSpaces(response.body);
-			} else {
+			} else if (response.status && response.status >= 400) {
 				errorState(new Error(`${url} returned status ${response.status}`));
 			}
 		})

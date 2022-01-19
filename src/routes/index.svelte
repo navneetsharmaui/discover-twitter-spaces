@@ -82,27 +82,31 @@
 	<div class="w-full">
 		<p
 			class="text-gray-900 dark:text-gray-100 mx-1"
-			title="About {$twitterSpaces.data.length} {searchedField
+			title="About {$twitterSpaces?.data?.length} {searchedField
 				? `results for ${searchedField}.`
 				: 'results.'}"
 		>
 			<small
-				>About {$twitterSpaces.data.length}
+				>About {$twitterSpaces?.data?.length}
 				{searchedField ? `results for ${searchedField}.` : 'results.'}</small
 			>
 		</p>
 	</div>
 	<div class="flex flex-col w-full mt-5 gap-5">
-		{#if $twitterSpaces.state === 'PENDING'}
-			{#each [0, 1, 2, 3, 4] as num, index (num)}
-				<GhostSpaceCard />
-			{/each}
-		{:else if $twitterSpaces.state === 'SUCCESS'}
-			{#each $twitterSpaces.data as space, index (space.spaceId)}
-				<SpaceCard twitterSpace="{space}" />
-			{/each}
-		{:else if $twitterSpaces.state === 'ERROR'}
-			<p class="text-red-600">{$twitterSpaces.error.message}</p>
+		{#if $twitterSpaces}
+			{#if $twitterSpaces.state === 'PENDING'}
+				{#each [0, 1, 2, 3, 4] as num, index (num)}
+					<GhostSpaceCard />
+				{/each}
+			{:else if $twitterSpaces.state === 'SUCCESS'}
+				{#if $twitterSpaces?.data}
+					{#each $twitterSpaces?.data as space, index (space?.spaceId)}
+						<SpaceCard twitterSpace="{space}" />
+					{/each}
+				{/if}
+			{:else if $twitterSpaces.state === 'ERROR'}
+				<p class="text-red-600">{$twitterSpaces?.error?.message}</p>
+			{/if}
 		{/if}
 	</div>
 </div>

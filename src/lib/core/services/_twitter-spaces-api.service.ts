@@ -23,10 +23,13 @@ import { Logger, LoggerUtils } from '$utils/_logger';
 export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	private readonly DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
 
-	private readonly TWITTER_TOKEN = `${process.env.DISCOVER_TWITTER_TOKEN}`.trim().slice();
+	private readonly TWITTER_TOKEN = `${process.env.DISCOVER_TWITTER_TOKEN || ''}`.trim().slice();
 
-	private readonly TWITTER_BASE_API_URL =
-		`${discoverEnvironmentFacade.twitterConfig.TWITTER_BASE_API_URL}`.trim().slice();
+	private readonly TWITTER_BASE_API_URL = `${
+		discoverEnvironmentFacade.twitterConfig.TWITTER_BASE_API_URL || ''
+	}`
+		.trim()
+		.slice();
 
 	private readonly SPACES_SEARCH_PARAMETERS =
 		'state=all&topic.fields=id,name,description&space.fields=host_ids,created_at,creator_id,id,lang,invited_user_ids,participant_count,speaker_ids,started_at,ended_at,topic_ids,state,title,updated_at,scheduled_start,is_ticketed&expansions=invited_user_ids,speaker_ids,creator_id,host_ids&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld';
@@ -114,7 +117,12 @@ export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 
 		const twitterSpacesApiResponse = await api<ISpacesMetaResponse>(url, httpRequestOptions);
 
-		if (twitterSpacesApiResponse.status >= 200 && twitterSpacesApiResponse.status < 300) {
+		if (
+			twitterSpacesApiResponse.status &&
+			twitterSpacesApiResponse.status >= 200 &&
+			twitterSpacesApiResponse.status < 300 &&
+			twitterSpacesApiResponse.body
+		) {
 			await this.cacheSpacesResponse(searchTerm, twitterSpacesApiResponse.body);
 			return {
 				body: JSON.stringify(mapToTwitterSpaces(twitterSpacesApiResponse.body)),

@@ -62,13 +62,17 @@ export class RedisClient implements IRedisClient {
 	 * @param parse - callback function to parse the data.
 	 * @returns - Promise of the generic type.
 	 */
-	public async get<T>(key: string, parse: (value: string) => T = JSON.parse): Promise<T> {
+	public async get<T>(key: string, parse: (value: string) => T = JSON.parse): Promise<T | null> {
 		if (this.closed) return null;
 		try {
 			this.logger.debug('Getting', key);
 			const cached = await this.redis.get(key);
 			this.logger.debug('Got', key, cached ? cached.length : null);
-			return cached ? parse(decompress(cached)) : null;
+			if (cached) {
+				const parsed = decompress(cached);
+				this.logger.debug('Parsed', key, parsed?.length);
+				return parse(parsed || '');
+			}
 		} catch (error) {
 			this.logger.error('Unable to retrive from cache', key, error);
 		}
@@ -88,7 +92,7 @@ export class RedisClient implements IRedisClient {
 		key: string,
 		value: T,
 		expireTime = this.DEFAULT_EXPIRE_TIME,
-	): Promise<'OK'> {
+	): Promise<'OK' | null> {
 		if (this.closed) return null;
 		try {
 			return await this.redis.set(key, compress(JSON.stringify(value)), 'EX', expireTime);
@@ -101,20 +105,24 @@ export class RedisClient implements IRedisClient {
 	public async upstashRestGet<T>(
 		key: string,
 		parse: (value: string) => T = JSON.parse,
-	): Promise<T> {
+	): Promise<T | null> {
 		try {
 			this.upstashAuth();
 			const response = await get(key);
 			if (response.error) throw new Error(response.error);
 			const data = response.data as string;
-			return parse(decompress(data));
+			return parse(decompress(data) || '');
 		} catch (error) {
 			this.logger.error(error);
 		}
 		return null;
 	}
 
-	public async upstashRestSet<T>(key: string, value: T, expireTime: number): Promise<string> {
+	public async upstashRestSet<T>(
+		key: string,
+		value: T,
+		expireTime: number,
+	): Promise<string | null> {
 		try {
 			this.upstashAuth();
 			const response = await setex(key, expireTime, compress(JSON.stringify(value)));

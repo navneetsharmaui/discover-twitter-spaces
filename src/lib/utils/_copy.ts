@@ -10,7 +10,7 @@ const fallbackCopyTextToClipboard = (text: string) => {
 	textArea.select();
 
 	try {
-		document.execCommand('copy');
+		document?.execCommand('copy');
 	} finally {
 		document.body.removeChild(textArea);
 	}
@@ -35,7 +35,7 @@ export const copy = (node: HTMLElement, text: string) => {
 		if (text) {
 			clipboardUtil(node, text);
 		} else {
-			clipboardUtil(node, node.textContent);
+			clipboardUtil(node, node?.textContent || '');
 		}
 	};
 
