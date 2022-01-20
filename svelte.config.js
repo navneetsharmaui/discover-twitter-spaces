@@ -39,6 +39,23 @@ const config = {
 			enabled: true,
 			onError: 'fail',
 			entries: ['*'],
+			createIndexFiles: true,
+			concurrency: 10,
+		},
+		csp: {
+			mode: 'auto',
+			directives: {
+				'img-src': ['localhost:*', 'https:'],
+				'script-src': ['localhost:*', 'self', 'strict-dynamic'],
+				'font-src': ['localhost:*', 'https:', 'www.gstatic.com'],
+				'style-src': ['localhost:*', 'self', 'strict-dynamic', 'unsafe-inline'],
+				'connect-src': ['localhost:*', 'self'],
+				'prefetch-src': ['localhost:*', 'self'],
+				'base-uri': ['localhost:*', 'self'],
+				'form-action': ['localhost:*', 'self'],
+				'manifest-src': ['localhost:*', 'self'],
+				'worker-src': ['localhost:*', 'self'],
+			},
 		},
 		vite: () => ({
 			resolve: {
