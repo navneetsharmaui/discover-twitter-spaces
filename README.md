@@ -2,9 +2,9 @@
 
 [Discover Twitter Spaces](discover-twitter-spaces.vercel.app/) is a tool that helps you find the Twitter Spaces. We use data from Twitter to find the Twitter Spaces.
 
-The api endpoint for [Discover Twitter Spaces](discover-twitter-spaces.vercel.app/) is [Spaces](https://discover-twitter-spaces.vercel.app/api/spaces.json), pass Query param to the endpoint for data of different spaces.
+The api endpoint for [Discover Twitter Spaces](discover-twitter-spaces.vercel.app/) is [Spaces](https://discover-twitter-spaces.vercel.app/api/spaces), pass Query param to the endpoint for data of different spaces.
 
-`https://discover-twitter-spaces.vercel.app/api/spaces.json?search=bitcoin`
+`https://discover-twitter-spaces.vercel.app/api/spaces?search=bitcoin`
 
 This application is built using [Sveltekit](https://kit.svelte.dev/docs) and [Svelte](https://svelte.dev/).
 
@@ -43,7 +43,7 @@ This project is inspired by the similar project [find twitter spaces](https://gi
 4. `yarn run dev`.
 5. `yarn run build:vercel`.
 6. `yarn run preview`.
-7. The twitter API code is in the `src/routes/api/spaces/index.json.ts` file.
+7. The twitter API code is in the `src/routes/api/spaces/index.ts` file.
 8. The Sveltekit project is built using `sveltekit vercel adapter` as the application us deployed on the Vercel.
 
 ## Contribution
