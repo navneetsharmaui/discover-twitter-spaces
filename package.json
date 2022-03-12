@@ -35,7 +35,7 @@
 	"scripts": {
 		"prepare": "husky install && svelte-kit sync",
 		"package": "svelte-kit package",
-		"prebuild": "rimraf .svelte-kit && rimraf build && rimraf .vercel_build_output && yarn run sitemap",
+		"prebuild": "rimraf build && rimraf .vercel_build_output && yarn run sitemap",
 		"pre-commit": "lint-staged",
 		"check-env": "node --loader ts-node/esm scripts/js/check-env.ts",
 		"sitemap": "node --loader ts-node/esm scripts/js/sitemap.ts --mode=prod --project=discover --arhitect-type=build --configurations=prod",
@@ -64,7 +64,8 @@
 		"eslint": "eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .eslintignore",
 		"eslint:fix": "eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .eslintignore --fix",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "cross-env PW_EXPERIMENTAL_TS_ESM=1 playwright test"
 	},
 	"dependencies": {
 		"@upstash/redis": "^1.0.0-alpha.4",
@@ -74,6 +75,7 @@
 		"tsyringe": "^4.6.0"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.19.2",
 		"@sveltejs/adapter-vercel": "1.0.0-next.46",
 		"@sveltejs/kit": "1.0.0-next.295",
 		"@tailwindcss/typography": "^0.5.2",
