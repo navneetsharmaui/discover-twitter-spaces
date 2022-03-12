@@ -78,11 +78,8 @@ declare module '*.wbep' {
 
 interface ImportMetaEnv {
 	readonly DISCOVER_BASE_URL: string;
-	readonly DISCOVER_TWITTER_BASE_API_URL: string;
 	readonly DISCOVER_TWITTER_PROFILE_URL: string;
 	readonly DISCOVER_GITHUB_REPO_URL: string;
-	readonly DISCOVER_UPSTASH_REDIS_REST_URL: string;
-	readonly DISCOVER_UPSTASH_REDIS_REST_TOKEN: string;
 }
 
 interface ImportMeta {
