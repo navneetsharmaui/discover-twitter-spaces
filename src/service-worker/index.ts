@@ -4,13 +4,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /// <reference lib="webworker" />
 
-import { build, files, timestamp } from '$service-worker';
+import { build, files, version } from '$service-worker';
 
-const cacheName = `DISCOVER-TWITTER-SPACE-${timestamp}`;
+const cacheName = `DISCOVER-TWITTER-SPACE-${version}`;
 const worker = self as unknown as ServiceWorkerGlobalScope;
 
 const filesToCache = build.concat(files);
-const cacheFilesWitTimeStamp = filesToCache.map((file) => `${file}?${timestamp}`);
+const cacheFilesWitTimeStamp = filesToCache.map((file) => `${file}?${version}`);
 const staticAssests = new Set(filesToCache);
 
 const cache = async () => {
