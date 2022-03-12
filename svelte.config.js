@@ -11,8 +11,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url)); // jshint ignore:line
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
 	preprocess: [
 		preprocess({
 			postcss: true,
@@ -23,9 +21,6 @@ const config = {
 	kit: {
 		adapter: vercel(),
 
-		// hydrate the <div id="discover"> element in src/app.html
-		target: '#discover',
-
 		trailingSlash: 'always',
 
 		prerender: {
@@ -33,7 +28,6 @@ const config = {
 			enabled: true,
 			onError: 'fail',
 			entries: ['*'],
-			createIndexFiles: true,
 			concurrency: 10,
 		},
 		csp: {
@@ -50,6 +44,10 @@ const config = {
 				'manifest-src': ['localhost:*', 'self'],
 				'worker-src': ['localhost:*', 'self'],
 			},
+		},
+		methodOverride: {
+			parameter: '_method',
+			allowed: ['PUT', 'PATCH', 'DELETE'],
 		},
 		vite: () => ({
 			resolve: {
