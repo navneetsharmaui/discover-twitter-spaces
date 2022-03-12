@@ -29,6 +29,7 @@
 		"checkJs": true,
 		"types": ["node", "isomorphic-fetch", "ioredis", "lz-string"],
 		"paths": {
+			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
 			"$stores": ["src/stores/index.ts"],
 			"$stores/*": ["src/stores/*"],
