@@ -49,6 +49,10 @@ const config = {
 			parameter: '_method',
 			allowed: ['PUT', 'PATCH', 'DELETE'],
 		},
+		version: {
+			name: Date.now().toString(),
+			pollInterval: 0,
+		},
 		vite: () => ({
 			resolve: {
 				alias: {
