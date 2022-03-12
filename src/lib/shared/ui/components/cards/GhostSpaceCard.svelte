@@ -21,7 +21,7 @@
 </style>
 
 <script>
-	import Card from '$ui/components/card/Card.svelte';
+	import Card from '$lib/shared/ui/components/cards/Card.svelte';
 </script>
 
 <Card>

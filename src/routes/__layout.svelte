@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../styles/tailwind.css';
-	import Header from '$ui/components/header/Header.svelte';
+	import Header from '$ui/components/headers/Header.svelte';
 </script>
 
 <div class=" dark:bg-zinc-900 bg-gray-50 transition-colors duration-500 ease-in-out">

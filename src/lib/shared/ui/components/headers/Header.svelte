@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Components
-	import { NavigationBar } from '$ui/components/navigation-bar';
+	import NavigationBar from '$ui/components/navigations/NavigationBar.svelte';
 </script>
 
 <!-- Start: Navigation bar -->

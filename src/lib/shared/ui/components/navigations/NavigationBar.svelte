@@ -1,9 +1,8 @@
 <script lang="ts">
 	// Svelte Imports
 	import type { IHeaderNavLink } from '$models/interfaces/iheader-nav-link.interface';
-	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
-
 	import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
+	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
 	import { page } from '$app/stores';
 
 	// Exports

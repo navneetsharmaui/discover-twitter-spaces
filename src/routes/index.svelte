@@ -14,8 +14,8 @@
 
 	import Seo from '$components/seo/SEO.svelte';
 	import SearchForm from '$components/search-form/SearchForm.svelte';
-	import SpaceCard from '$ui/components/space-card/SpaceCard.svelte';
-	import GhostSpaceCard from '$ui/components/ghost-space-card/GhostSpaceCard.svelte';
+	import SpaceCard from '$ui/components/cards/SpaceCard.svelte';
+	import GhostSpaceCard from '$ui/components/cards/GhostSpaceCard.svelte';
 	import { spacesSWR } from '$core/services/_spaces-swr.service';
 	import type { IMetaTagProperties } from '$models/interfaces/imeta-tag-properties.interface';
 	import type { IAppState } from '$models/interfaces/iapp-state.interface';

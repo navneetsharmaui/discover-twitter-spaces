@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { copy } from '$utils/_copy';
-	import Card from '$ui/components/card/Card.svelte';
-	import ExternalLink from '$ui/components/external-link/ExternalLink.svelte';
+	import Card from '$ui/components/cards/Card.svelte';
+	import ExternalLink from '$ui/components/links/ExternalLink.svelte';
 	import PopOver from '$ui/components/pop-over/PopOver.svelte';
 	import type { TwitterSpace } from '$models/classes/twitter-space.class';
 
