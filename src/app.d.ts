@@ -2,8 +2,21 @@
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
 
-// Modules
+// See https://kit.svelte.dev/docs/types#the-app-namespace
+// for information about these interfaces
+declare namespace App {
+	interface Locals {
+		userid: string;
+	}
 
+	// interface Platform {}
+
+	// interface Session {}
+
+	// interface Stuff {}
+}
+
+// Modules
 /**
  * With these declarations images can be imported in the components.
  *
