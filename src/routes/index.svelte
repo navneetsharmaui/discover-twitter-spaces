@@ -48,7 +48,7 @@
 	// Start: Local component methods
 
 	const fetchSpaces = (value?: string) =>
-		!value ? spacesSWR(`/api/spaces.json`) : spacesSWR(`/api/spaces.json?search=${value}`);
+		!value ? spacesSWR(`/api/spaces`) : spacesSWR(`/api/spaces?search=${value}`);
 
 	let twitterSpaces: Writable<IAppState<TwitterSpace[]>> =
 		searchTerm && searchTerm.length >= 3 ? fetchSpaces(searchTerm) : fetchSpaces('Web');
