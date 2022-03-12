@@ -1,12 +1,13 @@
 import { inject, singleton } from 'tsyringe';
 import type { Redis } from 'ioredis';
-import { auth, get, setex } from '@upstash/redis';
+import type { Redis as UpstashRedis } from '@upstash/redis';
 import LZString from 'lz-string';
 
 import { Logger, LoggerUtils } from '$utils/_logger';
 import { RedisConnectionStatus } from '$models/enums/redis-connection-status.enum';
 import type { IRedisClient } from '$models/interfaces/iredis-client-config.interface';
 import { RedisConfigToken } from '$core/tokens/redis-config.token';
+import { UpstashRedisConfigToken } from '$core/tokens/upstash-redis.token';
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { compressToUTF16: compress, decompressFromUTF16: decompress } = LZString;
@@ -22,21 +23,13 @@ export class RedisClient implements IRedisClient {
 
 	private readonly DEFAULT_EXPIRE_TIME = 60 * 60 * 24;
 
-	private readonly upstashRedisUrl = process.env.DISCOVER_UPSTASH_REDIS_REST_URL;
-
-	private readonly upstashRedisToken = process.env.DISCOVER_UPSTASH_REDIS_REST_TOKEN;
-
-	constructor(@inject(RedisConfigToken) private readonly redis: Redis) {}
-
-	private upstashAuth(): void {
-		auth({
-			url: this.upstashRedisUrl,
-			token: this.upstashRedisToken,
-		});
-	}
+	constructor(
+		@inject(RedisConfigToken) private readonly redisToken: Redis,
+		@inject(UpstashRedisConfigToken) private readonly upstashRedisToken: UpstashRedis,
+	) {}
 
 	public get status(): string {
-		return this.redis.status;
+		return this.redisToken.status;
 	}
 
 	/**
@@ -44,7 +37,7 @@ export class RedisClient implements IRedisClient {
 	 * @returns true/false
 	 */
 	public get connected(): boolean {
-		return this.redis.status === RedisConnectionStatus.READY;
+		return this.redisToken.status === RedisConnectionStatus.READY;
 	}
 
 	/**
@@ -52,7 +45,7 @@ export class RedisClient implements IRedisClient {
 	 * @returns true/false
 	 */
 	public get closed(): boolean {
-		return this.redis.status === RedisConnectionStatus.END;
+		return this.redisToken.status === RedisConnectionStatus.END;
 	}
 
 	/**
@@ -66,7 +59,7 @@ export class RedisClient implements IRedisClient {
 		if (this.closed) return null;
 		try {
 			this.logger.debug('Getting', key);
-			const cached = await this.redis.get(key);
+			const cached = await this.redisToken.get(key);
 			this.logger.debug('Got', key, cached ? cached.length : null);
 			if (cached) {
 				const parsed = decompress(cached);
@@ -95,7 +88,7 @@ export class RedisClient implements IRedisClient {
 	): Promise<'OK' | null> {
 		if (this.closed) return null;
 		try {
-			return await this.redis.set(key, compress(JSON.stringify(value)), 'EX', expireTime);
+			return this.redisToken.set(key, compress(JSON.stringify(value)), 'EX', expireTime);
 		} catch (error) {
 			this.logger.error('Unable to cache', key, value, error);
 		}
@@ -107,11 +100,10 @@ export class RedisClient implements IRedisClient {
 		parse: (value: string) => T = JSON.parse,
 	): Promise<T | null> {
 		try {
-			this.upstashAuth();
-			const response = await get(key);
-			if (response.error) throw new Error(response.error);
-			const data = response.data as string;
-			return parse(decompress(data) || '');
+			const response = await this.upstashRedisToken.get<string>(key);
+			if (response) {
+				return parse(decompress(response) || '');
+			}
 		} catch (error) {
 			this.logger.error(error);
 		}
@@ -124,10 +116,12 @@ export class RedisClient implements IRedisClient {
 		expireTime: number,
 	): Promise<string | null> {
 		try {
-			this.upstashAuth();
-			const response = await setex(key, expireTime, compress(JSON.stringify(value)));
-			if (response.error) throw new Error(response.error);
-			return response.data as string;
+			const response = await this.upstashRedisToken.setex(
+				key,
+				expireTime,
+				compress(JSON.stringify(value)),
+			);
+			return response;
 		} catch (error) {
 			this.logger.error(error);
 		}
@@ -139,6 +133,6 @@ export class RedisClient implements IRedisClient {
 	 * @returns - Promise of void or 'OK'.
 	 */
 	public async quit(): Promise<void | 'OK'> {
-		return this.closed ? this.redis.quit() : Promise.resolve();
+		return this.closed ? this.redisToken.quit() : Promise.resolve();
 	}
 }
