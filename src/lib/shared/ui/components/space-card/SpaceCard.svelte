@@ -20,10 +20,10 @@
 		title="{twitterSpace.title}"
 	>
 		<div class="flex flex-col justify-start items-start mb-1">
-			<div class="flex flex-row">
+			<div class="w-full text-ellipsis overflow-hidden flex flex-row">
 				<ExternalLink href="{twitterSpace.spaceUrl}" ariaLabel="{twitterSpace.title}">
 					<h2
-						class="text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-zinc-400 text-base md:text-lg leading-tight font-medium capitalize pr-4"
+						class="break-words text-gray-900 dark:text-gray-100 hover:text-indigo-900 dark:hover:text-zinc-400 text-base md:text-lg leading-tight font-medium capitalize pr-4"
 					>
 						{twitterSpace.title}
 					</h2>
@@ -78,7 +78,7 @@
 										alt="{host.name}"
 										height="24"
 										width="24"
-										class="rounded-full h-8 w-8 border-gray-500 dark:border-zinc-300 border-2"
+										class="break-words rounded-full h-8 w-8 border-gray-500 dark:border-zinc-300 border-2"
 									/>
 									<figcaption
 										class="ml-2 hover:text-blue-900 text-gray-900 dark:text-white text-xs leading-tight font-medium capitalize"
@@ -109,7 +109,7 @@
 													class="rounded-full h-8 w-8 border-gray-500 border-2"
 												/>
 												<figcaption
-													class="ml-2 hover:text-blue-900 text-black dark:text-white text-xs leading-tight font-medium capitalize"
+													class="break-all ml-2 hover:text-blue-900 text-black dark:text-white text-xs leading-tight font-medium capitalize"
 												>
 													<small><strong>{host.name}</strong></small>
 												</figcaption>
@@ -118,7 +118,7 @@
 									</div>
 									<div class="w-full">
 										<p
-											class="text-xs text-black whitespace-pre-wrap break-words dark:text-white"
+											class="text-xs text-black whitespace-pre-wrap break-all dark:text-white"
 											><small>{host.description}</small></p
 										>
 									</div>
