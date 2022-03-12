@@ -33,7 +33,8 @@
 		"serverless"
 	],
 	"scripts": {
-		"prepare": "husky install",
+		"prepare": "husky install && svelte-kit sync",
+		"package": "svelte-kit package",
 		"prebuild": "rimraf .svelte-kit && rimraf build && rimraf .vercel_build_output && yarn run sitemap",
 		"pre-commit": "lint-staged",
 		"check-env": "node --loader ts-node/esm scripts/js/check-env.ts",
