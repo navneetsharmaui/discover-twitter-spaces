@@ -13,12 +13,12 @@ export const get: RequestHandler = async (request) => {
 
 		const searchQuery = search || 'Web';
 
-		const twitterSpacesApiResponse = await twitterSpacesAPIService.getSpacesFromCache(
+		const twitterSpacesApiCacheResponse = await twitterSpacesAPIService.getSpacesFromCache(
 			searchQuery,
 		);
 		logger.debug('Time Elapsed till cache: ', (performance.now() - start) / 1000);
 
-		if (twitterSpacesApiResponse && twitterSpacesApiResponse.length > 0) {
+		if (twitterSpacesApiCacheResponse && twitterSpacesApiCacheResponse.length > 0) {
 			logger.debug(
 				'Cached response - Total elapsed time: ',
 				(performance.now() - start) / 1000,
@@ -27,8 +27,9 @@ export const get: RequestHandler = async (request) => {
 				status: 200,
 				headers: {
 					'Cache-Control': 'public, s-maxage=1200, stale-while-revalidate=600',
+					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(twitterSpacesApiResponse),
+				body: JSON.stringify(twitterSpacesApiCacheResponse),
 			};
 		}
 		const response = await twitterSpacesAPIService.getSpacesFromAPI(searchQuery);
@@ -37,13 +38,21 @@ export const get: RequestHandler = async (request) => {
 			(performance.now() - start) / 1000,
 		);
 		await twitterSpacesAPIService.closeConnection();
-		return response;
+		return {
+			...response,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
 	} catch (error) {
 		return {
 			status: 500,
 			body: JSON.stringify({
 				error: 'Could not fetch spaces. Error 500',
 			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		};
 	}
 };
