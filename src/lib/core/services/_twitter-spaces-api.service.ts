@@ -5,7 +5,6 @@ import type { IRedisClient } from '$models/interfaces/iredis-client-config.inter
 import type { ITwitterSpacesAPIService } from '$models/interfaces/itwitter-spaces-api-service.interface';
 import type { TwitterSpace } from '$models/classes/twitter-space.class';
 
-import { discoverEnvironmentFacade } from '$core/services/_environment.facade';
 import { RedisClientConfigToken } from '$core/tokens/redis-client-config.token';
 import { api } from '$core/services/_api.service';
 
@@ -23,11 +22,9 @@ import { Logger, LoggerUtils } from '$utils/_logger';
 export class TwitterSpacesAPIService implements ITwitterSpacesAPIService {
 	private readonly DEFAULT_REDIS_CACHE_TTL = 1 * 60 * 60;
 
-	private readonly TWITTER_TOKEN = `${process.env.DISCOVER_TWITTER_TOKEN || ''}`.trim().slice();
+	private readonly TWITTER_TOKEN = `${process.env.TWITTER_TOKEN || ''}`.trim().slice();
 
-	private readonly TWITTER_BASE_API_URL = `${
-		discoverEnvironmentFacade.twitterConfig.TWITTER_BASE_API_URL || ''
-	}`
+	private readonly TWITTER_BASE_API_URL = `${process.env.TWITTER_BASE_API_URL || ''}`
 		.trim()
 		.slice();
 
