@@ -10,7 +10,6 @@ export const environment: IDiscoverEnvironmentConfig<DiscoverEndpointConfig> = {
 	isDebugMode: true,
 	launchURL: `${import.meta.env.DISCOVER_BASE_URL}`,
 	twitterConfig: {
-		TWITTER_BASE_API_URL: `${import.meta.env.DISCOVER_TWITTER_BASE_API_URL}`,
 		TWITTER_PROFILE_URL: `${import.meta.env.DISCOVER_TWITTER_PROFILE_URL}`,
 	},
 	githubConfig: {
