@@ -3,7 +3,7 @@
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
 	webServer: {
-		command: 'yarn run preview',
+		command: 'yarn run build:vercel && yarn run preview',
 		port: 3000,
 	},
 };
