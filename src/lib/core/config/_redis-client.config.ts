@@ -1,5 +1,5 @@
 import { inject, singleton } from 'tsyringe';
-import type { Redis } from 'ioredis';
+import type Redis from 'ioredis';
 import type { Redis as UpstashRedis } from '@upstash/redis';
 import LZString from 'lz-string';
 
@@ -88,7 +88,12 @@ export class RedisClient implements IRedisClient {
 	): Promise<'OK' | null> {
 		if (this.closed) return null;
 		try {
-			return this.redisToken.set(key, compress(JSON.stringify(value)), 'EX', expireTime);
+			return await this.redisToken.set(
+				key,
+				compress(JSON.stringify(value)),
+				'EX',
+				expireTime,
+			);
 		} catch (error) {
 			this.logger.error('Unable to cache', key, value, error);
 		}

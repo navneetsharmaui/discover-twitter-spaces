@@ -1,8 +1,9 @@
+import type { RedisOptions } from 'ioredis';
 import IORedis from 'ioredis';
 
 const REDIS_CONNECTION_STRING = process.env.REDIS_CONNECTION;
 
-const REDIS_OPTIONS: IORedis.RedisOptions = {
+const REDIS_OPTIONS: RedisOptions = {
 	retryStrategy: (times: number) => {
 		if (times > 0) {
 			return null;
