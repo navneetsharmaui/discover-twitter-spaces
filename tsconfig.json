@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"module": "es2020",
-		"lib": ["es2020", "DOM"],
+		"lib": ["es2020", "DOM", "webworker"],
 		"target": "es2020",
 		/**
 			svelte-preprocess cannot figure out whether you have a value or a type, so tell TypeScript
@@ -27,7 +27,6 @@
 		"baseUrl": ".",
 		"allowJs": true,
 		"checkJs": true,
-		"types": ["node", "isomorphic-fetch", "ioredis", "lz-string"],
 		"paths": {
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
@@ -49,28 +48,5 @@
 			"$data/*": ["src/lib/data/*"],
 			"$environment/*": ["src/environments/*"]
 		}
-	},
-	"include": [
-		"*.d.ts",
-		"src/**/*.d.ts",
-		"src/**/*.js",
-		"src/**/*.ts",
-		"src/**/*.svelte",
-		"src/**/*.d.ts",
-		"src/*.d.ts",
-		"src/**/**/**/*.ts",
-		"tests/*.ts"
-	],
-	"exclude": [
-		"node_modules/*",
-		"dist/*",
-		".svelte/*",
-		".svelte-kit/*",
-		"build/*",
-		"coverage/*",
-		".vercel_build_output/*",
-		"functions/*",
-		"static/*",
-		"scripts/*"
-	]
+	}
 }

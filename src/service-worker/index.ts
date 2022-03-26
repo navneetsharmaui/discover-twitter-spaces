@@ -1,10 +1,11 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /// <reference lib="webworker" />
 
 import { build, files, version } from '$service-worker';
+
+declare let self: ServiceWorkerGlobalScope;
 
 const cacheName = `DISCOVER-TWITTER-SPACE-${version}`;
 const worker = self as unknown as ServiceWorkerGlobalScope;
